@@ -43,6 +43,6 @@ jobs:
           # The folder in which `ng build` provides its output. This is the folder which will be deployed to the `deploy_branch`.
           angular_dist_build_folder: dist/browser # optional, default is dist
           # If the action should run 'ng lint'
-          run_lint: true # optional
+          run_lint: false # optional
           # Will not fail the step if anything fails
           #skip_failure: # optional
