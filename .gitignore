@@ -43,3 +43,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# reference files
+/src/app/references/*
+!/src/app/references/.gitkeep
