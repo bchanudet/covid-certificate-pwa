@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddComponent } from './add/add.component';
+import { ScanComponent } from './scan/scan.component';
+import { CheckComponent } from './check/check.component';
 
 const routes: Routes = [
-  { path: '', component: AddComponent }
+  { path: 'scan', component: ScanComponent },
+  { path: 'validate/:qrcode', component: CheckComponent},
+  { path: '**', redirectTo:'scan'}
 ];
 
 @NgModule({

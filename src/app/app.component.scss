@@ -1,0 +1,19 @@
+header{
+  position: sticky;
+  background: #FAFAFA;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  text-align: center;
+  padding: .2rem;
+}
+
+.logo{
+  color: red;
+}
+
+#content {
+  margin: 1rem;
+  padding: 1rem;
+  background: #FAFAFA;
+  border-radius: 1rem;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+}

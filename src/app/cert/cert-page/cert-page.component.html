@@ -1,0 +1,13 @@
+<h1>Certificate</h1>
+<div *ngIf="cert; else loading">
+  <h2>QR Code</h2>
+  <app-qrcode [data]="cert.qr_content"></app-qrcode>
+  <h2>Details</h2>
+  <app-cert-details [cert]="cert"></app-cert-details>
+  <div class="actions">
+    <button class="cancel" (click)="Remove()">Remove certificate</button>
+  </div>
+</div>
+<ng-template #loading>
+  <p>Loading...</p>
+</ng-template>

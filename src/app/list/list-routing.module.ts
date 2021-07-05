@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from './home-page/home-page.component';
+import { ListPageComponent } from './list-page/list-page.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomePageComponent},
-  { path: '**', redirectTo: 'home'}
+  { path: '', component: ListPageComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class HomeRoutingModule { }
+export class ListRoutingModule { }

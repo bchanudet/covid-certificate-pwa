@@ -1,0 +1,4 @@
+<h1>Your certificates</h1>
+<app-cert-line *ngFor="let c of (certificates$ | async)" [cert]='c'>
+</app-cert-line>
+<button [routerLink]="'/new'">Import a new certificate</button>

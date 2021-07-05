@@ -7,6 +7,9 @@ import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { AddModule } from './add/add.module';
+import { HomeModule } from './home/home.module';
+import { ListModule } from './list/list.module';
+import { CertModule } from './cert/cert.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,9 @@ import { AddModule } from './add/add.module';
     AppRoutingModule,
     RouterModule,
     AddModule,
+    HomeModule,
+    ListModule,
+    CertModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

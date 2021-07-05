@@ -1,0 +1,8 @@
+<h1>Add a certificate</h1>
+<select *ngIf="cameras.length > 1">
+  <option *ngFor="let cam of cameras" value="{{cam.deviceId}}">{{cam.label}}</option>
+</select>
+<zxing-scanner #scanner></zxing-scanner>
+<div class="note" *ngIf="note !== ''">
+  {{note}}
+</div>
