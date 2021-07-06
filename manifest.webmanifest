@@ -1,6 +1,6 @@
 {
-  "name": "covid-certificate-pwa",
-  "short_name": "covid-certificate-pwa",
+  "name": "Covid Certificate",
+  "short_name": "Covid Certificate",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
