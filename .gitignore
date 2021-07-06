@@ -2,7 +2,7 @@
 
 # compiled output
 /dist
-/tmp
+/tmp/*
 /out-tsc
 # Only exists if Bazel was run
 /bazel-out
@@ -47,3 +47,6 @@ Thumbs.db
 # reference files
 /src/app/references/*
 !/src/app/references/.gitkeep
+
+# tmp folder
+!/tmp/.gitkeep
