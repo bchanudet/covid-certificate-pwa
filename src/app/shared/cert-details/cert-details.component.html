@@ -1,30 +1,118 @@
-<dl *ngIf="cert">
-  <dt>Firstname</dt>
-  <dd>{{cert.firstname}}</dd>
-  <dt>Lastname</dt>
-  <dd>{{cert.lastname}}</dd>
-  <dt>Date of Birth</dt>
-  <dd>{{cert.date_birth}}</dd>
-  <dt>Disease or agent targeted</dt>
-  <dd>{{cert.disease}}
-    <br><span class="raw">840539006</span>
-  </dd>
-  <dt>Vaccine/Prophylaxis</dt>
-  <dd>{{cert.vaccine}}
-    <br><span class="raw">J07BX03</span>
-  </dd>
-  <dd>{{cert.medicinal_product}}</dd>
-  <dt>Vaccine Marketing authorisation holder or manufacturer</dt>
-  <dd>
-    {{cert.manufacturer}}
-    <br><span class="raw">MSDL</span>
-  </dd>
-  <dt>Number in a series of vaccinations/doses and the overall number of doses in the series</dt>
-  <dd>{{cert.number_total}}</dd>
-  <dt>Date of vaccination</dt>
-  <dd>{{cert.date_vaccination}}</dd>
-  <dt>Member State of vaccination</dt>
-  <dd>{{cert.member_state}}</dd>
+<div *ngIf="cert">
+  <h2>Person</h2>
+  <dl>
+    <dt>Firstname</dt>
+    <dd>{{cert.firstname}}</dd>
+    <dt>Lastname</dt>
+    <dd>{{cert.lastname}}</dd>
+    <dt>Date of Birth</dt>
+    <dd>{{cert.date_birth}}</dd>
+  </dl>
+  <div [ngSwitch]="cert.type">
+    <ng-container *ngSwitchCase="'vaccine'">
+      <h2>Vaccination Certificate</h2>
+      <ng-container *ngIf="vaccine as vac">
+        <dl>
+          <dt>Disease or agent targeted</dt>
+          <dd>{{vac.disease.formatted}}
+            <br><span class="raw">{{vac.disease.raw}}</span>
+          </dd>
+          <dt>Vaccine/Prophylaxis</dt>
+          <dd>{{vac.prophylaxis.raw}}
+            <br><span class="raw">{{vac.prophylaxis.raw}}</span>
+          </dd>
+          <dt>Vaccine medicinal product</dt>
+          <dd>
+            {{vac.medicinal_product.formatted}}
+            <br><span class="raw">{{vac.medicinal_product.raw}}</span>
+          </dd>
+          <dt>Vaccine Marketing authorisation holder or manufacturer</dt>
+          <dd>
+            {{vac.manufacturer.formatted}}
+            <br><span class="raw">{{vac.manufacturer.raw}}</span>
+          </dd>
+          <dt>Number in a series of vaccinations/doses and the overall number of doses in the series</dt>
+          <dd>{{vac.number_total}}</dd>
+          <dt>Date of vaccination</dt>
+          <dd>{{vac.vaccinated_on}}</dd>
+          <dt>Country of Vaccination</dt>
+          <dd>
+            {{vac.country.formatted}}
+            <br><span class="raw">{{vac.country.raw}}</span>
+          </dd>
+        </dl>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'test'">
+      <h2>Test Certificate</h2>
+      <ng-container *ngIf="test as tst">
+        <dl>
+          <dt>Disease or agent targeted</dt>
+          <dd>{{tst.disease.formatted}}
+            <br><span class="raw">{{tst.disease.raw}}</span>
+          </dd>
+          <dt>Type of Test</dt>
+          <dd>{{tst.type.formatted}}
+            <br><span class="raw">{{tst.type.raw}}</span>
+          </dd>
+          <dt>NAA Test Name</dt>
+          <dd>{{tst.name}}
+          </dd>
+          <dt>RAT Test name and manufacturer</dt>
+          <dd>{{tst.manufacturer.formatted}}
+            <br><span class="raw">{{tst.manufacturer.raw}}</span>
+          </dd>
+          <dt>Date/Time of Sample Collection</dt>
+          <dd>
+            {{tst.collected_on}}
+          </dd>
+          <dt>Test Result</dt>
+          <dd>{{tst.result.formatted}}
+            <br><span class="raw">{{tst.result.raw}}</span>
+          </dd>
+          <dt>Testing center</dt>
+          <dd>
+            {{tst.testing_center}}
+          </dd>
+          <dt>Country of Test</dt>
+          <dd>
+            {{tst.country.formatted}}
+            <br><span class="raw">{{tst.country.raw}}</span>
+          </dd>
+        </dl>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngSwitchCase="'recovery'">
+      <h2>Recovery Certificate</h2>
+      <ng-container *ngIf="recovery as rec">
+        <dl>
+          <dt>Disease or agent targeted</dt>
+          <dd>{{rec.disease.formatted}}
+            <br><span class="raw">{{rec.disease.raw}}</span>
+          </dd>
+          <dt>Date of first positive NAA test result</dt>
+          <dd>{{rec.first_positive_on}}
+          </dd>
+          <dt>Certificate Valid From</dt>
+          <dd>{{rec.valid_from}}
+          </dd>
+          <dt>Certificate Valid Until</dt>
+          <dd>{{rec.valid_until}}
+          </dd>
+          <dt>Country of Test</dt>
+          <dd>
+            {{rec.country.formatted}}
+            <br><span class="raw">{{rec.country.raw}}</span>
+          </dd>
+        </dl>
+      </ng-container>
+    </ng-container>
+  </div>
+  <h2>Certificate info</h2>
   <dt>Certificate issuer</dt>
-  <dd>{{cert.certificate_issuer}}</dd>
-</dl>
+  <dd>{{cert.issuer}}</dd>
+  <dt>Unique Certificate Identifier, UVCI</dt>
+  <dd>{{cert.id}}</dd>
+
+
+</div>
