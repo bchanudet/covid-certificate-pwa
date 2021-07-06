@@ -1,18 +1,9 @@
 <h1>Import a certificate</h1>
-<h2>Details</h2>
-<form [formGroup]='form' (ngSubmit)="onSubmit()">
-  <div>
-    <label for="lastname">Lastname: </label>
-    <input type="text" name="lastname" id="lastname" formControlName='lastname'>
-  </div>
-  <div>
-    <label for="firstname">Firstname: </label>
-    <input type="text" name="firstname" id="firstname" formControlName='firstname'>
-  </div>
+<div *ngIf="cert$ | async as cert;">
+  <h2>Details</h2>
+  <app-cert-details [cert]="cert"></app-cert-details>
   <div class="buttons">
     <button class="cancel" (click)="onCancel()">Cancel</button>
-    <button class="success" type="submit" [disabled]="newcert === undefined || !form.valid">Import</button>
+    <button class="success" (click)="onSubmit(cert)" [disabled]="">Import</button>
   </div>
-</form>
-<h2>QR Code</h2>
-<app-qrcode></app-qrcode>
+</div>

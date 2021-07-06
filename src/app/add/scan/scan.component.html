@@ -6,3 +6,8 @@
 <div class="note" *ngIf="note !== ''">
   {{note}}
 </div>
+<div *ngIf="displayTest">
+  <a class="btn" (click)="test('vaccine')">TEST VACCINE</a>
+  <br><a class="btn" (click)="test('pcr')">TEST PCR</a>
+  <br><a class="btn" (click)="test('recovery')">TEST RECOVERY</a>
+</div>

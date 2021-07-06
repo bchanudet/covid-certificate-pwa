@@ -37,6 +37,8 @@ button, .btn{
   background-color: hsl(207, 53%, 47%);
   color: white;
   text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
 }
 
 button.cancel, .btn.cancel{
