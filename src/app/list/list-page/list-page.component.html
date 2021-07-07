@@ -1,4 +1,13 @@
 <h1>Your certificates</h1>
-<app-cert-line *ngFor="let c of (certificates$ | async)" [cert]='c'>
-</app-cert-line>
-<button [routerLink]="'/new'">Import a new certificate</button>
+<div *ngIf="(certificates$ | async) as certs; else nocerts">
+  <app-cert-line *ngFor="let c of certs" [cert]='c'>
+  </app-cert-line>
+</div>
+<ng-template #nocerts>
+  <p class="instructions">You haven't imported any certificate yet. Click on the button under to scan a QR Code.</p>
+</ng-template>
+
+<button [routerLink]="'/new'">
+  <span class="ti ti-qrcode"></span>
+  Import a new certificate
+</button>

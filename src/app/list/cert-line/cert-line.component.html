@@ -1,11 +1,14 @@
 <div class="line" [routerLink]="['/','cert', cert?.id]">
+  <div class="icon">
+    <span class="ti" [ngClass]='icon' style="font-size: 2rem;"></span>
+  </div>
   <div class="name">
     {{cert?.firstname}}<br>
     {{cert?.lastname}}
   </div>
   <div class="view">
     <a class="qr">
-      <span class="ti ti-chevron-right" style="font-size: 2rem;"></span>
+      <span class="ti ti-chevron-right" style="font-size: 1.2rem;"></span>
     </a>
   </div>
 </div>

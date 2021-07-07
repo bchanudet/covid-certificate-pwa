@@ -1,8 +1,18 @@
 .buttons{
+  margin-top: 2rem;
   display: flex;
-  column-gap: 0.2rem;
+  column-gap: 0.25rem;
 }
 
 button{
   width: 50%;
+}
+
+.buttons button:first-of-type{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.buttons button:first-of-type + button{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }

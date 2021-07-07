@@ -1,12 +1,18 @@
 .line{
   display: flex;
-  border-bottom: 1px solid red;
-  padding-bottom: 0.3rem;
+  padding: 0.5rem 0;
   cursor: pointer;
+  column-gap: .7rem;
+  border-bottom: 1px solid #AAA;
+}
+
+.icon{
+  align-self: center;
 }
 
 .name{
   flex-grow: 1;
+  align-self: center;
 }
 
 .view{

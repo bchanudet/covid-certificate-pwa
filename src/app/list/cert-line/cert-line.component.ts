@@ -10,6 +10,15 @@ export class CertLineComponent implements OnInit {
 
   @Input() cert?: DCCertificate;
 
+  public get icon(): string {
+    switch(this.cert?.type){
+      case 'vaccine': return 'ti-vaccine';
+      case 'recovery': return 'ti-virus-off';
+      case 'test': return 'ti-test-pipe';
+      default: return '';
+    }
+  }
+
   constructor() { }
 
   ngOnInit(): void {

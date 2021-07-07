@@ -1,0 +1,44 @@
+@mixin apply($theme){
+
+  *{
+    color: map-get($theme, 'primary');
+  }
+
+  body{
+    background-color: map-get($theme, 'background');
+  }
+
+  #content, header{
+    background-color: map-get($theme, 'panel');
+  }
+
+  .logo{
+    color: map-get($theme, "accent");
+  }
+
+  h3{
+    color: map-get($theme, "accent");
+  }
+
+  dt{
+    color: lighten(map-get($theme, "accent"), 10%);
+  }
+
+
+  button.cancel, .btn.cancel{
+    background-color: map-get($theme, "cancel");
+    color: map-get($theme, 'primary');
+  }
+  button.cancel:hover, .btn.cancel:hover{
+    background-color: lighten(map-get($theme, "cancel"), 5%);
+  }
+
+  button.success, .btn.success{
+    background-color: map-get($theme, "success");
+    color: map-get($theme, 'primary');
+  }
+  button.success:hover, .btn.success:hover{
+    background-color: lighten(map-get($theme, "success"), 5%);
+  }
+
+}

@@ -1,9 +1,15 @@
 <h1>Import a certificate</h1>
 <div *ngIf="cert$ | async as cert;">
-  <h2>Details</h2>
+  <p class="instructions">Please double-check carefully the details from the scanned certicate against those on your source material. If everything matches, click on "Import" at the end.</p>
   <app-cert-details [cert]="cert"></app-cert-details>
   <div class="buttons">
-    <button class="cancel" (click)="onCancel()">Cancel</button>
-    <button class="success" (click)="onSubmit(cert)" [disabled]="">Import</button>
+    <button class="cancel" (click)="onCancel()">
+      <span class="ti ti-arrow-back"></span>
+      Cancel
+    </button>
+    <button class="success" (click)="onSubmit(cert)" [disabled]="">
+      <span class="ti ti-check"></span>
+      Import
+    </button>
   </div>
 </div>

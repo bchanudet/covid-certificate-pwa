@@ -1,0 +1,39 @@
+dl {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: .4rem;
+}
+
+dt, dl{
+  flex: 1;
+  align-items: flex-start;
+}
+
+dt{
+  font-weight: 600;
+  flex: 1;
+}
+
+dd{
+  margin: 0;
+  flex: 1;
+}
+
+.raw{
+  font-size: 0.66rem;
+}
+
+@media screen and (max-width: 480px) {
+  dl {
+    display: block;
+    margin-bottom: .8rem;
+  }
+  dt{
+    width: 100%;
+    margin-bottom: .2rem;
+  }
+  dd{
+    width: 100%;
+    padding-left: 2rem;
+  }
+}

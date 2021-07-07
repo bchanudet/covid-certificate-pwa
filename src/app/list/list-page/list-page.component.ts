@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { DCCertificate } from 'src/app/models/certificate';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -15,7 +16,9 @@ export class ListPageComponent implements OnInit {
   ) { }
 
   public get certificates$() : Observable<DCCertificate[]>{
-    return this.storeSvc.ListCertificates();
+    return this.storeSvc.ListCertificates().pipe(
+      filter(v => v.length > 0)
+    );
   }
 
   ngOnInit(): void {
