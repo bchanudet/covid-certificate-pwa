@@ -1,11 +1,11 @@
 {
   "name": "Covid Certificate",
   "short_name": "Covid Certificate",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
+  "theme_color": "#007a66",
+  "background_color": "#003d33",
   "display": "standalone",
   "scope": "./",
-  "start_url": "./",
+  "start_url": "./list",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",
