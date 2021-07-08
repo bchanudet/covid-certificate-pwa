@@ -1,18 +1,20 @@
-<h1>Add a certificate</h1>
-<select *ngIf="cameras.length > 1">
-  <option *ngFor="let cam of cameras" value="{{cam.deviceId}}">{{cam.label}}</option>
-</select>
-<div class="scanner">
-  <div>
-    <span class="ti ti-camera"></span><br>
-    <p [ngSwitch]="displayMesg">
-      <span *ngSwitchCase="'permission-pending'">Please authorize the application to access the camera</span>
-      <span *ngSwitchCase="'permission-denied'">You have denied the application to access the camera</span>
-      <span *ngSwitchCase="'camera-loading'">Camera is loading</span>
-    </p>
+<div class="panel">
+  <h1>Add a certificate</h1>
+  <select *ngIf="cameras.length > 1">
+    <option *ngFor="let cam of cameras" value="{{cam.deviceId}}">{{cam.label}}</option>
+  </select>
+  <div class="scanner">
+    <div>
+      <span class="ti ti-camera"></span><br>
+      <p [ngSwitch]="displayMesg">
+        <span *ngSwitchCase="'permission-pending'">Please authorize the application to access the camera</span>
+        <span *ngSwitchCase="'permission-denied'">You have denied the application to access the camera</span>
+        <span *ngSwitchCase="'camera-loading'">Camera is loading</span>
+      </p>
+    </div>
+    <zxing-scanner #scanner></zxing-scanner>
   </div>
-  <zxing-scanner #scanner></zxing-scanner>
-</div>
-<div *ngIf="displayTest">
-  <a class="btn" (click)="test('vaccine')">VACCINE</a> - <a class="btn" (click)="test('pcr')">PCR</a> - <a class="btn" (click)="test('recovery')">RECOVERY</a>
+  <div *ngIf="displayTest">
+    <a class="btn" (click)="test('vaccine')">VACCINE</a> - <a class="btn" (click)="test('pcr')">PCR</a> - <a class="btn" (click)="test('recovery')">RECOVERY</a>
+  </div>
 </div>

@@ -13,22 +13,20 @@ import { StorageService } from 'src/app/services/storage.service';
 })
 export class CheckComponent implements OnInit {
 
-  private currentCert: DCCertificate = {} as DCCertificate;
-
-  public cert$: Observable<DCCertificate> = this.route.params.pipe(
-      switchMap((params) => {
-        return this.certSvc.CreateFromQRCode(atob(params.qrcode));
-      }),
-      tap((cert) => { this.currentCert = cert;})
-    );
+  public cert$: Observable<DCCertificate>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private certSvc: CertificateService,
     private storeSvc: StorageService,
-
-  ) { }
+  ) {
+    this.cert$ = this.route.params.pipe(
+      switchMap((params) => {
+        return this.certSvc.CreateFromQRCode(atob(params.qrcode));
+      }),
+    );
+  }
 
 
 
