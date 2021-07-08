@@ -21,15 +21,18 @@ export class ScanComponent implements OnInit, AfterViewInit, OnDestroy {
 
   enabled: boolean = true;
   cameras: MediaDeviceInfo[] = [];
-  note: string = 'Scan a QRCode';
+  note: string = 'Please authorize the application to access the camera';
 
   displayTest: boolean = !environment.production;
+  displayMesg: 'permission-pending' | 'permission-denied' | 'camera-loading' = 'permission-pending';
+
 
   constructor(
     private router: Router
   ) { }
 
   ngOnInit(): void {
+
   }
 
   ngOnDestroy(): void {
@@ -42,6 +45,11 @@ export class ScanComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void{
+    this.scanner.permissionResponse.subscribe(
+      (d) => {
+        this.displayMesg = d ? 'camera-loading' : 'permission-denied';
+      }
+    )
     this.scanner.scanSuccess.subscribe(
       (content: string) => {
         this.onCertificateFound(content);

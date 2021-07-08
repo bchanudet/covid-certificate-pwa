@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { map, switchMap, switchMapTo, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'covid-certificate-pwa';
+
+  constructor(
+    private route: ActivatedRoute
+  ){
+
+  }
 }

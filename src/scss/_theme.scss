@@ -1,19 +1,30 @@
 @mixin apply($theme){
 
-  *{
+  body{
+    background-color: map-get($theme, 'background');
     color: map-get($theme, 'primary');
   }
 
-  body{
-    background-color: map-get($theme, 'background');
-  }
-
-  #content, header{
+  header, .panel{
     background-color: map-get($theme, 'panel');
   }
 
+
   .logo{
     color: map-get($theme, "accent");
+  }
+
+  h1{
+    font-weight: 100;
+    text-align: center;
+    margin-bottom: .5rem;
+  }
+
+
+  h2{
+    font-weight: 400;
+    margin-bottom: .4rem;
+    border-bottom: 1px solid #CCC;
   }
 
   h3{
@@ -24,10 +35,28 @@
     color: lighten(map-get($theme, "accent"), 10%);
   }
 
+  .raw{
+    color: transparentize(map-get($theme,'primary'), .50)
+  }
+
+  button, .btn{
+    color: map-get($theme, 'btn-primary');
+    border: none;
+    padding: .6rem;
+    border-radius: 0.4rem;
+    background-color: hsl(207, 53%, 47%);
+    text-decoration: none;
+    cursor: pointer;
+    display: block;
+    max-width: 70%;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0 auto;
+  }
 
   button.cancel, .btn.cancel{
     background-color: map-get($theme, "cancel");
-    color: map-get($theme, 'primary');
   }
   button.cancel:hover, .btn.cancel:hover{
     background-color: lighten(map-get($theme, "cancel"), 5%);
@@ -35,10 +64,20 @@
 
   button.success, .btn.success{
     background-color: map-get($theme, "success");
-    color: map-get($theme, 'primary');
   }
   button.success:hover, .btn.success:hover{
     background-color: lighten(map-get($theme, "success"), 5%);
   }
+
+
+  .instructions {
+    color: #666;
+    font-style: italic;
+  }
+
+  li .ti {
+    color: map-get($theme, "accent")
+  }
+
 
 }

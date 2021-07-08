@@ -5,7 +5,10 @@
   <h2>Details</h2>
   <app-cert-details [cert]="cert"></app-cert-details>
   <div class="actions">
-    <button class="cancel" (click)="Remove()">Remove certificate</button>
+    <button class="cancel" (click)="Remove()">
+      <span class="ti ti-trash"></span>
+      Remove certificate
+    </button>
   </div>
 </div>
 <ng-template #loading>

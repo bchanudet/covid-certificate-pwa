@@ -1,5 +1,108 @@
-<h1>EU Digital Covid Certificate</h1>
-<p>Store and manage easily your certificates.</p>
-<p>
-  <a [routerLink]="['/new']" class="btn">Import your first certificate</a>
-</p>
+<div class="panel">
+  <h1>EU Digital COVID Certificate</h1>
+  <p class="subtitle">Import and store easily your EU COVID Certificates on your smartphone.</p>
+  <p>
+    <a [routerLink]="['/new']" class="btn">
+      <span class="ti ti-qrcode"></span>
+      Import your first certificate
+    </a>
+  </p>
+</div>
+<div class="panel">
+  <h2>
+    <span class="ti ti-apps"></span>&nbsp;
+    <span>What is this website?</span>
+  </h2>
+  <p>This website is a web application that allows you to <strong>import and store</strong>
+    your Digital EU COVID certificates (<em>DCC</em>). Using your device's camera, you'll be
+    able to scan the QR&nbsp;Code of the certificate.</p>
+  <p>Using the latest available technologies, this application can be installed on your
+    smartphone, so you can <strong>use it even while offline</strong>.</p>
+  <p>The certificates are <strong>stored directly on your device</strong>, the application
+    does not connect to any server during usage. <strong>Your data is safe and cannot be leaked.</strong>
+    No cookies are stored and no third-party services are used.</p>
+  <p>The application can store an <strong>unlimited amount of certificates</strong>,
+    if you need to keep the certificates of your family or friends.</p>
+  <p>Finally, this application is <strong>Open Source</strong>, the source is directly
+    accessible and modifiable. Should you want it, you can audit it, and even contribute
+    to improve it.</p>
+</div>
+<div class="panel">
+  <h2>
+    <span class="ti ti-report-medical"></span>&nbsp;
+    <span>What is a DCC?</span>
+  </h2>
+  <p>
+    An EU Digital COVID Certificate is a digital proof that a person has either:
+  </p>
+  <ul class="types">
+    <li>
+      <span class="ti ti-vaccine"></span>&nbsp;
+      <span>been vaccinated against COVID-19</span>
+    </li>
+    <li>
+      <span class="ti ti-test-pipe"></span>&nbsp;
+      <span>received a negative test result or</span>
+    </li>
+    <li>
+      <span class="ti ti-virus-off"></span>&nbsp;
+      <span>recovered from COVID-19</span>
+    </li>
+  </ul>
+  <p>
+    Key features of the certificates are:
+  </p>
+  <ul class="features">
+    <li>
+      <span class="ti ti-file-code"></span>&nbsp;
+      <span>Digital and/or paper format</span>
+    </li>
+    <li>
+      <span class="ti ti-qrcode"></span>&nbsp;
+      <span>with QR code</span>
+    </li>
+    <li>
+      <span class="ti ti-cash-banknote-off"></span>&nbsp;
+      <span>free of charge</span>
+    </li>
+    <li>
+      <span class="ti ti-language"></span>&nbsp;
+      <span>in national language and English</span>
+    </li>
+    <li>
+      <span class="ti ti-shield-check"></span>&nbsp;
+      <span>safe and secure</span>
+    </li>
+    <li>
+      <span class="ti ti-map-2"></span>&nbsp;
+      <span>valid in all EU countries</span>
+    </li>
+  </ul>
+  <p>More information is available on <a href="https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response/safe-covid-19-vaccines-europeans/eu-digital-covid-certificate_en" target="_blank">the European Commission website</a>.</p>
+</div>
+<div class="panel">
+  <h2>
+    <span class="ti ti-apps"></span>&nbsp;
+    <span>Why this app?</span>
+  </h2>
+  <p>In some countries, the official application to use for storing the certificate is bloated with other features, and sometimes even incompatible with some phones.</p>
+</div>
+<div class="panel">
+  <h2>
+    <span class="ti ti-help"></span>&nbsp;
+    <span>Can I help?</span>
+  </h2>
+  <p>Sure! The source code is accessible on this <a href="https://github.com/bchanudet/covid-certificate-pwa">Github repository</a>. Even if you don't know how to code any contribution will be helpful. I will especially appreciate translations of the application to other languages.</p>
+</div>
+<div class="panel">
+  <h2>
+    <span class="ti ti-user"></span>&nbsp;
+    <span>Who are the authors?</span>
+  </h2>
+  <p>There is only me for now, <a href="https://benjaminchanudet.com">Benjamin Chanudet</a>.
+    I'm a French developer based in Lyon and not totally psyched about using TousAntiCovid,
+    the recommended application that needs Geolocation & Bluetooth permissions, and an exclusion
+    to the phone's battery management system only to store a QR Code.</p>
+  <p>More importantly, this application is not endorsed at all by any government or official service.</p>
+  <p>Icons are from the <a href="https://tabler-icons.io/">Tabler icons</a> project.</p>
+</div>

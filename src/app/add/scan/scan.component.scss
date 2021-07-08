@@ -1,6 +1,39 @@
+.scanner {
+  display: flex;
+  border-radius: .7rem;
+  height: 70vh;
+  width: 100%;
+  position: relative;
+  background: rgba(0,0,0,.35);
+  align-items: center;
+  justify-items: center;
+}
+
+.scanner > div {
+  width: 100%;
+  text-align: center;
+  padding: 0 2rem;
+}
+
+p {
+  text-align: center;
+}
+
+.scanner div .ti{
+  font-size: 3rem;
+}
+
+
+:host zxing-scanner::ng-deep{
+  position: absolute;
+  left: 0; right: 0;
+  top: 0; bottom: 0;
+}
+
 :host zxing-scanner::ng-deep video {
   border-radius: .7rem;
-  max-height: 70vh;
-  width: 100%;
-  object-fit: contain;
+  object-fit: fill;
+  position: absolute;
+  left: 0; right: 0;
+  top: 0; bottom: 0;
 }
