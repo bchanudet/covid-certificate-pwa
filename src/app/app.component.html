@@ -1,7 +1,14 @@
 <header>
   <div class="bar"></div>
   <span class="logo">
-    <span class="ti ti-vaccine" style="font-size: 2rem;"></span>
+    <img src="assets/icon.svg" class="icon"/>
   </span>
 </header>
 <router-outlet></router-outlet>
+<div class="panel">
+  <p>
+    <span class="ti ti-refresh"></span>&nbsp;
+    <span>An update is available. Click on the button to activate it.</span>
+  </p>
+  <a (click)="UpdateApp()" class="btn">Refresh</a>
+</div>

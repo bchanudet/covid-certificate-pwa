@@ -14,6 +14,7 @@ import { StorageService } from 'src/app/services/storage.service';
 export class CheckComponent implements OnInit {
 
   public cert$: Observable<DCCertificate>;
+  public hasStorage: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +27,7 @@ export class CheckComponent implements OnInit {
         return this.certSvc.CreateFromQRCode(atob(params.qrcode));
       }),
     );
+    this.hasStorage = this.storeSvc.isStorageEnabled;
   }
 
 
@@ -34,7 +36,7 @@ export class CheckComponent implements OnInit {
   }
 
   onCancel(): void {
-    this.router.navigate(['new', 'scan']);
+    this.router.navigate(['/new', 'scan']);
   }
 
   onSubmit(cert: DCCertificate): void {

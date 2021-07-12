@@ -13,3 +13,10 @@
     Import a new certificate
   </button>
 </div>
+<div class="panel" *ngIf="canInstall$ |async">
+  <p>You can also add the application to your homepage!</p>
+  <button>
+    <span class="ti ti-home"></span>
+    Add to homepage
+  </button>
+</div>

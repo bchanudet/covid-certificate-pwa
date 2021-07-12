@@ -10,7 +10,40 @@ const KEY_CERT = 'cert_';
 })
 export class StorageService {
 
-  constructor() { }
+  private storageEnabled: boolean = false;
+
+  public get isStorageEnabled(): boolean{
+    return this.storageEnabled;
+  }
+
+  constructor() {
+    this.DetectStorage();
+  }
+
+  private DetectStorage(): void{
+    let storage: any;
+    try {
+      storage = window["localStorage"];
+      var x = '__storage_test__';
+      storage.setItem(x, x);
+      storage.removeItem(x);
+      this.storageEnabled = true;
+    }
+    catch(e) {
+      this.storageEnabled = e instanceof DOMException && (
+        // everything except Firefox
+        e.code === 22 ||
+        // Firefox
+        e.code === 1014 ||
+        // test name field too, because code might not be present
+        // everything except Firefox
+        e.name === 'QuotaExceededError' ||
+        // Firefox
+        e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+        // acknowledge QuotaExceededError only if there's something already stored
+        (storage && storage.length !== 0);
+    }
+  }
 
   private AddToIDs(id: string) : boolean{
     let list = JSON.parse(localStorage.getItem(KEY_LIST) || '[]') as string[];

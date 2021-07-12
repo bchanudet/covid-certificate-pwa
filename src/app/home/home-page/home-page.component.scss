@@ -3,7 +3,11 @@
   text-align: center;
 }
 
+ul{
+  padding-inline-start: 1rem;
+}
 
 .features li, .types li{
   list-style: none;
+  margin: 0;
 }

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map, switchMap, switchMapTo, tap } from 'rxjs/operators';
+import { filter, map, switchMap, switchMapTo, tap } from 'rxjs/operators';
+import { AppUpdateService } from './services/app-update.service';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,17 @@ import { map, switchMap, switchMapTo, tap } from 'rxjs/operators';
 export class AppComponent {
   title = 'covid-certificate-pwa';
 
-  constructor(
-    private route: ActivatedRoute
-  ){
+  public hasNewUpdate$ : Observable<boolean>;
 
+  constructor(
+    private appUpdateSvc: AppUpdateService
+  ){
+    this.hasNewUpdate$ = this.appUpdateSvc.newVersionFound$.pipe(
+      filter((v: boolean) => v === true)
+    );
+  }
+
+  UpdateApp(){
+    this.appUpdateSvc.GetUpdate()
   }
 }

@@ -87,7 +87,6 @@ export class CertificateService {
     return of(dccert);
   }
   private ParseVaccinePart(cert: DCCertificate, data: any): DCCertificate{
-    console.log("vaccine",data);
 
     let entry : VaccinationEntry = {
       disease : this.FindDisease(data.tg),
@@ -106,8 +105,6 @@ export class CertificateService {
     return cert;
   }
   private ParseRecoveryPart(cert: DCCertificate, data: any): DCCertificate{
-    console.log("recovery",data);
-
     let entry : RecoveryEntry = {
       disease : this.FindDisease(data.tg),
       country : this.FindCountry(data.co),
@@ -123,7 +120,6 @@ export class CertificateService {
     return cert;
   }
   private ParseTestPart(cert: DCCertificate, data: any): DCCertificate{
-    console.log("test", data);
 
     let entry : TestEntry = {
       disease : this.FindDisease(data.tg),

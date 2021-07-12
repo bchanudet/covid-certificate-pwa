@@ -1,0 +1,91 @@
+import { ApplicationRef, Injectable } from '@angular/core';
+import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
+import { BehaviorSubject, concat, from, fromEvent, interval, Observable } from 'rxjs';
+import { filter, first } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AppUpdateService {
+
+  private hasNewVersionSub : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private canInstallSub: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private deferredPrompt: any = null;
+
+  public get newVersionFound$(): Observable<boolean> {
+    return this.hasNewVersionSub.asObservable();
+  }
+
+  public get canInstallApp$(): Observable<boolean> {
+    return this.canInstallSub.asObservable();
+  }
+
+  public get updaterEnabled(): boolean{
+    return this.updates.isEnabled;
+  }
+
+  constructor(
+    appRef: ApplicationRef,
+    private updates: SwUpdate
+  ) {
+    // Check for updates when app is stable or every 6 hours
+    const isStable$ = appRef.isStable.pipe(first(isStable => isStable === true));
+    const every6h$ = interval(6 * 3600000);
+    concat(isStable$, every6h$).pipe(
+      filter((v) => this.updates.isEnabled)
+    ).subscribe(
+      () => {
+        this.updates.checkForUpdate();
+      }
+    );
+
+    // Display warning when update is detected
+    this.updates.available.subscribe((evt) => { this.OnUpdateDetected(evt); });
+
+    // Detect if we can add the app to homepage
+    fromEvent(window, 'beforeinstallprompt').subscribe(
+      (e) => {
+        // Avoid calling the install prompt
+        e.preventDefault();
+
+        // Store the event to use it later
+        this.deferredPrompt = e;
+
+        // signal we can install the app
+        this.canInstallSub.next(true);
+      }
+    );
+  }
+
+  private OnUpdateDetected(evt: UpdateAvailableEvent){
+    console.log('current version is', evt.current);
+    console.log('available version is', evt.available);
+
+    this.hasNewVersionSub.next(true);
+  }
+
+  public GetUpdate() {
+    if(!this.hasNewVersionSub.value) {
+      return;
+    }
+
+    // Activate update then reload the page
+    this.updates.activateUpdate().then(() => document.location.reload());
+  }
+
+  public Install() {
+    if(this.deferredPrompt === null){
+      return;
+    }
+
+    this.deferredPrompt.prompt();
+    this.deferredPrompt.userChoice.then((choice : any) => {
+      if(choice.outcome === 'accepted'){
+        this.canInstallSub.next(false);
+      }
+      // Don't really care about the result, we will put the
+      this.deferredPrompt = null;
+    })
+  }
+
+}

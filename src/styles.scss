@@ -50,6 +50,9 @@ p{
   margin-bottom: 1rem;
   line-height: 1.47rem;
 }
+p:last-child{
+  margin-bottom: 0;
+}
 
 header{
   position: sticky;
