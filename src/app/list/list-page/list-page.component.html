@@ -15,7 +15,7 @@
 </div>
 <div class="panel" *ngIf="canInstall$ |async">
   <p>You can also add the application to your homepage!</p>
-  <button>
+  <button (click)="Install()">
     <span class="ti ti-home"></span>
     Add to homepage
   </button>

@@ -27,6 +27,10 @@ export class ListPageComponent implements OnInit {
     return this.updateSvc.canInstallApp$;
   }
 
+  public Install(): void {
+    this.updateSvc.Install();
+  }
+
   ngOnInit(): void {
   }
 
