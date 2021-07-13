@@ -1,4 +1,8 @@
 /***************************************************************************************************
+ * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
+ */
+import '@angular/localize/init';
+/***************************************************************************************************
  * Initialize the server environment - for example, adding DOM built-in types to the global scope.
  *
  * NOTE:
