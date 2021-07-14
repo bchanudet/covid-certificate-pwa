@@ -9,22 +9,12 @@
     background-color: map-get($theme, 'panel');
   }
 
-
-  .logo{
+  .logo {
     color: map-get($theme, "accent");
   }
 
-  h1{
-    font-weight: 100;
-    text-align: center;
-    margin-bottom: .5rem;
-  }
-
-
   h2{
-    font-weight: 400;
-    margin-bottom: .4rem;
-    border-bottom: 1px solid #CCC;
+    border-color: map-get($map: $theme, $key: "faded");
   }
 
   h3{
@@ -36,25 +26,13 @@
   }
 
   .raw{
-    color: transparentize(map-get($theme,'primary'), .50)
+    color: map-get($map: $theme, $key: "faded");
   }
 
   button, .btn{
     color: map-get($theme, 'btn-primary');
-    border: none;
-    padding: .6rem;
-    border-radius: 0.4rem;
     background-color: hsl(207, 53%, 47%);
-    text-decoration: none;
-    cursor: pointer;
-    display: block;
-    max-width: 70%;
-    font-weight: 600;
-    font-size: 1rem;
-    text-align: center;
-    margin: 0 auto;
   }
-
   button.cancel, .btn.cancel{
     background-color: map-get($theme, "cancel");
   }
@@ -71,7 +49,7 @@
 
 
   .instructions {
-    color: #666;
+    color: map-get($map: $theme, $key: "faded");
     font-style: italic;
   }
 
