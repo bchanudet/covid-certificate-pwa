@@ -1,6 +1,6 @@
 <div class="panel">
   <h1>Import a certificate</h1>
-  <div *ngIf="cert$ | async as cert;">
+  <div *ngIf="cert$ | async as cert; else invalidCert">
     <p class="warning" *ngIf="hasAlready">
       <span class="ti ti-alert-circle"></span>
       This certificate is already part of your library! Go back to scan another one.
@@ -10,7 +10,10 @@
       If everything matches, click on "Import" at the end.
     </p>
     <ng-template #noStorage>
-      <p>Your browser can't store data locally. You can't import the certificate but you can still check the details</p>
+      <p class="warning">
+        <span class="ti ti-alert-circle"></span>
+        Your browser can't store data locally. You can't import the certificate but you can still check the details.
+      </p>
     </ng-template>
 
     <app-cert-details [cert]="cert"></app-cert-details>
@@ -25,4 +28,14 @@
       </button>
     </div>
   </div>
+  <ng-template #invalidCert>
+    <p class="warning">
+      <span class="ti ti-alert-triangle"></span>
+      The QR Code you scanned seems to be corrupted. The data cannot be decoded.
+    </p>
+    <button routerLink="/new/scan">
+      <span class="ti ti-arrow-back-up"></span>
+      <span>Try again</span>
+    </button>
+  </ng-template>
 </div>

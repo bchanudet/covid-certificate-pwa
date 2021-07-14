@@ -1,20 +1,57 @@
 <div class="panel">
-  <h1>Add a certificate</h1>
-  <select *ngIf="cameras.length > 1">
-    <option *ngFor="let cam of cameras" value="{{cam.deviceId}}">{{cam.label}}</option>
-  </select>
+  <h1>Import a certificate</h1>
+  <p class="instructions">Use the viewer below to scan the QR Code of your certificate.</p>
   <div class="scanner">
-    <div>
+    <div *ngIf="displayMesg !== ''" class="information">
       <span class="ti ti-camera"></span><br>
-      <p [ngSwitch]="displayMesg">
-        <span *ngSwitchCase="'permission-pending'">Please authorize the application to access the camera</span>
-        <span *ngSwitchCase="'permission-denied'">You have denied the application to access the camera</span>
-        <span *ngSwitchCase="'camera-loading'">Camera is loading</span>
-      </p>
+      <ng-container [ngSwitch]="displayMesg">
+        <p *ngSwitchCase="'permission-pending'">
+          Please authorize the application to access the camera.
+        </p>
+        <p *ngSwitchCase="'permission-denied'">
+          You have denied the application to access the camera.
+          <button (click)="RetryPermissions()">
+            <span class="ti ti-refresh"></span>
+            Retry
+          </button>
+        </p>
+        <p *ngSwitchCase="'camera-loading'">Camera is loading</p>
+      </ng-container>
     </div>
-    <zxing-scanner #scanner></zxing-scanner>
+    <zxing-scanner
+      [(device)]="selectedCamera"
+      [ngClass]="{'hidden': displayMesg !== ''}"
+      [torch]="torchEnabled"
+      (torchCompatible)="OnTorchCompatible($event)"
+      (camerasFound)="OnCamerasFound($event)"
+      (permissionResponse)="OnPermissionResponse($event)"
+      (scanSuccess)="OnCertificateFound($event)"
+      [formats]="allowedFormats"
+    ></zxing-scanner>
+  </div>
+  <div *ngIf="notacert">
+    <p class="warning">
+      <span class="ti ti-alert-circle"></span>
+      <span>This QR Code is not a valid Digital COVID Certificate. Please retry with another.</span>
+    </p>
+  </div>
+  <div class="actions">
+    <button *ngIf="hasMultipleCameras" (click)="SwitchCamera()">
+      <span class="ti ti-refresh"></span>&nbsp;
+      <span>Switch camera</span>
+    </button>
+    <button *ngIf="hasTorch" (click)="ToggleTorch()">
+      <span class="ti ti-bulb"></span>&nbsp;
+      <span>Toggle torch</span>
+    </button>
   </div>
   <div *ngIf="displayTest">
-    <a class="btn" (click)="test('vaccine')">VACCINE</a> - <a class="btn" (click)="test('pcr')">PCR</a> - <a class="btn" (click)="test('recovery')">RECOVERY</a>
+    <h2>Test buttons</h2>
+    <p style="display: flex;">
+      <a class="btn" (click)="Test('vaccine')">VACCINE</a><br>
+      <a class="btn" (click)="Test('pcr')">PCR</a><br>
+      <a class="btn" (click)="Test('recovery')">RECOVERY</a><br>
+      <a class="btn" (click)="Test('bad')">BAD</a><br>
+    </p>
   </div>
 </div>

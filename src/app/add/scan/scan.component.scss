@@ -1,7 +1,7 @@
 .scanner {
   display: flex;
   border-radius: .7rem;
-  height: 70vh;
+  min-height: 70%;
   width: 100%;
   position: relative;
   background: rgba(0,0,0,.35);
@@ -10,30 +10,35 @@
 }
 
 .scanner > div {
-  width: 100%;
+  flex: 1;
   text-align: center;
-  padding: 0 2rem;
+  padding: 2rem;
 }
 
-p {
+.information p {
   text-align: center;
 }
 
-.scanner div .ti{
+.scanner .information > .ti{
   font-size: 3rem;
 }
 
+.hidden{
+  display: none;
+}
 
 :host zxing-scanner::ng-deep{
-  position: absolute;
-  left: 0; right: 0;
-  top: 0; bottom: 0;
+  object-fit: contain;
 }
 
 :host zxing-scanner::ng-deep video {
   border-radius: .7rem;
-  object-fit: fill;
-  position: absolute;
-  left: 0; right: 0;
-  top: 0; bottom: 0;
+  object-fit: contain;
 }
+
+.actions{
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+}
+

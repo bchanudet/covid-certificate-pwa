@@ -26,6 +26,10 @@ export class CertificateService {
     return cbor.decode(buf.buffer.slice(buf.byteOffset, buf.byteLength + buf.byteOffset));
   }
 
+  IsValidQRCode(qrcode: string): boolean{
+    return qrcode.startsWith('HC1');
+  }
+
   CreateFromQRCode(qrcode : string): Observable<DCCertificate>{
     let data: string = qrcode;
 
