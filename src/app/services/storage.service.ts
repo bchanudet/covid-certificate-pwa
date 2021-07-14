@@ -91,14 +91,16 @@ export class StorageService {
   }
 
   GetCertificate(id: string) : DCCertificate | undefined {
-    console.log("looking for", id);
     let cached = localStorage.getItem(KEY_CERT + id);
     if(cached === null){
-      console.error("Certificate not found", id);
       return undefined;
     }
 
     return JSON.parse(cached) as DCCertificate;
+  }
+
+  HasCertificate(id: string) : boolean{
+    return this.GetIDs().indexOf(id) > -1;
   }
 
   RemoveCertificate(id: string): boolean{
