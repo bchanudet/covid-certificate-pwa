@@ -52,6 +52,9 @@
     color: map-get($map: $theme, $key: "faded");
     font-style: italic;
   }
+  .warning {
+    color: map-get($map: $theme, $key: "warning");
+  }
 
   li .ti {
     color: map-get($theme, "accent")
