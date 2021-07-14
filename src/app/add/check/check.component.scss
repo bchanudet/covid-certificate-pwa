@@ -12,6 +12,10 @@ button{
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
+.buttons button:first-of-type:last-child{
+  border-top-right-radius: 0.4rem;
+  border-bottom-right-radius: 0.4rem;
+}
 .buttons button:first-of-type + button{
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;

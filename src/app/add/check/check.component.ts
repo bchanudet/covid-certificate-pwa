@@ -15,6 +15,7 @@ export class CheckComponent implements OnInit {
 
   public cert$: Observable<DCCertificate>;
   public hasStorage: boolean = false;
+  public hasAlready: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,6 +27,9 @@ export class CheckComponent implements OnInit {
       switchMap((params) => {
         return this.certSvc.CreateFromQRCode(atob(params.qrcode));
       }),
+      tap((cert: DCCertificate) => {
+        this.hasAlready = this.storeSvc.HasCertificate(cert.id);
+      })
     );
     this.hasStorage = this.storeSvc.isStorageEnabled;
   }

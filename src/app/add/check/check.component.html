@@ -1,6 +1,10 @@
 <div class="panel">
   <h1>Import a certificate</h1>
   <div *ngIf="cert$ | async as cert;">
+    <p class="warning" *ngIf="hasAlready">
+      <span class="ti ti-alert-circle"></span>
+      This certificate is already part of your library! Go back to scan another one.
+    </p>
     <p class="instructions" *ngIf="hasStorage; else noStorage">
       Please double-check carefully the details from the scanned certicate against those on your source material.
       If everything matches, click on "Import" at the end.
@@ -8,13 +12,14 @@
     <ng-template #noStorage>
       <p>Your browser can't store data locally. You can't import the certificate but you can still check the details</p>
     </ng-template>
+
     <app-cert-details [cert]="cert"></app-cert-details>
-    <div class="buttons" *ngIf="hasStorage">
+    <div class="buttons">
       <button class="cancel" (click)="onCancel()">
         <span class="ti ti-arrow-back"></span>
         Cancel
       </button>
-      <button class="success" (click)="onSubmit(cert)" [disabled]="">
+      <button class="" (click)="onSubmit(cert)" [disabled]="" *ngIf="hasStorage && !hasAlready">
         <span class="ti ti-check"></span>
         Import
       </button>
