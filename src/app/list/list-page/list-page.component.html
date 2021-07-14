@@ -1,11 +1,13 @@
 <div class="panel">
   <h1>Your certificates</h1>
   <div *ngIf="(certificates$ | async) as certs; else nocerts">
-    <app-cert-line *ngFor="let c of certs" [cert]='c'>
-    </app-cert-line>
+    <app-cert-line *ngFor="let c of certs" [cert]='c'></app-cert-line>
   </div>
   <ng-template #nocerts>
-    <p class="instructions">You haven't imported any certificate yet. Click on the button under to scan a QR Code.</p>
+    <p class="instructions">
+      You haven't imported any certificate yet.
+      Click on the button under to scan a QR Code.
+    </p>
   </ng-template>
 
   <button [routerLink]="'/new'">
