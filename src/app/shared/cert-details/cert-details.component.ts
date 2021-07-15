@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DCCertificate, RecoveryEntry, TestEntry, VaccinationEntry } from 'src/app/models/certificate';
-import { CertificateService } from 'src/app/services/certificate.service';
+import { DCCertificate } from 'src/app/models/certificate';
 
 @Component({
   selector: 'app-cert-details',
@@ -9,32 +8,11 @@ import { CertificateService } from 'src/app/services/certificate.service';
 })
 export class CertDetailsComponent implements OnInit {
 
-  @Input() cert: DCCertificate | null = null;
+  @Input() cert?: DCCertificate;
 
-  public vaccine: VaccinationEntry | null = null;
-  public test: TestEntry | null = null;
-  public recovery: RecoveryEntry | null = null
-
-  constructor(
-    private certSvc: CertificateService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    if(this.cert === null){
-      return;
-    }
-
-    switch(this.cert.type){
-      case 'vaccine':
-        this.vaccine = this.cert.entry as VaccinationEntry;
-        return;
-      case 'test':
-        this.test = this.cert.entry as TestEntry;
-        return;
-      case 'recovery':
-        this.recovery = this.cert.entry as RecoveryEntry;
-        return;
-    }
   }
 
 }

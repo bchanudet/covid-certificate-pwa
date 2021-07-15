@@ -65,24 +65,31 @@ export class CertificateService {
     let parsed = payload["-260"]["1"];
     console.log(parsed);
 
-
     let dccert: DCCertificate = {
-      type: 'unknown',
-      firstname: parsed.nam.gnt,
-      lastname: parsed.nam.fnt,
+      id: "" + Date.now(),
+      qr_content: qrcode,
       date_birth: parsed.dob,
+      forenames : {
+        formatted: parsed.nam.gn,
+        raw: parsed.nam.gnt
+      },
+      lastnames: {
+        formatted: parsed.nam.fn,
+        raw:  parsed.nam.fnt
+      },
+      vaccines: [],
+      tests: [],
+      recoveries: []
+    };
 
-      qr_content: qrcode
-    } as DCCertificate;
-
-    if(parsed['v'] !== undefined){
-      dccert = this.ParseVaccinePart(dccert, parsed.v[0]);
+    if(parsed['v'] !== undefined && Array.isArray(parsed.v)){
+      dccert.vaccines = parsed.v.map((e: any) => { return this.ParseVaccinePart(e)})
     }
-    else if(parsed['t'] !== undefined){
-      dccert = this.ParseTestPart(dccert, parsed.t[0]);
+    else if(parsed['t'] !== undefined && Array.isArray(parsed.t)){
+      dccert.tests = parsed.t.map((e: any) => { return this.ParseTestPart(e)});
     }
-    else if(parsed['r'] !== undefined){
-      dccert = this.ParseRecoveryPart(dccert, parsed.r[0]);
+    else if(parsed['r'] !== undefined && Array.isArray(parsed.r)){
+      dccert.recoveries = parsed.r.map((e: any) => { return this.ParseRecoveryPart(e);});
     }
     else{
       return throwError('No type of certificate');
@@ -90,7 +97,7 @@ export class CertificateService {
 
     return of(dccert);
   }
-  private ParseVaccinePart(cert: DCCertificate, data: any): DCCertificate{
+  private ParseVaccinePart(data: any): VaccinationEntry{
 
     let entry : VaccinationEntry = {
       disease : this.FindDisease(data.tg),
@@ -100,30 +107,25 @@ export class CertificateService {
       medicinal_product : this.FindVaccProd(data.mp),
       number_total : data.dn +" / "+ data.sd,
       vaccinated_on : data.dt,
+      issuer : data.is,
+      id: data.ci
     }
-
-    cert.type = 'vaccine';
-    cert.id = data.ci;
-    cert.issuer = data.is;
-    cert.entry = entry;
-    return cert;
+    return entry;
   }
-  private ParseRecoveryPart(cert: DCCertificate, data: any): DCCertificate{
+  private ParseRecoveryPart(data: any): RecoveryEntry{
     let entry : RecoveryEntry = {
       disease : this.FindDisease(data.tg),
       country : this.FindCountry(data.co),
       first_positive_on: data.fr,
       valid_from: data.df,
-      valid_until: data.du
+      valid_until: data.du,
+      issuer : data.is,
+      id: data.ci
     }
 
-    cert.type = 'recovery';
-    cert.id = data.ci;
-    cert.issuer = data.is;
-    cert.entry = entry;
-    return cert;
+    return entry;
   }
-  private ParseTestPart(cert: DCCertificate, data: any): DCCertificate{
+  private ParseTestPart(data: any): TestEntry{
 
     let entry : TestEntry = {
       disease : this.FindDisease(data.tg),
@@ -133,14 +135,11 @@ export class CertificateService {
       collected_on: data.sc,
       result: this.FindTestResult(data.tr),
       testing_center: data.tc,
-      country: this.FindCountry(data.co)
+      country: this.FindCountry(data.co),
+      issuer : data.is,
+      id: data.ci
     }
-
-    cert.type = 'test';
-    cert.id = data.ci;
-    cert.issuer = data.is;
-    cert.entry = entry;
-    return cert;
+    return entry;
   }
 
 

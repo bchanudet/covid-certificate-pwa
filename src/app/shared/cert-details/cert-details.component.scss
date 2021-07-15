@@ -23,6 +23,10 @@ dd{
   font-size: 0.66rem;
 }
 
+div > div {
+  margin-top: 2rem;
+}
+
 @media screen and (max-width: 480px) {
   dl {
     display: block;

@@ -6,14 +6,14 @@ export interface DualValue {
 export interface DCCertificate {
   qr_content: string;
   id: string;
-  type: 'unknown' | 'vaccine' | 'test' | 'recovery';
 
-  lastname: DualValue;
-  firstname: DualValue;
+  lastnames: DualValue;
+  forenames: DualValue;
   date_birth: string;
 
-  entry: VaccinationEntry | TestEntry | RecoveryEntry;
-  issuer: string;
+  vaccines: VaccinationEntry[];
+  tests: TestEntry[];
+  recoveries: RecoveryEntry[];
 }
 
 export interface VaccinationEntry {
@@ -24,17 +24,21 @@ export interface VaccinationEntry {
   number_total: string;
   vaccinated_on: string;
   country: DualValue;
+  issuer: string;
+  id: string;
 }
 
 export interface TestEntry {
   disease: DualValue;
   type: DualValue;
-  name: DualValue;
+  name: string;
   manufacturer: DualValue;
   collected_on: string;
   result: DualValue;
   testing_center: string;
   country: DualValue;
+  issuer: string;
+  id: string;
 }
 
 export interface RecoveryEntry {
@@ -43,4 +47,6 @@ export interface RecoveryEntry {
   valid_from: string;
   valid_until: string;
   country: DualValue;
+  issuer: string;
+  id: string;
 }

@@ -1,10 +1,9 @@
 <div class="line" [routerLink]="['/','cert', cert?.id]" *ngIf="cert as cert">
   <div class="icon">
-    <span class="ti" [ngClass]='icon' style="font-size: 2rem;"></span>
+    <span class="ti ti-certificate" style="font-size: 2rem;"></span>
   </div>
   <div class="name">
-    {{cert.firstname}}<br>
-    {{cert.lastname}}
+    {{cert.forenames.formatted}}&nbsp;{{cert.lastnames.formatted}}
   </div>
   <div class="view">
     <a class="qr">
