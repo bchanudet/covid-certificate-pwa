@@ -1,13 +1,26 @@
 header {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
-header span {
-  font-size: 1.7rem;
+header a {
+  padding: 0 0.2rem;
 }
 
+header .ti{
+  font-size: 2rem;
+}
+
+header div{
+  flex: 1;
+}
+
+header .back{
+  text-align: left;
+}
+header .lang{
+  text-align: right;
+}
 
 .icon {
   max-width: 3rem;

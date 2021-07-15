@@ -1,10 +1,22 @@
 <header>
-  <img src="assets/icon.svg" class="icon"/>
+  <div class="back">
+    <a *ngIf="false">
+      <span class="ti ti-chevron-left"></span>
+    </a>
+  </div>
+  <div class="logo">
+    <img src="assets/icon.svg" class="icon"/>
+  </div>
+  <div class="lang">
+    <a *ngIf="false">
+      <span class="ti ti-language"></span>
+    </a>
+  </div>
 </header>
 <router-outlet></router-outlet>
 <div class="panel" *ngIf="hasNewUpdate$ | async">
   <p>
-    <span class="ti ti-refresh"></span>&nbsp;
+    <span class="ti ti-refresh"></span>
     <span>An update is available. Click on the button to activate it.</span>
   </p>
   <a (click)="UpdateApp()" class="btn">Refresh</a>
