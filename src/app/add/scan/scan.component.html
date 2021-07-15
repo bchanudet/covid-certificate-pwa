@@ -47,11 +47,8 @@
   </div>
   <div *ngIf="displayTest">
     <h2>Test buttons</h2>
-    <p style="display: flex;">
-      <a class="btn" (click)="Test('vaccine')">VACCINE</a><br>
-      <a class="btn" (click)="Test('pcr')">PCR</a><br>
-      <a class="btn" (click)="Test('recovery')">RECOVERY</a><br>
-      <a class="btn" (click)="Test('bad')">BAD</a><br>
+    <p>
+      <a class="btn" (click)="Test(test.label)" *ngFor="let test of testCerts" style="margin-bottom: 0.2rem;">{{test.label}}</a>
     </p>
   </div>
 </div>
