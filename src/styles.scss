@@ -57,10 +57,17 @@ h1{
   margin-bottom: .5rem;
 }
 h2{
+  display: flex;
   font-weight: 400;
   margin-bottom: .4rem;
   border-bottom: 1px solid transparent;
+  align-items: center;
 }
+h2 span.ti + span {
+  padding-left: 0.4rem;
+  flex: 1
+}
+
 
 p{
   margin-bottom: 1rem;
