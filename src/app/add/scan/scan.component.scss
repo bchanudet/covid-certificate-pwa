@@ -40,5 +40,22 @@
   margin-top: 1rem;
   display: flex;
   align-items: center;
-}
+  column-gap: 0.25rem;
 
+  button{
+    width: 50%;
+  }
+
+  button:first-of-type{
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  button:first-of-type:last-child{
+    border-top-right-radius: 0.4rem;
+    border-bottom-right-radius: 0.4rem;
+  }
+  button:first-of-type + button{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

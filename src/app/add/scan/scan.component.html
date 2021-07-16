@@ -10,12 +10,10 @@
         </p>
         <p *ngSwitchCase="'permission-denied'">
           You have denied the application to access the camera.
-          <button (click)="RetryPermissions()">
-            <span class="ti ti-refresh"></span>
-            Retry
-          </button>
         </p>
-        <p *ngSwitchCase="'camera-loading'">Camera is loading</p>
+        <p *ngSwitchCase="'camera-loading'">
+          Camera is loading
+        </p>
       </ng-container>
     </div>
     <zxing-scanner
@@ -29,12 +27,6 @@
       [formats]="allowedFormats"
     ></zxing-scanner>
   </div>
-  <div *ngIf="notacert">
-    <p class="warning">
-      <span class="ti ti-alert-circle"></span>
-      <span>This QR Code is not a valid Digital COVID Certificate. Please retry with another.</span>
-    </p>
-  </div>
   <div class="actions">
     <button *ngIf="hasMultipleCameras" (click)="SwitchCamera()">
       <span class="ti ti-refresh"></span>&nbsp;
@@ -44,6 +36,12 @@
       <span class="ti ti-bulb"></span>&nbsp;
       <span>Toggle torch</span>
     </button>
+  </div>
+  <div *ngIf="notacert">
+    <p class="warning">
+      <span class="ti ti-alert-circle"></span>
+      <span>This QR Code is not a valid Digital COVID Certificate. Please retry with another.</span>
+    </p>
   </div>
   <div *ngIf="displayTest">
     <h2>Test buttons</h2>
