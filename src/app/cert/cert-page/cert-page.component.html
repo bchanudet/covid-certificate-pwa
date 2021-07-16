@@ -3,7 +3,7 @@
   <div *ngIf="cert; else loading">
     <h2>
       <span class="ti ti-qrcode"></span>
-      QR Code
+      <span>QR Code</span>
     </h2>
     <app-qrcode [data]="cert.qr_content"></app-qrcode>
     <br>
