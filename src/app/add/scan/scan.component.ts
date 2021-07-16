@@ -62,7 +62,6 @@ export class ScanComponent implements OnInit {
   }
 
   OnCertificateFound(content: string){
-    console.log("Scanned", content);
     // Here we do a very quick check on the header to see if it's supposedly a DCC.
     // A more thorough check is done on the check component
     if(this.certSvc.IsValidQRCode(content)){
@@ -86,11 +85,15 @@ export class ScanComponent implements OnInit {
   }
 
   Test(key: string){
-    let i = environment.testCerts.findIndex((e) => e.label === key);
+    if(this.testCerts.length === 0){
+      return;
+    }
+
+    let i = this.testCerts.findIndex((e) => e.label === key);
     if(i === -1){
       return;
     }
 
-    this.OnCertificateFound(environment.testCerts[i].data);
+    this.OnCertificateFound(this.testCerts[i].data);
   }
 }
