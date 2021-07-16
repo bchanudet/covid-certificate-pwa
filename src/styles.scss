@@ -63,11 +63,17 @@ h2{
   border-bottom: 1px solid transparent;
   align-items: center;
 }
-h2 span.ti + span {
+
+
+span.ti + span {
   padding-left: 0.4rem;
   flex: 1
 }
 
+span + span.ti {
+  padding-left: 0.4rem;
+  flex: 1
+}
 
 p{
   margin-bottom: 1rem;
