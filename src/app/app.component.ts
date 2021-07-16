@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivationEnd, Event, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { filter, map, switchMap, switchMapTo, tap } from 'rxjs/operators';
+import { filter, map, tap } from 'rxjs/operators';
 import { AppUpdateService } from './services/app-update.service';
 
 @Component({
@@ -13,16 +13,28 @@ export class AppComponent {
   title = 'covid-certificate-pwa';
 
   public hasNewUpdate$ : Observable<boolean>;
+  public displayBack$ : Observable<boolean>;
 
   constructor(
-    private appUpdateSvc: AppUpdateService
+    private appUpdateSvc: AppUpdateService,
+    private router: Router
   ){
     this.hasNewUpdate$ = this.appUpdateSvc.newVersionFound$.pipe(
       filter((v: boolean) => v === true)
     );
+
+    this.displayBack$ = this.router.events.pipe(
+      filter((evt: Event) : evt is ActivationEnd => evt instanceof ActivationEnd),
+      tap(evt => { console.log(evt)}),
+      map((evt: ActivationEnd) => evt.snapshot.url.join('/') !== 'home')
+    )
   }
 
   UpdateApp(){
     this.appUpdateSvc.GetUpdate()
+  }
+
+  GoBack(){
+    window.history.back();
   }
 }

@@ -1,6 +1,6 @@
 <header>
   <div class="back">
-    <a *ngIf="false">
+    <a *ngIf="displayBack$ | async" (click)="GoBack()">
       <span class="ti ti-chevron-left"></span>
     </a>
   </div>
