@@ -67,6 +67,9 @@ export class StorageService {
     return true;
   }
 
+  HasSomeCertificate(): boolean{
+    return this.GetIDs().length > 0;
+  }
 
   AddCertificate(cert: DCCertificate){
     localStorage.setItem(KEY_CERT + cert.id, JSON.stringify(cert));
