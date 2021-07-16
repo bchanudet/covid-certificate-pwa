@@ -67,7 +67,7 @@ export class StorageService {
     return true;
   }
 
-  HasSomeCertificate(): boolean{
+  HasAnyCertificate(): boolean{
     return this.GetIDs().length > 0;
   }
 

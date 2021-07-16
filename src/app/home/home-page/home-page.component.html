@@ -2,10 +2,18 @@
   <h1>EU Digital COVID Certificate</h1>
   <p class="subtitle">Import and store easily your EU COVID Certificates on your smartphone.</p>
   <p>
-    <a [routerLink]="['/new']" class="btn">
-      <span class="ti ti-qrcode"></span>
-      Import your first certificate
-    </a>
+    <ng-container *ngIf="hasAnyCert; else nocerts">
+      <a [routerLink]="['/list']" class="btn">
+        <span>See your certificates</span>
+        <span class="ti ti-chevron-right"></span>
+      </a>
+    </ng-container>
+    <ng-template #nocerts>
+      <a [routerLink]="['/new']" class="btn">
+        <span class="ti ti-qrcode"></span>
+        <span>Import your first certificate</span>
+      </a>
+    </ng-template>
   </p>
 </div>
 <div class="panel">

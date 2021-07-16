@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-home-page',
@@ -7,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  hasAnyCert: boolean;
+
+  constructor(
+    storeSvc: StorageService
+  ) {
+    this.hasAnyCert = storeSvc.HasAnyCertificate();
+  }
 
   ngOnInit(): void {
   }
