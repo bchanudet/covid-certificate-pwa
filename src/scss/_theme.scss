@@ -5,6 +5,10 @@
     color: map-get($theme, 'primary');
   }
 
+  header{
+    border-bottom: 2px solid darken(map-get($theme, 'background'),5%);
+  }
+
   header, .panel{
     background-color: map-get($theme, 'panel');
   }
@@ -21,6 +25,14 @@
     color: map-get($theme, "accent");
   }
 
+
+  a{
+    color: map-get($theme, "accent");
+  }
+  a:hover{
+    color: lighten(map-get($theme, "accent"), 10%);
+  }
+
   dt{
     color: lighten(map-get($theme, "accent"), 10%);
   }
@@ -33,6 +45,20 @@
     color: map-get($theme, 'btn-primary');
     background-color: hsl(207, 53%, 47%);
   }
+  button:hover, .btn:hover{
+    color: map-get($theme, 'btn-primary');
+    background-color: lighten(hsl(207, 53%, 47%), 5%);
+  }
+
+  header a{
+    color: map-get($theme, 'primary');
+  }
+  header a:hover{
+    color: lighten(map-get($theme, 'primary'),15%);
+  }
+
+
+
   button.cancel, .btn.cancel{
     background-color: map-get($theme, "cancel");
   }
@@ -47,6 +73,12 @@
     background-color: lighten(map-get($theme, "success"), 5%);
   }
 
+  .btn.outline{
+    background-color: transparent;
+    border: 1px solid red;
+    padding: .3rem;
+    border-radius: 100%;
+  }
 
   .instructions {
     color: map-get($map: $theme, $key: "faded");
