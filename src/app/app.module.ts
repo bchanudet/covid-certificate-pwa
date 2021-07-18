@@ -6,10 +6,10 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
-import { AddModule } from './add/add.module';
-import { HomeModule } from './home/home.module';
-import { ListModule } from './list/list.module';
-import { CertModule } from './cert/cert.module';
+import { AddModule } from './content/add/add.module';
+import { HomeModule } from './content/home/home.module';
+import { ListModule } from './content/list/list.module';
+import { CertModule } from './content/cert/cert.module';
 
 @NgModule({
   declarations: [

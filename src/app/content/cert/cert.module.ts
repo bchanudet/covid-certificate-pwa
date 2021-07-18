@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CertRoutingModule } from './cert-routing.module';
 import { CertPageComponent } from './cert-page/cert-page.component';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({

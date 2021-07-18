@@ -6,8 +6,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ScanComponent } from './scan/scan.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CheckComponent } from './check/check.component';
-import { AppModule } from '../app.module';
-import { SharedModule } from '../shared/shared.module';
+import { AppModule } from '../../app.module';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
