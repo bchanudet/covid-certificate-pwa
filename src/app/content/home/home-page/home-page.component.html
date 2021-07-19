@@ -1,17 +1,17 @@
 <div class="panel">
-  <h1>EU Digital COVID Certificate</h1>
-  <p class="subtitle">Import and store easily your EU COVID Certificates on your smartphone.</p>
+  <h1 appIntl="home-title">EU Digital COVID Certificate</h1>
+  <p class="subtitle" appIntl="home-tagline">Import and store easily your EU COVID Certificates on your smartphone.</p>
   <p>
     <ng-container *ngIf="hasAnyCert; else nocerts">
       <a [routerLink]="['/list']" class="btn">
-        <span>See your certificates</span>
+        <span appIntl="home-action-list">See your certificates</span>
         <span class="ti ti-chevron-right"></span>
       </a>
     </ng-container>
     <ng-template #nocerts>
       <a [routerLink]="['/new']" class="btn">
         <span class="ti ti-qrcode"></span>
-        <span>Import your first certificate</span>
+        <span appIntl="home-action-import">Import your first certificate</span>
       </a>
     </ng-template>
   </p>
@@ -19,122 +19,140 @@
 <div class="panel">
   <h2>
     <span class="ti ti-apps"></span>
-    <span>What is this website?</span>
+    <span appIntl="home-what-title">What is this website?</span>
   </h2>
-  <p>
+  <p appIntl="home-what-application">
     This website is a web application that allows you to <strong>manage and show</strong>
     your Digital EU COVID certificates (<em>DCC</em>), using your device's camera to import
     them.
   </p>
-  <p>
+  <p appIntl="home-what-offline">
     This application can even be installed on your homepage, so you can <strong>use it even
     while offline</strong>.
   </p>
-  <p>
+  <p appIntl="home-what-local">
     The certificates are <strong>safely stored locally on your device</strong>. No contact with
     any online service is made during use.</p>
 </div>
 <div class="panel">
   <h2>
     <span class="ti ti-report-medical"></span>
-    <span>What is a DCC?</span>
+    <span appIntl="home-dcc-title">What is a DCC?</span>
   </h2>
-  <p>
+  <p appIntl="home-dcc-list-types">
     An EU Digital COVID Certificate is a digital proof that a person has either:
   </p>
   <ul class="types">
     <li>
       <span class="ti ti-vaccine"></span>&nbsp;
-      <span>been vaccinated against COVID-19</span>
+      <span appIntl="home-dcc-type-vaccine">been vaccinated against COVID-19</span>
     </li>
     <li>
       <span class="ti ti-test-pipe"></span>&nbsp;
-      <span>received a negative test result or</span>
+      <span appIntl="home-dcc-type-test">received a negative test result or</span>
     </li>
     <li>
       <span class="ti ti-virus-off"></span>&nbsp;
-      <span>recovered from COVID-19</span>
+      <span appIntl="home-dcc-type-recovery">recovered from COVID-19</span>
     </li>
   </ul>
-  <p>
+  <p appIntl="home-dcc-list-feature">
     Key features of the certificates are:
   </p>
   <ul class="features">
     <li>
       <span class="ti ti-file-code"></span>&nbsp;
-      <span>Digital and/or paper format</span>
+      <span appIntl="home-dcc-feat-digital">Digital and/or paper format</span>
     </li>
     <li>
       <span class="ti ti-qrcode"></span>&nbsp;
-      <span>with QR code</span>
+      <span appIntl="home-dcc-feat-qrcode">with QR code</span>
     </li>
     <li>
       <span class="ti ti-cash-banknote-off"></span>&nbsp;
-      <span>free of charge</span>
+      <span appIntl="home-dcc-feat-free">free of charge</span>
     </li>
     <li>
       <span class="ti ti-language"></span>&nbsp;
-      <span>in national language and English</span>
+      <span appIntl="home-dcc-feat-lang">in national language and English</span>
     </li>
     <li>
       <span class="ti ti-shield-check"></span>&nbsp;
-      <span>safe and secure</span>
+      <span appIntl="home-dcc-feat-safe">safe and secure</span>
     </li>
     <li>
       <span class="ti ti-map-2"></span>&nbsp;
-      <span>valid in all EU countries</span>
+      <span appIntl="home-dcc-feat-valid">valid in all EU countries</span>
     </li>
   </ul>
-  <p>More information is available on <a href="https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response/safe-covid-19-vaccines-europeans/eu-digital-covid-certificate_en" target="_blank">the European Commission website</a>.</p>
+  <p appIntl="home-dcc-more-info">
+    More information is available on
+    <a href="https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response/safe-covid-19-vaccines-europeans/eu-digital-covid-certificate_en" target="_blank">
+      the European Commission website
+    </a>.
+  </p>
 </div>
 <div class="panel">
   <h2>
     <span class="ti ti-apps"></span>
-    <span>Why use this app?</span>
+    <span appIntl="home-why-title">Why use this app?</span>
   </h2>
-  <p>In some countries, the official application to use for storing the certificate is
+  <p appIntl="home-why-bloated-apps">In some countries, the official application to use for storing the certificate is
      bloated with other features, and sometimes even incompatible with some phones.</p>
-  <p>Meanwhile, spikes in COVID-19 new cases enforces governments to rely more and more
+  <p appIntl="home-why-increased-usage">Meanwhile, spikes in COVID-19 new cases enforces governments to rely more and more
     on these certificates to allow people to still live a regular life (well, kinda).
   </p>
 </div>
 <div class="panel">
   <h2>
     <span class="ti ti-help"></span>
-    <span>Can I help?</span>
+    <span appIntl="home-help-title">Can I help?</span>
   </h2>
-  <p>
+  <p appIntl="home-help-opensource">
     Sure! This application is <strong>Open Source</strong> and MIT-licensed.
     You can download the source code, and contribute to it.
   </p>
-  <p>
+  <p appIntl="home-help-github">
     The source code is accessible on this
     <a href="https://github.com/bchanudet/covid-certificate-pwa">Github repository</a>.
+  </p>
+  <p appIntl="home-help-appreciated">
     Even if you don't know how to code any contribution will be helpful. I will especially
     appreciate translations of the application to other languages.</p>
 </div>
 <div class="panel">
   <h2>
     <span class="ti ti-user"></span>
-    <span>Who are the authors?</span>
+    <span appIntl="home-authors-title">Who are the authors?</span>
   </h2>
-  <p>There is only me for now, <a href="https://benjaminchanudet.com">Benjamin Chanudet</a>.
+  <p appIntl="home-authors-me">
+    There is only me for now, <a href="https://benjaminchanudet.com">Benjamin Chanudet</a>.
     I'm a French developer not totally psyched about using TousAntiCovid,
     the application that needs Geolocation & Bluetooth permissions, and an exclusion
     to the phone's battery management system only to store a QR Code.</p>
-  <p>Icons are from the <a href="https://tabler-icons.io/">Tabler icons</a> project.</p>
+  <p appIntl="home-authors-icons">
+    Icons are from the <a href="https://tabler-icons.io/">Tabler icons</a> project.
+    The application logo is under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC-BY-NC-SA</a>.
+  </p>
+  <p appIntl="home-authors-translations">Translations are provided by:</p>
+  <ul class="translations">
+    <li >
+      <span class="ti ti-vocabulary"></span>
+      <span appIntl="home-authors-french">French: Benjamin Chanudet</span>
+    </li>
+  </ul>
 </div>
 <div class="panel">
   <h2>
     <span class="ti ti-info-circle"></span>
-    <span>Disclaimers</span>
+    <span appIntl="home-disclaimers-title">Disclaimers</span>
   </h2>
   <p>
-    <strong>This application is not endorsed by any government or official entity.</strong>
+    <strong appIntl="home-disclaimers-not-endorsed">This application is not endorsed by any government or official entity.</strong>
   </p>
-  <p>
+  <p appIntl="home-disclaimers-be-wary">
     Even if the QR Code should be sufficient to prove that you have a valid certificate,
-    it may happen that you'd receive a stern look from law enforcement for the application
+    it may happen that you'd receive a strange look from law enforcement for the application
     not being the official application.
   </p>
 </div>

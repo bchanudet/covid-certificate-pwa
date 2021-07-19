@@ -4,6 +4,7 @@ import { QRCodeModule } from 'angular2-qrcode';
 
 import { QrcodeComponent } from './qrcode/qrcode.component';
 import { CertDetailsComponent } from './cert-details/cert-details.component';
+import { I18nModule } from '../i18n/i18n.module';
 
 
 
@@ -15,6 +16,7 @@ import { CertDetailsComponent } from './cert-details/cert-details.component';
   imports: [
     CommonModule,
     QRCodeModule,
+    I18nModule
   ],
   exports: [
     QrcodeComponent,

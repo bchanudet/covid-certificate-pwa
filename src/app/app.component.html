@@ -8,7 +8,7 @@
     <img src="assets/icon.svg" class="icon"/>
   </div>
   <div class="lang">
-    <a *ngIf="false">
+    <a *ngIf="displayLang" (click)="SelectLanguage('fr')">
       <span class="ti ti-language"></span>
     </a>
   </div>
