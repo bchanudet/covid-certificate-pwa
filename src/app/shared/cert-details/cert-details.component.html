@@ -20,7 +20,7 @@
   <dl>
     <dt appIntl="cert-identity-birthday">Date of Birth</dt>
     <dd>
-      {{cert.date_birth | date:'longDate'}}
+      {{cert.date_birth | i18nDate:'longDate' | uppercase}}
       <br><span class="raw">{{cert.date_birth}}</span>
     </dd>
   </dl>
@@ -37,45 +37,45 @@
       </dd>
     </dl>
     <dl>
-      <dt>Vaccine/Prophylaxis</dt>
+      <dt appIntl='cert-vaccine'>Vaccine/Prophylaxis</dt>
       <dd>{{vac.prophylaxis.formatted}}
         <br><span class="raw">{{vac.prophylaxis.raw}}</span>
       </dd>
     </dl>
     <dl>
-      <dt>Vaccine medicinal product</dt>
+      <dt appIntl="cert-vaccine-product">Vaccine medicinal product</dt>
       <dd>
         {{vac.medicinal_product.formatted}}
         <br><span class="raw">{{vac.medicinal_product.raw}}</span>
       </dd>
     </dl>
     <dl>
-      <dt>Vaccine Marketing authorisation holder or manufacturer</dt>
+      <dt appIntl="cert-vaccine-manufacturer">Vaccine Marketing authorisation holder or manufacturer</dt>
       <dd>
         {{vac.manufacturer.formatted}}
         <br><span class="raw">{{vac.manufacturer.raw}}</span>
       </dd>
     </dl>
     <dl>
-      <dt>Number in a series of vaccinations/doses and the overall number of doses in the series</dt>
+      <dt appIntl="cert-vaccine-numbers">Number in a series of vaccinations/doses and the overall number of doses in the series</dt>
       <dd>{{vac.number_total}}</dd>
     </dl>
     <dl>
-      <dt>Date of vaccination</dt>
+      <dt appIntl="cert-vaccine-date">Date of vaccination</dt>
       <dd>
-        {{vac.vaccinated_on | date:'fullDate'}}
+        {{vac.vaccinated_on | i18nDate:'fullDate' | uppercase}}
         <br><span class="raw">{{vac.vaccinated_on}}</span>
       </dd>
     </dl>
     <dl>
-      <dt>Country of Vaccination</dt>
+      <dt appIntl="cert-vaccine-country">Country of Vaccination</dt>
       <dd>
         {{vac.country.formatted}}
         <br><span class="raw">{{vac.country.raw}}</span>
       </dd>
     </dl>
     <dl>
-      <dt>Certificate issuer</dt>
+      <dt appIntl="cert-vaccine-issuer">Certificate issuer</dt>
       <dd>
         {{vac.issuer}}
       </dd>
@@ -94,50 +94,50 @@
       </dd>
     </dl>
     <dl>
-      <dt>Type of Test</dt>
+      <dt appIntl="cert-test-type">Type of Test</dt>
       <dd>{{test.type.formatted}}
         <br><span class="raw">{{test.type.raw}}</span>
       </dd>
     </dl>
     <dl *ngIf="test.name !== undefined">
-      <dt>NAA Test Name</dt>
+      <dt appIntl="cert-test-naa-name">NAA Test Name</dt>
       <dd>{{test.name}}
       </dd>
     </dl>
     <dl *ngIf="test.manufacturer.raw !== undefined">
-      <dt>RAT Test name and manufacturer</dt>
+      <dt appIntl="cert-test-rat-name">RAT Test name and manufacturer</dt>
       <dd>{{test.manufacturer.formatted}}
         <br><span class="raw">{{test.manufacturer.raw}}</span>
       </dd>
     </dl>
     <dl>
-      <dt>Date/Time of Sample Collection</dt>
+      <dt appIntl="cert-test-datetime">Date/Time of Sample Collection</dt>
       <dd>
-        {{test.collected_on | date:'medium'}}
+        {{test.collected_on | i18nDate:'medium' | uppercase}}
         <br><span class="raw">{{test.collected_on}}</span>
       </dd>
     </dl>
     <dl>
-      <dt>Test Result</dt>
+      <dt appIntl="cert-test-result">Test Result</dt>
       <dd>{{test.result.formatted}}
         <br><span class="raw">{{test.result.raw}}</span>
       </dd>
     </dl>
     <dl>
-      <dt>Testing center</dt>
+      <dt appIntl="cert-test-center">Testing center</dt>
       <dd>
         {{test.testing_center}}
       </dd>
     </dl>
     <dl>
-      <dt>Country of Test</dt>
+      <dt appIntl="cert-test-country">Country of Test</dt>
       <dd>
         {{test.country.formatted}}
         <br><span class="raw">{{test.country.raw}}</span>
       </dd>
     </dl>
     <dl>
-      <dt>Certificate issuer</dt>
+      <dt appIntl="cert-test-issuer">Certificate issuer</dt>
       <dd>
         {{test.issuer}}
       </dd>
@@ -146,38 +146,38 @@
   <div *ngFor="let rec of cert.recoveries; index as i; count as l;">
       <h2>
         <span class="ti ti-virus-off"></span>
-        <span>Recovery Certificate</span>
+        <span appIntl="cert-type-recovery">Recovery Certificate</span>
         <span *ngIf="l > 1">({{i+1}}/{{l}})</span>
       </h2>
       <dl>
-        <dt>Disease or agent targeted</dt>
+        <dt appIntl="cert-disease">Disease or agent targeted</dt>
         <dd>{{rec.disease.formatted}}
           <br><span class="raw">{{rec.disease.raw}}</span>
         </dd>
       </dl>
       <dl>
-        <dt>Date of first positive NAA test result</dt>
+        <dt appIntl="cert-recovery-date-test">Date of first positive NAA test result</dt>
         <dd>
-          {{rec.first_positive_on | date:'fullDate'}}
+          {{rec.first_positive_on | i18nDate:'fullDate' | uppercase}}
           <br><span class="raw">{{rec.first_positive_on}}</span>
         </dd>
       </dl>
       <dl>
-        <dt>Certificate Valid From</dt>
+        <dt appIntl="cert-recovery-valid-from">Certificate Valid From</dt>
         <dd>
-          {{rec.valid_from | date:'fullDate'}}
+          {{rec.valid_from | i18nDate:'fullDate' | uppercase}}
           <br><span class="raw">{{rec.valid_from}}</span>
         </dd>
       </dl>
       <dl>
-        <dt>Certificate Valid Until</dt>
+        <dt appIntl="cert-recovery-valid-until">Certificate Valid Until</dt>
         <dd>
-          {{rec.valid_until | date:'fullDate'}}
+          {{rec.valid_until | i18nDate:'fullDate' | uppercase}}
           <br><span class="raw">{{rec.valid_until}}</span>
         </dd>
       </dl>
       <dl>
-        <dt>Country of Test</dt>
+        <dt appIntl="cert-recovery-country">Country of Test</dt>
         <dd>
           {{rec.country.formatted}}
           <br><span class="raw">{{rec.country.raw}}</span>

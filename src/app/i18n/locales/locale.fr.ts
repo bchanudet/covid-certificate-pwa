@@ -1,9 +1,13 @@
 import { Locale } from "./locales";
-import * as t from '@angular/common/locales/fr';
+import ngLocale from '@angular/common/locales/fr';
+import { registerLocaleData } from "@angular/common";
+
+// Register the locale in Angular to use date formats
+registerLocaleData(ngLocale);
 
 export const locale: Locale = {
   id: 'fr',
-  dateFormat: '',
+  dateFormat: 'fr-FR',
   translations: [
     // home page
     {id: 'home-title', html: `Certificat Numérique COVID UE`},
@@ -42,7 +46,7 @@ export const locale: Locale = {
     {id: 'home-disclaimers-not-endorsed', html: `Cette  application n'a été ni supportée ni approuvée par une quelconque autorité officielle.`},
     {id: 'home-disclaimers-be-wary', html: `Même si le QR Code stocké par l'application devrait suffire et est validé par l'application "Tous Anti Covid Verif", il n'est pas impossible que l'application soit refusée par la personne . De même, n'oubliez pas que vous devez toujours présenter une pièce d'identité lors de la vérification.`},
 
-    // cert
+    // Certificate details
     {id: 'cert-identity-title', html: `Identité`},
     {id: 'cert-identity-forenames', html:`Prénom(s)`},
     {id: 'cert-identity-lastnames', html: `Nom(s)`},
@@ -50,7 +54,29 @@ export const locale: Locale = {
     {id: 'cert-type-vaccine', html:`Certificat de vaccination`},
     {id: 'cert-type-test', html: `Certificat de test`},
     {id: 'cert-type-recovery', html: `Certificat de rétablissment`},
-    {id: 'cert-disease', html: `Maladie ou agent infectieux ciblé`},
+    {id: 'cert-disease', html: `Maladie ou agent ciblé`},
+    // vaccine cert
+    {id: 'cert-vaccine', html: `Vaccin/prophylaxie`},
+    {id: 'cert-vaccine-product', html: `Médicament vaccinal`},
+    {id: 'cert-vaccine-manufacturer', html: `Fabricant ou titulaire de l'autorisation de mise sur le marché du vaccin`},
+    {id: 'cert-vaccine-numbers', html: `Nombre dans une série de vaccins/doses`},
+    {id: 'cert-vaccine-date', html: `Date de la vaccination`},
+    {id: 'cert-vaccine-country', html: `État membre de vaccination`},
+    {id: 'cert-vaccine-issuer', html: `Émetteur du certificat`},
+    // test cert
+    {id: 'cert-test-type', html: `Type de test`},
+    {id: 'cert-test-naa-name', html: `Nom du test PCR`},
+    {id: 'cert-test-rat-name', html: `Nom du test antigénique et fabricant`},
+    {id: 'cert-test-result', html: `Résultat du test`},
+    {id: 'cert-test-datetime', html: `Date et heure de prélèvement`},
+    {id: 'cert-test-center', html: `Centre de test`},
+    {id: 'cert-test-country', html: `État membre de test`},
+    {id: 'cert-test-issuer', html: `Émetteur du certificat`},
+    // recovery cert
+    {id: 'cert-recovery-date-test', html: `Date du premier test PCR positif`},
+    {id: 'cert-recovery-valid-from', html: `Certificat valide à partir du`},
+    {id: 'cert-recovery-valid-until', html: `Certificat valide jusqu'au`},
+    {id: 'cert-recovery-country', html: `État membre de test`},
 
     // Update available
     {id: 'app-update-available', html: `Une nouvelle version est disponible. Cliquez sur le bouton pour l'activer.`},
