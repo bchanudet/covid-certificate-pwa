@@ -46,14 +46,24 @@ export const locale: Locale = {
     {id: 'home-disclaimers-not-endorsed', html: `Cette  application n'a été ni supportée ni approuvée par une quelconque autorité officielle.`},
     {id: 'home-disclaimers-be-wary', html: `Même si le QR Code stocké par l'application devrait suffire et est validé par l'application "Tous Anti Covid Verif", il n'est pas impossible que l'application soit refusée par la personne . De même, n'oubliez pas que vous devez toujours présenter une pièce d'identité lors de la vérification.`},
 
+    // View page
+    {id: 'view-title', html: `Certificat numérique`},
+    {id: 'view-action-remove', html: `Supprimer le certificat`},
+    {id: 'view-action-remove-confirm', html: `Cliquez à nouveau pour confirmer`},
+
     // Certificate details
     {id: 'cert-identity-title', html: `Identité`},
     {id: 'cert-identity-forenames', html:`Prénom(s)`},
     {id: 'cert-identity-lastnames', html: `Nom(s)`},
     {id: 'cert-identity-birthday', html: `Date de naissance`},
+    // actions
+    {id: 'cert-action-hide', html:`Cacher les détails`},
+    {id: 'cert-action-show', html:`Afficher les détails`},
+    // certs types
     {id: 'cert-type-vaccine', html:`Certificat de vaccination`},
     {id: 'cert-type-test', html: `Certificat de test`},
     {id: 'cert-type-recovery', html: `Certificat de rétablissment`},
+    // global to all certs
     {id: 'cert-disease', html: `Maladie ou agent ciblé`},
     // vaccine cert
     {id: 'cert-vaccine', html: `Vaccin/prophylaxie`},

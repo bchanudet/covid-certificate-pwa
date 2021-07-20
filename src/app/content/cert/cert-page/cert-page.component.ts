@@ -11,6 +11,7 @@ import { StorageService } from 'src/app/services/storage.service';
 export class CertPageComponent implements OnInit {
 
   public cert: DCCertificate | undefined = undefined;
+  public removeStep: number = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,10 @@ export class CertPageComponent implements OnInit {
 
   Remove(): void{
     if(this.cert === undefined){
+      return;
+    }
+    if(this.removeStep == 0){
+      this.removeStep += 1;
       return;
     }
     if(this.storeSvc.RemoveCertificate(this.cert.id)){

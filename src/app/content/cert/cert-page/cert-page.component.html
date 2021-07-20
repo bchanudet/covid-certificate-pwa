@@ -1,5 +1,5 @@
 <div class="panel">
-  <h1>Certificate</h1>
+  <h1 appIntl="view-title">Certificate</h1>
   <div *ngIf="cert; else loading">
     <h2>
       <span class="ti ti-qrcode"></span>
@@ -11,7 +11,8 @@
     <div class="actions">
       <button class="cancel" (click)="Remove()">
         <span class="ti ti-trash"></span>
-        Remove certificate
+        <span appIntl="view-action-remove" *ngIf="removeStep == 0">Remove certificate</span>
+        <span appIntl="view-action-remove-confirm" *ngIf="removeStep == 1">Tap again to confirm</span>
       </button>
     </div>
   </div>
