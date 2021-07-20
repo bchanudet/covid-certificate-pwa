@@ -24,165 +24,174 @@
       <br><span class="raw">{{cert.date_birth}}</span>
     </dd>
   </dl>
-  <div *ngFor="let vac of cert.vaccines; index as i; count as l;">
-    <h2>
-      <span class="ti ti-vaccine"></span>
-      <span appIntl="cert-type-vaccine">Vaccination Certificate</span>
-      <span *ngIf="l > 1">({{i+1}}/{{l}})</span>
-    </h2>
-        <dl>
-      <dt appIntl='cert-disease'>Disease or agent targeted</dt>
-      <dd>{{vac.disease.formatted}}
-        <br><span class="raw">{{vac.disease.raw}}</span>
-      </dd>
-    </dl>
-    <dl>
-      <dt appIntl='cert-vaccine'>Vaccine/Prophylaxis</dt>
-      <dd>{{vac.prophylaxis.formatted}}
-        <br><span class="raw">{{vac.prophylaxis.raw}}</span>
-      </dd>
-    </dl>
-    <dl>
-      <dt appIntl="cert-vaccine-product">Vaccine medicinal product</dt>
-      <dd>
-        {{vac.medicinal_product.formatted}}
-        <br><span class="raw">{{vac.medicinal_product.raw}}</span>
-      </dd>
-    </dl>
-    <dl>
-      <dt appIntl="cert-vaccine-manufacturer">Vaccine Marketing authorisation holder or manufacturer</dt>
-      <dd>
-        {{vac.manufacturer.formatted}}
-        <br><span class="raw">{{vac.manufacturer.raw}}</span>
-      </dd>
-    </dl>
-    <dl>
-      <dt appIntl="cert-vaccine-numbers">Number in a series of vaccinations/doses and the overall number of doses in the series</dt>
-      <dd>{{vac.number_total}}</dd>
-    </dl>
-    <dl>
-      <dt appIntl="cert-vaccine-date">Date of vaccination</dt>
-      <dd>
-        {{vac.vaccinated_on | i18nDate:'fullDate' | uppercase}}
-        <br><span class="raw">{{vac.vaccinated_on}}</span>
-      </dd>
-    </dl>
-    <dl>
-      <dt appIntl="cert-vaccine-country">Country of Vaccination</dt>
-      <dd>
-        {{vac.country.formatted}}
-        <br><span class="raw">{{vac.country.raw}}</span>
-      </dd>
-    </dl>
-    <dl>
-      <dt appIntl="cert-vaccine-issuer">Certificate issuer</dt>
-      <dd>
-        {{vac.issuer}}
-      </dd>
-    </dl>
+  <div *ngIf="showToggleButton">
+    <button (click)="ToggleDetails()">
+      <span class="ti ti-eye"></span>
+      <span *ngIf="showDetails">Hide Certificate details</span>
+      <span *ngIf="!showDetails">Show Certificate details</span>
+    </button>
   </div>
-  <div *ngFor="let test of cert.tests; index as i; count as l;">
-    <h2>
-      <span class="ti ti-test-pipe"></span>
-      <span appIntl="cert-type-test">Test Certificate</span>
-      <span *ngIf="l > 1">({{i+1}}/{{l}})</span>
-    </h2>
-    <dl>
-      <dt appIntl="cert-disease">Disease or agent targeted</dt>
-      <dd>{{test.disease.formatted}}
-        <br><span class="raw">{{test.disease.raw}}</span>
-      </dd>
-    </dl>
-    <dl>
-      <dt appIntl="cert-test-type">Type of Test</dt>
-      <dd>{{test.type.formatted}}
-        <br><span class="raw">{{test.type.raw}}</span>
-      </dd>
-    </dl>
-    <dl *ngIf="test.name !== undefined">
-      <dt appIntl="cert-test-naa-name">NAA Test Name</dt>
-      <dd>{{test.name}}
-      </dd>
-    </dl>
-    <dl *ngIf="test.manufacturer.raw !== undefined">
-      <dt appIntl="cert-test-rat-name">RAT Test name and manufacturer</dt>
-      <dd>{{test.manufacturer.formatted}}
-        <br><span class="raw">{{test.manufacturer.raw}}</span>
-      </dd>
-    </dl>
-    <dl>
-      <dt appIntl="cert-test-datetime">Date/Time of Sample Collection</dt>
-      <dd>
-        {{test.collected_on | i18nDate:'medium' | uppercase}}
-        <br><span class="raw">{{test.collected_on}}</span>
-      </dd>
-    </dl>
-    <dl>
-      <dt appIntl="cert-test-result">Test Result</dt>
-      <dd>{{test.result.formatted}}
-        <br><span class="raw">{{test.result.raw}}</span>
-      </dd>
-    </dl>
-    <dl>
-      <dt appIntl="cert-test-center">Testing center</dt>
-      <dd>
-        {{test.testing_center}}
-      </dd>
-    </dl>
-    <dl>
-      <dt appIntl="cert-test-country">Country of Test</dt>
-      <dd>
-        {{test.country.formatted}}
-        <br><span class="raw">{{test.country.raw}}</span>
-      </dd>
-    </dl>
-    <dl>
-      <dt appIntl="cert-test-issuer">Certificate issuer</dt>
-      <dd>
-        {{test.issuer}}
-      </dd>
-    </dl>
-  </div>
-  <div *ngFor="let rec of cert.recoveries; index as i; count as l;">
+  <div *ngIf="showDetails">
+    <div *ngFor="let vac of cert.vaccines; index as i; count as l;">
       <h2>
-        <span class="ti ti-virus-off"></span>
-        <span appIntl="cert-type-recovery">Recovery Certificate</span>
+        <span class="ti ti-vaccine"></span>
+        <span appIntl="cert-type-vaccine">Vaccination Certificate</span>
+        <span *ngIf="l > 1">({{i+1}}/{{l}})</span>
+      </h2>
+          <dl>
+        <dt appIntl='cert-disease'>Disease or agent targeted</dt>
+        <dd>{{vac.disease.formatted}}
+          <br><span class="raw">{{vac.disease.raw}}</span>
+        </dd>
+      </dl>
+      <dl>
+        <dt appIntl='cert-vaccine'>Vaccine/Prophylaxis</dt>
+        <dd>{{vac.prophylaxis.formatted}}
+          <br><span class="raw">{{vac.prophylaxis.raw}}</span>
+        </dd>
+      </dl>
+      <dl>
+        <dt appIntl="cert-vaccine-product">Vaccine medicinal product</dt>
+        <dd>
+          {{vac.medicinal_product.formatted}}
+          <br><span class="raw">{{vac.medicinal_product.raw}}</span>
+        </dd>
+      </dl>
+      <dl>
+        <dt appIntl="cert-vaccine-manufacturer">Vaccine Marketing authorisation holder or manufacturer</dt>
+        <dd>
+          {{vac.manufacturer.formatted}}
+          <br><span class="raw">{{vac.manufacturer.raw}}</span>
+        </dd>
+      </dl>
+      <dl>
+        <dt appIntl="cert-vaccine-numbers">Number in a series of vaccinations/doses and the overall number of doses in the series</dt>
+        <dd>{{vac.number_total}}</dd>
+      </dl>
+      <dl>
+        <dt appIntl="cert-vaccine-date">Date of vaccination</dt>
+        <dd>
+          {{vac.vaccinated_on | i18nDate:'fullDate' | uppercase}}
+          <br><span class="raw">{{vac.vaccinated_on}}</span>
+        </dd>
+      </dl>
+      <dl>
+        <dt appIntl="cert-vaccine-country">Country of Vaccination</dt>
+        <dd>
+          {{vac.country.formatted}}
+          <br><span class="raw">{{vac.country.raw}}</span>
+        </dd>
+      </dl>
+      <dl>
+        <dt appIntl="cert-vaccine-issuer">Certificate issuer</dt>
+        <dd>
+          {{vac.issuer}}
+        </dd>
+      </dl>
+    </div>
+    <div *ngFor="let test of cert.tests; index as i; count as l;">
+      <h2>
+        <span class="ti ti-test-pipe"></span>
+        <span appIntl="cert-type-test">Test Certificate</span>
         <span *ngIf="l > 1">({{i+1}}/{{l}})</span>
       </h2>
       <dl>
         <dt appIntl="cert-disease">Disease or agent targeted</dt>
-        <dd>{{rec.disease.formatted}}
-          <br><span class="raw">{{rec.disease.raw}}</span>
+        <dd>{{test.disease.formatted}}
+          <br><span class="raw">{{test.disease.raw}}</span>
         </dd>
       </dl>
       <dl>
-        <dt appIntl="cert-recovery-date-test">Date of first positive NAA test result</dt>
-        <dd>
-          {{rec.first_positive_on | i18nDate:'fullDate' | uppercase}}
-          <br><span class="raw">{{rec.first_positive_on}}</span>
+        <dt appIntl="cert-test-type">Type of Test</dt>
+        <dd>{{test.type.formatted}}
+          <br><span class="raw">{{test.type.raw}}</span>
+        </dd>
+      </dl>
+      <dl *ngIf="test.name !== undefined">
+        <dt appIntl="cert-test-naa-name">NAA Test Name</dt>
+        <dd>{{test.name}}
+        </dd>
+      </dl>
+      <dl *ngIf="test.manufacturer.raw !== undefined">
+        <dt appIntl="cert-test-rat-name">RAT Test name and manufacturer</dt>
+        <dd>{{test.manufacturer.formatted}}
+          <br><span class="raw">{{test.manufacturer.raw}}</span>
         </dd>
       </dl>
       <dl>
-        <dt appIntl="cert-recovery-valid-from">Certificate Valid From</dt>
+        <dt appIntl="cert-test-datetime">Date/Time of Sample Collection</dt>
         <dd>
-          {{rec.valid_from | i18nDate:'fullDate' | uppercase}}
-          <br><span class="raw">{{rec.valid_from}}</span>
+          {{test.collected_on | i18nDate:'medium' | uppercase}}
+          <br><span class="raw">{{test.collected_on}}</span>
         </dd>
       </dl>
       <dl>
-        <dt appIntl="cert-recovery-valid-until">Certificate Valid Until</dt>
-        <dd>
-          {{rec.valid_until | i18nDate:'fullDate' | uppercase}}
-          <br><span class="raw">{{rec.valid_until}}</span>
+        <dt appIntl="cert-test-result">Test Result</dt>
+        <dd>{{test.result.formatted}}
+          <br><span class="raw">{{test.result.raw}}</span>
         </dd>
       </dl>
       <dl>
-        <dt appIntl="cert-recovery-country">Country of Test</dt>
+        <dt appIntl="cert-test-center">Testing center</dt>
         <dd>
-          {{rec.country.formatted}}
-          <br><span class="raw">{{rec.country.raw}}</span>
+          {{test.testing_center}}
         </dd>
       </dl>
+      <dl>
+        <dt appIntl="cert-test-country">Country of Test</dt>
+        <dd>
+          {{test.country.formatted}}
+          <br><span class="raw">{{test.country.raw}}</span>
+        </dd>
+      </dl>
+      <dl>
+        <dt appIntl="cert-test-issuer">Certificate issuer</dt>
+        <dd>
+          {{test.issuer}}
+        </dd>
+      </dl>
+    </div>
+    <div *ngFor="let rec of cert.recoveries; index as i; count as l;">
+        <h2>
+          <span class="ti ti-virus-off"></span>
+          <span appIntl="cert-type-recovery">Recovery Certificate</span>
+          <span *ngIf="l > 1">({{i+1}}/{{l}})</span>
+        </h2>
+        <dl>
+          <dt appIntl="cert-disease">Disease or agent targeted</dt>
+          <dd>{{rec.disease.formatted}}
+            <br><span class="raw">{{rec.disease.raw}}</span>
+          </dd>
+        </dl>
+        <dl>
+          <dt appIntl="cert-recovery-date-test">Date of first positive NAA test result</dt>
+          <dd>
+            {{rec.first_positive_on | i18nDate:'fullDate' | uppercase}}
+            <br><span class="raw">{{rec.first_positive_on}}</span>
+          </dd>
+        </dl>
+        <dl>
+          <dt appIntl="cert-recovery-valid-from">Certificate Valid From</dt>
+          <dd>
+            {{rec.valid_from | i18nDate:'fullDate' | uppercase}}
+            <br><span class="raw">{{rec.valid_from}}</span>
+          </dd>
+        </dl>
+        <dl>
+          <dt appIntl="cert-recovery-valid-until">Certificate Valid Until</dt>
+          <dd>
+            {{rec.valid_until | i18nDate:'fullDate' | uppercase}}
+            <br><span class="raw">{{rec.valid_until}}</span>
+          </dd>
+        </dl>
+        <dl>
+          <dt appIntl="cert-recovery-country">Country of Test</dt>
+          <dd>
+            {{rec.country.formatted}}
+            <br><span class="raw">{{rec.country.raw}}</span>
+          </dd>
+        </dl>
+    </div>
   </div>
 </div>
 

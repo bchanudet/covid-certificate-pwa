@@ -7,7 +7,7 @@
     </h2>
     <app-qrcode [data]="cert.qr_content"></app-qrcode>
     <br>
-    <app-cert-details [cert]="cert"></app-cert-details>
+    <app-cert-details [cert]="cert" class="details"></app-cert-details>
     <div class="actions">
       <button class="cancel" (click)="Remove()">
         <span class="ti ti-trash"></span>
