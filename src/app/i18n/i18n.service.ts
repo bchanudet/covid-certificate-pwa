@@ -10,6 +10,7 @@ import { AVAILABLE_LOCALES, Locale } from './locales/locales';
 export class I18nService {
 
   private curLocaleSub: ReplaySubject<Locale> = new ReplaySubject<Locale>(1);
+  private curDateFormat: string = 'en-US';
 
   public enabled: boolean = false;
 
@@ -28,6 +29,7 @@ export class I18nService {
     if(found !== undefined){
       console.log("SWITCHED TO", found.id);
       this.curLocaleSub.next(found.locale);
+      this.curDateFormat = found.locale === undefined ? 'en-US' : found.locale.dateFormat;
     }
   }
 
@@ -42,6 +44,10 @@ export class I18nService {
         return of(t.html);
       })
     );
+  }
+
+  public getDateFormat(): string{
+    return this.curDateFormat;
   }
 
   public getLanguages(): {id: string, name: string}[]{
