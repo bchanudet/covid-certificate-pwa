@@ -50,6 +50,10 @@ export const locale: Locale = {
     {id: 'cert-type-vaccine', html:`Certificat de vaccination`},
     {id: 'cert-type-test', html: `Certificat de test`},
     {id: 'cert-type-recovery', html: `Certificat de rétablissment`},
-    {id: 'cert-disease', html: `Maladie ou agent infectieux ciblé`}
+    {id: 'cert-disease', html: `Maladie ou agent infectieux ciblé`},
+
+    // Update available
+    {id: 'app-update-available', html: `Une nouvelle version est disponible. Cliquez sur le bouton pour l'activer.`},
+    {id: 'app-update-reload', html: `Recharger`}
   ]
 };

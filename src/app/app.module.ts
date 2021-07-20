@@ -10,6 +10,7 @@ import { AddModule } from './content/add/add.module';
 import { HomeModule } from './content/home/home.module';
 import { ListModule } from './content/list/list.module';
 import { CertModule } from './content/cert/cert.module';
+import { I18nModule } from './i18n/i18n.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CertModule } from './content/cert/cert.module';
     HomeModule,
     ListModule,
     CertModule,
+    I18nModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the app is stable

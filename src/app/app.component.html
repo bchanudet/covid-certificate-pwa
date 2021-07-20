@@ -17,7 +17,7 @@
 <div class="panel" *ngIf="hasNewUpdate$ | async">
   <p>
     <span class="ti ti-refresh"></span>
-    <span>An update is available. Click on the button to activate it.</span>
+    <span appIntl="app-update-available">An update is available. Click on the button to activate it.</span>
   </p>
-  <a (click)="UpdateApp()" class="btn">Refresh</a>
+  <a (click)="UpdateApp()" class="btn" appIntl="app-update-reload">Reload</a>
 </div>
