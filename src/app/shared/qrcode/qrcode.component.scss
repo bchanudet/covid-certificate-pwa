@@ -1,10 +1,15 @@
 .qrcode {
-  text-align: center;
+  display:flex;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  border-radius: .4rem;
+  background: white;
+  padding: 0.5rem;
 }
 
 
 :host qr-code::ng-deep img {
-  border-radius: .7rem;
   object-fit: contain;
   width: 100%;
   height: auto;
