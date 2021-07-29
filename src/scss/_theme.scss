@@ -1,6 +1,6 @@
 @mixin apply($theme){
 
-  body{
+  & {
     background-color: map-get($theme, 'background');
     color: map-get($theme, 'primary');
   }

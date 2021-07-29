@@ -127,8 +127,21 @@ button, .btn{
 
 // Create a theme for both color scheem
 @media (prefers-color-scheme: light) {
-  @include theme.apply($light);
+  body {
+    @include theme.apply($light);
+  }
 }
 @media (prefers-color-scheme: dark) {
+  body {
+    @include theme.apply($dark);
+  }
+}
+
+// If you force the setting, we'll display the correct scheme
+body.light {
+  @include theme.apply($light);
+}
+
+body.dark {
   @include theme.apply($dark);
 }
