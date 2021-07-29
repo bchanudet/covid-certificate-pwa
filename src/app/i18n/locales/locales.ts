@@ -7,14 +7,13 @@ export interface Locale {
   translations: {'id':string, 'html':string}[]
 }
 
-
-const enLocale: Locale = {
-  id: 'en',
-  dateFormat: 'en-US',
-  translations: []
+export interface Language {
+  id: string,
+  name: string,
+  locale: Locale
 }
 
-export const AVAILABLE_LOCALES: {'id': string, 'name': string, 'locale'?: Locale}[] = [
-  {id: 'en', name: 'English', locale: enLocale},
+export const AVAILABLE_LANGUAGES: Language[] = [
+  {id: 'en', name: 'English', locale: { id: 'en',  dateFormat: 'en-US',  translations: []}},
   {id: 'fr', name: 'Français', locale: fr.locale}
 ];

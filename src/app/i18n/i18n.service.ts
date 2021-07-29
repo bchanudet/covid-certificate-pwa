@@ -1,39 +1,45 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, ReplaySubject, throwError } from 'rxjs';
+import { Observable, of, ReplaySubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { locale } from './locales/locale.fr';
-import { AVAILABLE_LOCALES, Locale } from './locales/locales';
+import { AVAILABLE_LANGUAGES, Language } from './locales/locales';
 
 @Injectable({
   providedIn: 'root'
 })
 export class I18nService {
 
-  private curLocaleSub: ReplaySubject<Locale> = new ReplaySubject<Locale>(1);
+  private currentLanguageSub: ReplaySubject<Language> = new ReplaySubject<Language>(1);
 
   public enabled: boolean = false;
 
 
   constructor() {
+    this.useLanguage(AVAILABLE_LANGUAGES[0].id);
+
+    // Use this here to switch to locale in dev environment
     if(!environment.production){
-      // Use this here to switch to locale
       this.enabled = true;
     }
-    this.useLanguage(AVAILABLE_LOCALES[0].id);
   }
 
   public useLanguage(id: string){
-    const found = AVAILABLE_LOCALES.find((l) => l.id === id);
+    const found = AVAILABLE_LANGUAGES.find((l) => l.id === id);
 
     if(found !== undefined){
-      this.curLocaleSub.next(found.locale);
+      this.currentLanguageSub.next(found);
     }
   }
 
+  public get currentLanguage$(): Observable<{id: string, name: string}>{
+    return this.currentLanguageSub.pipe(
+      map(locale => { return {id: locale.id, name: locale.name}})
+    )
+  }
+
   public getTranslation(id: string): Observable<string>{
-    return this.curLocaleSub.pipe(
-      map((locale) => locale.translations),
+    return this.currentLanguageSub.pipe(
+      map((language) => language.locale.translations),
       map(ts => ts.find(t => t.id === id)),
       switchMap((t) => {
         if(t === undefined){
@@ -48,13 +54,13 @@ export class I18nService {
   }
 
   public getDateFormat(): Observable<string>{
-    return this.curLocaleSub.pipe(
-      map((locale) => locale.dateFormat)
+    return this.currentLanguageSub.pipe(
+      map((language) => language.locale.dateFormat)
     );
   }
 
   public getLanguages(): {id: string, name: string}[]{
-    return AVAILABLE_LOCALES.map((l) => { return {id: l.id, name: l.name}; });
+    return AVAILABLE_LANGUAGES.map((l) => { return {id: l.id, name: l.name}; });
   }
 
 }
