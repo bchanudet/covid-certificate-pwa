@@ -13,6 +13,8 @@ export interface Language {
   locale: Locale
 }
 
+export const DEFAULT_LANGUAGE_ID = 'en';
+
 export const AVAILABLE_LANGUAGES: Language[] = [
   {id: 'en', name: 'English', locale: { id: 'en',  dateFormat: 'en-US',  translations: []}},
   {id: 'fr', name: 'Français', locale: fr.locale}

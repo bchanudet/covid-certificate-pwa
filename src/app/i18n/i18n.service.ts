@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, ReplaySubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { AVAILABLE_LANGUAGES, Language } from './locales/locales';
+import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE_ID, Language } from './locales/locales';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +11,15 @@ export class I18nService {
 
   private currentLanguageSub: ReplaySubject<Language> = new ReplaySubject<Language>(1);
 
-  public enabled: boolean = false;
-
-
   constructor() {
-    this.useLanguage(AVAILABLE_LANGUAGES[0].id);
-
-    // Use this here to switch to locale in dev environment
-    if(!environment.production){
-      this.enabled = true;
-    }
+    this.useLanguage('');
   }
 
   public useLanguage(id: string){
+    if(id === '' || id === 'default'){
+      id = DEFAULT_LANGUAGE_ID;
+    }
+
     const found = AVAILABLE_LANGUAGES.find((l) => l.id === id);
 
     if(found !== undefined){

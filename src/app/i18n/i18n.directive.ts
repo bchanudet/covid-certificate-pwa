@@ -21,10 +21,6 @@ export class I18nDirective implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.origHTML = this.el.nativeElement.innerHTML;
-    if(!this.i18nSvc.enabled){
-      // no need to subscribe while i18n is not active.
-      return;
-    }
 
     this.localeSub = this.i18nSvc.getTranslation(this.key).subscribe(
       (html) => { this.applyTranslation(html); }
