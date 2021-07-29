@@ -88,6 +88,17 @@ export const locale: Locale = {
     {id: 'check-signatures-only-valid', html: `Elle ne peut être utilisée pour vérifier la validité d'un certificat et ne peut pas se substituer à l'application "TousAntiCovid Verif". Prenez soin à n'importer que des certificats venant d'une source officielle.`},
     {id: 'check-signatures-how', html: `Pour être capable d'afficher un QR Code valide lorsque demandé, cette application stocke les données du QR Code "tel quel", avec la signature numérique déjà intégrée.`},
 
+    // Settings page
+    {id: 'settings-title', html: `Préférences`},
+    {id: 'settings-scheme-title', html: `Thème`},
+    {id: 'settings-scheme-default', html: `Système`},
+    {id: 'settings-scheme-light', html: `Clair`},
+    {id: 'settings-scheme-dark', html: `Foncé`},
+    {id: 'settings-scheme-instructions', html: `L'option "Système" demande à l'application de suivre les préférences du système de votre appareil. Par exemple, si vous avez appliqué le thème foncé sur votre Android, l'application sera en thème foncé. Les deux autres options permettent de surcharger cette valeur par défaut.`},
+    {id: 'settings-language-title', html: `Langue`},
+    {id: 'settings-language-auto', html: `Détection automatique`},
+    {id: 'settings-language-instructions', html: `Par défaut l'application va inspecter la langue du navigateur et, si une traduction pour celle-ci existe, va l'appliquer. Sinon la langue sera l'anglais. Vous pouvez choisir de désactiver ce comportement en sélectionnant une langue spécifique dans le champ ci-dessus.`},
+
 
     // Certificate details
     {id: 'cert-identity-title', html: `Identité`},

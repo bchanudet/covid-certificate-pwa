@@ -15,16 +15,29 @@ export class I18nService {
     this.useLanguage('');
   }
 
+  private detectBestLanguage(): string{
+    const found = navigator.languages
+      .map(lang => AVAILABLE_LANGUAGES.find(avail => avail.id === lang) !== undefined ? lang : undefined)
+      .filter((l) => l !== undefined);
+
+    if(found.length > 0){
+      return found[0] as string;
+    }
+
+    return DEFAULT_LANGUAGE_ID;
+  }
+
   public useLanguage(id: string){
     if(id === '' || id === 'default'){
-      id = DEFAULT_LANGUAGE_ID;
+      id = this.detectBestLanguage();
     }
 
     const found = AVAILABLE_LANGUAGES.find((l) => l.id === id);
-
     if(found !== undefined){
-      this.currentLanguageSub.next(found);
+      return this.currentLanguageSub.next(found);
     }
+
+    console.warn(`No language found for ${id}`);
   }
 
   public get currentLanguage$(): Observable<{id: string, name: string}>{

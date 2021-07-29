@@ -1,0 +1,22 @@
+.schemes{
+  margin: 1rem 0;
+  display: flex;
+  column-gap: 0.25rem;
+}
+
+select{
+  margin: 1rem auto;
+}
+
+button{
+  width: 100%;
+}
+
+.light{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.dark{
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

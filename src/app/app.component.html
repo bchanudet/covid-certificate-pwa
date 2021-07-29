@@ -1,15 +1,15 @@
 <header>
   <div class="back">
-    <a *ngIf="false" (click)="GoBack()">
+    <a *ngIf="displayBack$ | async" (click)="GoBack()">
       <span class="ti ti-chevron-left"></span>
     </a>
   </div>
   <div class="logo">
     <img src="assets/icon.svg" class="icon"/>
   </div>
-  <div class="lang">
-    <a *ngIf="displayLang" (click)="SelectLanguage('fr')">
-      <span class="ti ti-language"></span>
+  <div class="settings">
+    <a routerLink="/settings" *ngIf="displaySettings$ | async">
+      <span class="ti ti-settings"></span>
     </a>
   </div>
 </header>

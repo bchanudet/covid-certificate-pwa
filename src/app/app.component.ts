@@ -16,7 +16,7 @@ export class AppComponent {
 
   public hasNewUpdate$ : Observable<boolean>;
   public displayBack$ : Observable<boolean>;
-  public displayLang : boolean;
+  public displaySettings$ : Observable<boolean>;
 
   constructor(
     private appUpdateSvc: AppUpdateService,
@@ -31,11 +31,14 @@ export class AppComponent {
 
     this.displayBack$ = this.router.events.pipe(
       filter((evt: Event) : evt is ActivationEnd => evt instanceof ActivationEnd),
-      tap(evt => { console.log(evt)}),
       map((evt: ActivationEnd) => evt.snapshot.url.join('/') !== 'home')
     )
 
-    this.displayLang = this.i18nSvc.enabled;
+    this.displaySettings$ = this.router.events.pipe(
+      filter((evt: Event) : evt is ActivationEnd => evt instanceof ActivationEnd),
+      map((evt: ActivationEnd) => evt.snapshot.url.join('/') !== 'settings')
+    )
+
 
     this.SettingsSvc.currentScheme$.subscribe(
       (newScheme) => {

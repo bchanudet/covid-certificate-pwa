@@ -7,6 +7,7 @@ header {
 
 header a {
   padding: 0 0.2rem;
+  text-decoration: none;
 }
 
 header .ti{
@@ -20,8 +21,9 @@ header div{
 header .back{
   text-align: left;
 }
-header .lang{
+header .settings{
   text-align: right;
+  padding-right: 0.4rem;
 }
 
 .icon {

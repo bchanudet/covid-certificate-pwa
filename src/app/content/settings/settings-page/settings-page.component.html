@@ -1,0 +1,33 @@
+<div class="panel">
+  <h1 appIntl="settings-title">Settings</h1>
+  <h2>
+    <span class="ti ti-palette"></span>
+    <span appIntl="settings-scheme-title">Color scheme</span>
+  </h2>
+  <div class="schemes" *ngIf="(currentScheme$ | async) as scheme">
+    <button class="default" [ngClass]="{'pressed': scheme === 'default'}" (click)="selectNewScheme('default')">
+      <span class="ti ti-devices"></span>
+      <span appIntl="settings-scheme-default">Default</span>
+    </button>
+    <button class="light" [ngClass]="{'pressed': scheme === 'light'}" (click)="selectNewScheme('light')">
+      <span class="ti ti-sun"></span>
+      <span appIntl="settings-scheme-light">Light</span>
+    </button>
+    <button class="dark" [ngClass]="{'pressed': scheme === 'dark'}" (click)="selectNewScheme('dark')">
+      <span class="ti ti-moon"></span>
+      <span appIntl="settings-scheme-dark">Dark</span>
+    </button>
+  </div>
+  <p class="instructions" appIntl="settings-scheme-instructions">The "Default" setting will follow the operating system default setting. e.g. if you've put your Android as dark, the color scheme will be dark. The other settings will override this value.</p>
+  <h2>
+    <span class="ti ti-language"></span>
+    <span appIntl="settings-language-title">Language</span>
+  </h2>
+  <ng-container *ngIf="(currentLanguage$ | async) as s">
+    <select #language (input)="selectNewLanguage(language.value)">
+      <option value="default" appIntl="settings-language-auto">Auto detection</option>
+      <option *ngFor="let l of allLanguages" value="{{l.id}}" [selected]="s === l.id">{{l.name}}</option>
+    </select>
+  </ng-container>
+  <p class="instructions" appIntl="settings-language-instructions">By default the application will look at the browser language, and try to match it if a translation is available. If not it will fallback to English. You can choose to override this behaviour by selecting here a specific language.</p>
+</div>

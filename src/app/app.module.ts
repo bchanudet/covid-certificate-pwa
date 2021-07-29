@@ -11,6 +11,7 @@ import { HomeModule } from './content/home/home.module';
 import { ListModule } from './content/list/list.module';
 import { CertModule } from './content/cert/cert.module';
 import { I18nModule } from './i18n/i18n.module';
+import { SettingsModule } from './content/settings/settings.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { I18nModule } from './i18n/i18n.module';
     HomeModule,
     ListModule,
     CertModule,
+    SettingsModule,
     I18nModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
