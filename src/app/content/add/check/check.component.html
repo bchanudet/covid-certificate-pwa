@@ -1,18 +1,21 @@
 <div class="panel">
-  <h1>Import a certificate</h1>
+  <h1 appIntl="check-title">Check the data</h1>
   <div *ngIf="cert$ | async as cert; else invalidCert">
     <p class="warning" *ngIf="hasAlready">
       <span class="ti ti-alert-circle"></span>
-      This certificate is already part of your library! Go back to scan another one.
+      <span appIntl="check-duplicate">This certificate is already part of your library! Go back to scan another one.</span>
     </p>
-    <p class="instructions" *ngIf="hasStorage; else noStorage">
+    <p class="instructions" *ngIf="hasStorage; else noStorage" appIntl="check-instructions">
       Please double-check carefully the details from the scanned certicate against those on your source material.
       If everything matches, click on "Import" at the end.
     </p>
     <ng-template #noStorage>
       <p class="warning">
         <span class="ti ti-alert-circle"></span>
-        Your browser can't store data locally. You can't import the certificate but you can still check the details.
+        <span appIntl="check-localstorage-unavailable">
+          Your browser can't store data locally.
+          You can't import the certificate but you can still check the details.
+        </span>
       </p>
     </ng-template>
 
@@ -20,40 +23,47 @@
     <div class="buttons">
       <button class="cancel" (click)="onCancel()">
         <span class="ti ti-arrow-back"></span>
-        Cancel
+        <span appIntl="check-action-back">Back</span>
       </button>
       <button class="" (click)="onSubmit(cert)" [disabled]="" *ngIf="hasStorage && !hasAlready">
         <span class="ti ti-check"></span>
-        Import
+        <span appIntl="check-action-import">Import</span>
       </button>
     </div>
   </div>
   <ng-template #invalidCert>
     <p class="warning">
       <span class="ti ti-alert-triangle"></span>
-      The QR Code you scanned seems to be corrupted. The data cannot be decoded.
+      <span appIntl="check-data-corrupted">
+        The QR Code you scanned seems to be corrupted.
+        The data cannot be decoded.
+      </span>
     </p>
     <button routerLink="/new/scan">
       <span class="ti ti-arrow-back-up"></span>
-      <span>Try again</span>
+      <span appIntl="check-action-retry">Try again</span>
     </button>
   </ng-template>
 </div>
 <div class="panel">
   <h2>
     <span class="ti ti-certificate"></span>
-    About signatures
+    <span appIntl="check-signatures-title">About digital signatures</span>
   </h2>
-  <p>
+  <p appIntl="check-signatures-explain">
     Digital Covid Certificates are digitally signed. It means the QR Code contains data that
     can prove that the certificate was delivered by a reliable and authorized entity.
   </p>
   <p>
-    <strong>This application does not verify the signature.</strong> Therefore it cannot be
-    used to make sure a certificate is valid, and you shouldn't import a QR Code that's not
-    coming from an official source.
+    <strong appIntl="check-signatures-no-verify">
+      This application does not verify the signature.
+    </strong>
+    <span appIntl="check-signatures-only-valid">
+      Therefore it cannot be used to make sure a certificate is valid,
+      and you shouldn't import a QR Code that's not coming from an official source.
+    </span>
   </p>
-  <p>
+  <p appIntl="check-signatures-how">
     To be able to display a valid QR Code when asked, the application store all the data of the
     QR Code "as-is", with the signature included.
   </p>

@@ -1,18 +1,20 @@
 <div class="panel">
-  <h1>Import a certificate</h1>
-  <p class="instructions">Use the viewer below to scan the QR Code of your certificate.</p>
+  <h1 appIntl="scan-title">Import a certificate</h1>
+  <p class="instructions" appIntl="scan-instructions">
+    Use the viewer below to scan the QR Code of your certificate.
+  </p>
   <div class="scanner">
     <div *ngIf="displayMesg !== ''" class="information">
       <span class="ti ti-camera"></span><br>
       <ng-container [ngSwitch]="displayMesg">
-        <p *ngSwitchCase="'permission-pending'">
+        <p *ngSwitchCase="'permission-pending'" appIntl="scan-camera-permission">
           Please authorize the application to access the camera.
         </p>
-        <p *ngSwitchCase="'permission-denied'">
-          You have denied the application to access the camera.
+        <p *ngSwitchCase="'permission-denied'" appIntl="scan-camera-denied">
+          Access to the camera has not been authorized.
         </p>
-        <p *ngSwitchCase="'camera-loading'">
-          Camera is loading
+        <p *ngSwitchCase="'camera-loading'" appIntl="scan-camera-loading">
+          Camera is loading...
         </p>
       </ng-container>
     </div>
@@ -30,17 +32,20 @@
   <div class="actions">
     <button *ngIf="hasMultipleCameras" (click)="SwitchCamera()">
       <span class="ti ti-refresh"></span>&nbsp;
-      <span>Switch camera</span>
+      <span appIntl="scan-action-switch">Switch camera</span>
     </button>
     <button *ngIf="hasTorch" (click)="ToggleTorch()">
       <span class="ti ti-bulb"></span>&nbsp;
-      <span>Toggle torch</span>
+      <span appIntl="scan-action-torch">Toggle torch</span>
     </button>
   </div>
   <div *ngIf="notacert">
     <p class="warning">
       <span class="ti ti-alert-circle"></span>
-      <span>This QR Code is not a valid Digital COVID Certificate. Please retry with another.</span>
+      <span appIntl="scan-result-invalid">
+        This QR Code is not a valid Digital COVID Certificate.
+        Please retry with another.
+      </span>
     </p>
   </div>
   <div *ngIf="displayTest">

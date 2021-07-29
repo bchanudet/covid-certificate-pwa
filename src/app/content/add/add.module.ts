@@ -6,8 +6,8 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
 import { ScanComponent } from './scan/scan.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CheckComponent } from './check/check.component';
-import { AppModule } from '../../app.module';
 import { SharedModule } from '../../shared/shared.module';
+import { I18nModule } from 'src/app/i18n/i18n.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { SharedModule } from '../../shared/shared.module';
     AddRoutingModule,
     ZXingScannerModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    I18nModule
   ]
 })
 export class AddModule { }

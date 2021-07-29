@@ -61,6 +61,34 @@ export const locale: Locale = {
     {id: 'view-action-remove', html: `Supprimer le certificat`},
     {id: 'view-action-remove-confirm', html: `Cliquez à nouveau pour confirmer`},
 
+    // Scan page
+    {id: 'scan-title', html: `Importer un certificat`},
+    {id: 'scan-instructions', html: `Utilisez la visualisation ci-dessous pour scanner le QR Code de votre certificat numérique.`},
+    {id: 'scan-instructions', html: `Utilisez la visualisation ci-dessous pour scanner le QR Code de votre certificat numérique.`},
+    {id: 'scan-camera-permission', html: `Veuillez autoriser l'application à utiliser votre appareil photo.`},
+    {id: 'scan-camera-denied', html: `L'application n'est pas autorisée à accéder à l'appareil photo.`},
+    {id: 'scan-camera-loading', html: `Lancement de l'appareil photo...`},
+    {id: 'scan-action-switch', html: `Basculer`},
+    {id: 'scan-action-torch', html: `Flash`},
+    {id: 'scan-result-invalid', html: `Le QR Code scanné ne correspond pas à un Certificat Numérique. Veuillez ressayer avec un autre`},
+
+    // Check page
+    {id: 'check-title', html: `Vérifier les données`},
+    {id: 'check-duplicate', html: `Ce certificat fait déjà partie de votre liste. Veuillez réssayer avec un autre.`},
+    {id: 'check-instructions', html: `Veuillez vérifier attentivement les données du certificat scanné en les comparant à celle présentes sur votre document source. Si tout est correct, cliquez sur "Importer" en bas de la page.`},
+    {id: 'check-localstorage-unavailable', html: `Votre appareil ne supporte pas le stockage local de documents. Vous ne pouvez pas importer ce certificat mais vous pouvez tout de même en vérifier les données.`},
+    {id: 'check-action-back', html: `Retour`},
+    {id: 'check-action-import', html: `Importer`},
+    {id: 'check-action-retry', html: `Essayer à nouveau`},
+    {id: 'check-data-corrupted', html: `Le QR Code que vous avez scanné semble corrompu. Impossible d'en extraire les données.`},
+      // about signatures
+    {id: 'check-signatures-title', html: `À propos des signatures numériques`},
+    {id: 'check-signatures-explain', html: `Les certificats numériques COVID sont signés numériquement. Le QR Code contient des données qui permettent de prouver qu'il a été délivré par une autorité compétente et autorisée.`},
+    {id: 'check-signatures-no-verify', html: `Cette application ne vérifie pas la signature numérique. `},
+    {id: 'check-signatures-only-valid', html: `Elle ne peut être utilisée pour vérifier la validité d'un certificat et ne peut pas se substituer à l'application "TousAntiCovid Verif". Prenez soin à n'importer que des certificats venant d'une source officielle.`},
+    {id: 'check-signatures-how', html: `Pour être capable d'afficher un QR Code valide lorsque demandé, cette application stocke les données du QR Code "tel quel", avec la signature numérique déjà intégrée.`},
+
+
     // Certificate details
     {id: 'cert-identity-title', html: `Identité`},
     {id: 'cert-identity-forenames', html:`Prénom(s)`},
