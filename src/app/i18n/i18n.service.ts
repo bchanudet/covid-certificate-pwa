@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, ReplaySubject, throwError } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { locale } from './locales/locale.fr';
 import { AVAILABLE_LOCALES, Locale } from './locales/locales';
 
 @Injectable({
@@ -10,7 +11,6 @@ import { AVAILABLE_LOCALES, Locale } from './locales/locales';
 export class I18nService {
 
   private curLocaleSub: ReplaySubject<Locale> = new ReplaySubject<Locale>(1);
-  private curDateFormat: string = 'en-US';
 
   public enabled: boolean = false;
 
@@ -19,17 +19,15 @@ export class I18nService {
     if(!environment.production){
       // Use this here to switch to locale
       this.enabled = true;
-      this.useLanguage('fr');
     }
+    this.useLanguage(AVAILABLE_LOCALES[0].id);
   }
 
   public useLanguage(id: string){
     const found = AVAILABLE_LOCALES.find((l) => l.id === id);
 
     if(found !== undefined){
-      console.log("SWITCHED TO", found.id);
       this.curLocaleSub.next(found.locale);
-      this.curDateFormat = found.locale === undefined ? 'en-US' : found.locale.dateFormat;
     }
   }
 
@@ -39,15 +37,20 @@ export class I18nService {
       map(ts => ts.find(t => t.id === id)),
       switchMap((t) => {
         if(t === undefined){
-          return throwError('No translation for `'+id + '`');
+          if(!environment.production){
+            console.warn(`No translation for '${id}'`);
+          }
+          return of('');
         }
         return of(t.html);
       })
     );
   }
 
-  public getDateFormat(): string{
-    return this.curDateFormat;
+  public getDateFormat(): Observable<string>{
+    return this.curLocaleSub.pipe(
+      map((locale) => locale.dateFormat)
+    );
   }
 
   public getLanguages(): {id: string, name: string}[]{

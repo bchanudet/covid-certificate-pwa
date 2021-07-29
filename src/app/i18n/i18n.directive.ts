@@ -1,5 +1,6 @@
 import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { I18nService } from './i18n.service';
 
 @Directive({
@@ -26,10 +27,7 @@ export class I18nDirective implements OnInit, OnDestroy{
     }
 
     this.localeSub = this.i18nSvc.getTranslation(this.key).subscribe(
-      (text) => { this.applyTranslation(text); },
-      (error) => {
-        console.warn(error);
-      }
+      (html) => { this.applyTranslation(html); }
     )
   }
 

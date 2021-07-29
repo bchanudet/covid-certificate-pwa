@@ -8,7 +8,13 @@ export interface Locale {
 }
 
 
+const enLocale: Locale = {
+  id: 'en',
+  dateFormat: 'en-US',
+  translations: []
+}
+
 export const AVAILABLE_LOCALES: {'id': string, 'name': string, 'locale'?: Locale}[] = [
-  {id: 'en', name: 'English', locale: undefined},
+  {id: 'en', name: 'English', locale: enLocale},
   {id: 'fr', name: 'Français', locale: fr.locale}
 ];

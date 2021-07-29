@@ -22,12 +22,10 @@ export class CertPageComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(
       (newParams) => {
-        console.log("newparams", newParams);
         let cert : DCCertificate | undefined = this.storeSvc.GetCertificate(newParams.id);
         if(cert === undefined){
           return;
         }
-        console.log("found", cert);
         this.cert = cert;
       }
     )

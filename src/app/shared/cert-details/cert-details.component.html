@@ -20,7 +20,7 @@
   <dl>
     <dt appIntl="cert-identity-birthday">Date of Birth</dt>
     <dd>
-      {{cert.date_birth | i18nDate:'longDate' | uppercase}}
+      {{cert.date_birth | i18nDate:'longDate' | async | uppercase}}
       <br><span class="raw">{{cert.date_birth}}</span>
     </dd>
   </dl>
@@ -71,7 +71,7 @@
       <dl>
         <dt appIntl="cert-vaccine-date">Date of vaccination</dt>
         <dd>
-          {{vac.vaccinated_on | i18nDate:'fullDate' | uppercase}}
+          {{vac.vaccinated_on | i18nDate:'fullDate'  | async | uppercase}}
           <br><span class="raw">{{vac.vaccinated_on}}</span>
         </dd>
       </dl>
@@ -121,7 +121,7 @@
       <dl>
         <dt appIntl="cert-test-datetime">Date/Time of Sample Collection</dt>
         <dd>
-          {{test.collected_on | i18nDate:'medium' | uppercase}}
+          {{test.collected_on | i18nDate:'medium' | async | uppercase}}
           <br><span class="raw">{{test.collected_on}}</span>
         </dd>
       </dl>
@@ -166,21 +166,21 @@
         <dl>
           <dt appIntl="cert-recovery-date-test">Date of first positive NAA test result</dt>
           <dd>
-            {{rec.first_positive_on | i18nDate:'fullDate' | uppercase}}
+            {{rec.first_positive_on | i18nDate:'fullDate'  | async | uppercase}}
             <br><span class="raw">{{rec.first_positive_on}}</span>
           </dd>
         </dl>
         <dl>
           <dt appIntl="cert-recovery-valid-from">Certificate Valid From</dt>
           <dd>
-            {{rec.valid_from | i18nDate:'fullDate' | uppercase}}
+            {{rec.valid_from | i18nDate:'fullDate'  | async | uppercase}}
             <br><span class="raw">{{rec.valid_from}}</span>
           </dd>
         </dl>
         <dl>
           <dt appIntl="cert-recovery-valid-until">Certificate Valid Until</dt>
           <dd>
-            {{rec.valid_until | i18nDate:'fullDate' | uppercase}}
+            {{rec.valid_until | i18nDate:'fullDate'  | async | uppercase}}
             <br><span class="raw">{{rec.valid_until}}</span>
           </dd>
         </dl>
