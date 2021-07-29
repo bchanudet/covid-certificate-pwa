@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { filter, map, tap } from 'rxjs/operators';
 import { I18nService } from './i18n/i18n.service';
 import { AppUpdateService } from './services/app-update.service';
+import { SettingsService } from './services/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -20,8 +21,10 @@ export class AppComponent {
   constructor(
     private appUpdateSvc: AppUpdateService,
     private router: Router,
-    private i18nSvc: I18nService
+    private i18nSvc: I18nService,
+    private SettingsSvc: SettingsService
   ){
+
     this.hasNewUpdate$ = this.appUpdateSvc.newVersionFound$.pipe(
       filter((v: boolean) => v === true)
     );
@@ -33,6 +36,17 @@ export class AppComponent {
     )
 
     this.displayLang = this.i18nSvc.enabled;
+
+    this.SettingsSvc.currentScheme$.subscribe(
+      (newScheme) => {
+        if(newScheme === 'default'){
+          document.body.className = "";
+        }
+        else{
+          document.body.className = newScheme;
+        }
+      }
+    )
   }
 
   UpdateApp(){

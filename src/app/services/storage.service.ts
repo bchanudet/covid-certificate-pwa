@@ -1,9 +1,11 @@
+import { localizedString } from '@angular/compiler/src/output/output_ast';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { DCCertificate } from '../models/certificate';
 
 const KEY_LIST = 'certs';
 const KEY_CERT = 'cert_';
+const KEY_PREF = 'pref_';
 
 @Injectable({
   providedIn: 'root'
@@ -113,5 +115,17 @@ export class StorageService {
     }
 
     return true;
+  }
+
+  GetPreferenceValue(key: string): string{
+    if(typeof localStorage.getItem(KEY_PREF + key) === "string"){
+      return localStorage.getItem(KEY_PREF + key) as string;
+    }
+
+    return '';
+  }
+
+  SetPreferenceValue(key: string, value: string): void{
+    localStorage.setItem(KEY_PREF + key, value);
   }
 }
