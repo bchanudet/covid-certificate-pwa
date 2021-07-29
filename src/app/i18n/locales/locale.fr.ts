@@ -12,7 +12,10 @@ export const locale: Locale = {
     // home page
     {id: 'home-title', html: `Certificat Numérique COVID UE`},
     {id: 'home-tagline', html: `Importez et stockez facilement vos certificats COVID sur votre smartphone.`},
+      // actions
     {id: 'home-action-list', html: `Voir vos certificats`},
+    {id: 'home-action-import', html: `Importez votre premier certificat`},
+    // text
     {id: 'home-what-title', html: `Qu'est-ce que c'est ?`},
     {id: 'home-what-application', html: `The site internet est une application web qui vous permet de stocker et montrer vos Certificats Numériques COVID (DCC), en utilisant votre caméra pour les importer.`},
     {id: 'home-what-offline', html: `Vous pouvez même installer cette application sur votre écran d'accueil, et l'utiliser même en étant hors-ligne.`},
@@ -45,6 +48,13 @@ export const locale: Locale = {
     {id: 'home-disclaimers-title', html: `Avertissement`},
     {id: 'home-disclaimers-not-endorsed', html: `Cette  application n'a été ni supportée ni approuvée par une quelconque autorité officielle.`},
     {id: 'home-disclaimers-be-wary', html: `Même si le QR Code stocké par l'application devrait suffire et est validé par l'application "Tous Anti Covid Verif", il n'est pas impossible que l'application soit refusée par la personne . De même, n'oubliez pas que vous devez toujours présenter une pièce d'identité lors de la vérification.`},
+
+    // List page
+    {id: 'list-title', html: `Vos certificats`},
+    {id: 'list-instructions', html: `Vous n'avez importé aucun certificat. Cliquez sur le bouton pour scanner un QR Code.`},
+    {id: 'list-action-import', html: `Importer un nouveau certificat`},
+    {id: 'list-install-text', html: `Vous pouvez aussi ajouter l'application à votre écran d'accueil. Vous pourrez ainsi l'utiliser même sans connexion internet.`},
+    {id: 'list-action-install', html: `Ajouter sur l'écran d'accueil`},
 
     // View page
     {id: 'view-title', html: `Certificat numérique`},
@@ -90,6 +100,8 @@ export const locale: Locale = {
 
     // Update available
     {id: 'app-update-available', html: `Une nouvelle version est disponible. Cliquez sur le bouton pour l'activer.`},
-    {id: 'app-update-reload', html: `Recharger`}
+    {id: 'app-update-reload', html: `Recharger`},
+
+
   ]
 };

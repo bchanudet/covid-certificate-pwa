@@ -1,10 +1,10 @@
 <div class="panel">
-  <h1>Your certificates</h1>
+  <h1 appIntl="list-title">Your certificates</h1>
   <div *ngIf="(certificates$ | async) as certs; else nocerts">
     <app-cert-line *ngFor="let c of certs" [cert]='c'></app-cert-line>
   </div>
   <ng-template #nocerts>
-    <p class="instructions">
+    <p class="instructions" appIntl="list-instructions">
       You haven't imported any certificate yet.
       Click on the button under to scan a QR Code.
     </p>
@@ -12,13 +12,16 @@
 
   <button [routerLink]="'/new'">
     <span class="ti ti-qrcode"></span>
-    Import a new certificate
+    <span appIntl="list-action-import">Import a new certificate</span>
   </button>
 </div>
 <div class="panel" *ngIf="canInstall$ |async">
-  <p>You can also add the application to your homepage!</p>
+  <p appIntl="list-install-text">
+    You can also add the application to your homepage!
+    You'll then be able to open it even without an internet connection.
+  </p>
   <button (click)="Install()">
     <span class="ti ti-home"></span>
-    Add to homepage
+    <span appIntl="list-action-install">Add to homepage</span>
   </button>
 </div>
