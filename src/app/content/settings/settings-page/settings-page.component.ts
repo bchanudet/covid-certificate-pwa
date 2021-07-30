@@ -6,7 +6,7 @@ import { SettingsService } from 'src/app/services/settings.service';
   templateUrl: './settings-page.component.html',
   styleUrls: ['./settings-page.component.scss']
 })
-export class SettingsPageComponent implements OnInit {
+export class SettingsPageComponent {
 
   public allLanguages;
   public currentScheme$;
@@ -18,9 +18,6 @@ export class SettingsPageComponent implements OnInit {
     this.allLanguages = this.settingsSvc.allLanguages;
     this.currentScheme$ = this.settingsSvc.currentScheme$;
     this.currentLanguage$ = this.settingsSvc.currentLanguage$;
-  }
-
-  ngOnInit(): void {
   }
 
   selectNewScheme(scheme: 'default' | 'light' | 'dark' ){

@@ -6,13 +6,10 @@ import { DCCertificate } from 'src/app/models/certificate';
   templateUrl: './cert-line.component.html',
   styleUrls: ['./cert-line.component.scss']
 })
-export class CertLineComponent implements OnInit {
+export class CertLineComponent{
 
   @Input() cert?: DCCertificate;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

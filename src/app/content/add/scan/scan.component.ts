@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BarcodeFormat } from '@zxing/library';
 import { CertificateService } from 'src/app/services/certificate.service';
@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './scan.component.html',
   styleUrls: ['./scan.component.scss']
 })
-export class ScanComponent implements OnInit {
+export class ScanComponent {
 
   private camera: any;
   allCameras: MediaDeviceInfo[] = [];
@@ -38,10 +38,6 @@ export class ScanComponent implements OnInit {
     private router: Router,
     private certSvc: CertificateService
   ) { }
-
-  ngOnInit(): void {
-
-  }
 
   OnCamerasFound(cameras: MediaDeviceInfo[]){
     console.log("cams", cameras);

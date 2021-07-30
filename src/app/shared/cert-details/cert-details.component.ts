@@ -6,16 +6,13 @@ import { DCCertificate } from 'src/app/models/certificate';
   templateUrl: './cert-details.component.html',
   styleUrls: ['./cert-details.component.scss']
 })
-export class CertDetailsComponent implements OnInit {
+export class CertDetailsComponent{
 
   @Input() cert?: DCCertificate;
   @Input() showToggleButton?: boolean = true;
   @Input() showDetails?: boolean = false;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
   ToggleDetails(): void{
     this.showDetails = !this.showDetails;

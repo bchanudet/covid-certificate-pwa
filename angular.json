@@ -20,7 +20,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "allowedCommonJsDependencies": ["crypto-js"],
+            "allowedCommonJsDependencies": [
+              "crypto-js"
+            ],
             "outputPath": "dist/covid-certificate-pwa/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -153,9 +155,21 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "covid-certificate-pwa"
+  "defaultProject": "covid-certificate-pwa",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }

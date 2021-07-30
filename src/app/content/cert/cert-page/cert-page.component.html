@@ -11,8 +11,8 @@
     <div class="actions">
       <button class="cancel" (click)="Remove()">
         <span class="ti ti-trash"></span>
-        <span appIntl="view-action-remove" *ngIf="removeStep == 0">Remove certificate</span>
-        <span appIntl="view-action-remove-confirm" *ngIf="removeStep == 1">Tap again to confirm</span>
+        <span appIntl="view-action-remove" *ngIf="removeStep === 0">Remove certificate</span>
+        <span appIntl="view-action-remove-confirm" *ngIf="removeStep === 1">Tap again to confirm</span>
       </button>
     </div>
   </div>

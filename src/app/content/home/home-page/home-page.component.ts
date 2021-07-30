@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { StorageService } from 'src/app/services/storage.service';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent implements OnInit {
+export class HomePageComponent{
 
   hasAnyCert: boolean;
 
@@ -14,9 +14,6 @@ export class HomePageComponent implements OnInit {
     storeSvc: StorageService
   ) {
     this.hasAnyCert = storeSvc.HasAnyCertificate();
-  }
-
-  ngOnInit(): void {
   }
 
 }

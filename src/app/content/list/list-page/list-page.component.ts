@@ -10,7 +10,7 @@ import { StorageService } from 'src/app/services/storage.service';
   templateUrl: './list-page.component.html',
   styleUrls: ['./list-page.component.scss']
 })
-export class ListPageComponent implements OnInit {
+export class ListPageComponent {
 
   constructor(
     private storeSvc: StorageService,
@@ -29,9 +29,6 @@ export class ListPageComponent implements OnInit {
 
   public Install(): void {
     this.updateSvc.Install();
-  }
-
-  ngOnInit(): void {
   }
 
 }

@@ -11,7 +11,7 @@ import { StorageService } from 'src/app/services/storage.service';
   templateUrl: './check.component.html',
   styleUrls: ['./check.component.scss']
 })
-export class CheckComponent implements OnInit {
+export class CheckComponent {
 
   public cert$: Observable<DCCertificate>;
   public hasStorage: boolean = false;
@@ -32,11 +32,6 @@ export class CheckComponent implements OnInit {
       })
     );
     this.hasStorage = this.storeSvc.isStorageEnabled;
-  }
-
-
-
-  ngOnInit(): void {
   }
 
   onCancel(): void {

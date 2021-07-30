@@ -5,7 +5,9 @@
     </a>
   </div>
   <div class="logo">
-    <img src="assets/icon.svg" class="icon"/>
+    <a routerLink="/">
+      <img src="assets/icon.svg" class="icon"/>
+    </a>
   </div>
   <div class="settings">
     <a routerLink="/settings" *ngIf="displaySettings$ | async">
