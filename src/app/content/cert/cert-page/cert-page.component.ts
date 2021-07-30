@@ -11,7 +11,7 @@ import { StorageService } from 'src/app/services/storage.service';
 export class CertPageComponent implements OnInit {
 
   public cert: DCCertificate | undefined = undefined;
-  public removeStep: number = 0;
+  public removeStep = 0;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,7 +22,7 @@ export class CertPageComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(
       (newParams) => {
-        let cert : DCCertificate | undefined = this.storeSvc.GetCertificate(newParams.id);
+        const cert : DCCertificate | undefined = this.storeSvc.getCertificate(newParams.id);
         if(cert === undefined){
           return;
         }
@@ -31,7 +31,7 @@ export class CertPageComponent implements OnInit {
     )
   }
 
-  Remove(): void{
+  remove(): void{
     if(this.cert === undefined){
       return;
     }
@@ -39,8 +39,8 @@ export class CertPageComponent implements OnInit {
       this.removeStep += 1;
       return;
     }
-    if(this.storeSvc.RemoveCertificate(this.cert.id)){
-      this.router.navigate(['/list']);
+    if(this.storeSvc.removeCertificate(this.cert.id)){
+      void this.router.navigate(['/list']);
     }
   }
 }

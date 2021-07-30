@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DCCertificate } from 'src/app/models/certificate';
 
 @Component({
@@ -9,7 +9,5 @@ import { DCCertificate } from 'src/app/models/certificate';
 export class CertLineComponent{
 
   @Input() cert?: DCCertificate;
-
-  constructor() { }
 
 }

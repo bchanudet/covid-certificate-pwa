@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivationEnd, Event, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { I18nService } from './i18n/i18n.service';
 import { AppUpdateService } from './services/app-update.service';
 import { SettingsService } from './services/settings.service';
@@ -52,15 +52,11 @@ export class AppComponent {
     )
   }
 
-  UpdateApp(){
-    this.appUpdateSvc.GetUpdate()
+  updateApp(): void{
+    this.appUpdateSvc.getUpdate()
   }
 
-  GoBack(){
+  goBack(): void{
     window.history.back();
-  }
-
-  SelectLanguage(key: string): void{
-    this.i18nSvc.useLanguage(key);
   }
 }

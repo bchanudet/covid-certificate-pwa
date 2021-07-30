@@ -16,14 +16,14 @@ export class SettingsService {
     private i18nSvc: I18nService
   ) {
     // Read all current settings
-    if(this.storageSvc.GetPreferenceValue('scheme') !== ""){
-      this.currentScheme = this.storageSvc.GetPreferenceValue('scheme') as 'default' | 'light' | 'dark';
+    if(this.storageSvc.getPreferenceValue('scheme') !== ""){
+      this.currentScheme = this.storageSvc.getPreferenceValue('scheme') as 'default' | 'light' | 'dark';
     }
     else{
       this.currentScheme = 'default';
     }
-    if(this.storageSvc.GetPreferenceValue('language') !== ""){
-      const lang = this.storageSvc.GetPreferenceValue('language');
+    if(this.storageSvc.getPreferenceValue('language') !== ""){
+      const lang = this.storageSvc.getPreferenceValue('language');
       this.langSub.next(lang);
       this.i18nSvc.useLanguage(lang);
     }
@@ -37,7 +37,7 @@ export class SettingsService {
     return this.schemeSub.asObservable();
   }
   public set currentScheme(newScheme: 'default' | 'light' | 'dark'){
-    this.storageSvc.SetPreferenceValue('scheme', newScheme);
+    this.storageSvc.setPreferenceValue('scheme', newScheme);
     this.schemeSub.next(newScheme);
   }
 
@@ -49,7 +49,7 @@ export class SettingsService {
     return this.langSub.asObservable();
   }
   public set currentLanguage(newLanguage: string){
-    this.storageSvc.SetPreferenceValue('language', newLanguage);
+    this.storageSvc.setPreferenceValue('language', newLanguage);
     this.langSub.next(newLanguage);
     this.i18nSvc.useLanguage(newLanguage);
   }

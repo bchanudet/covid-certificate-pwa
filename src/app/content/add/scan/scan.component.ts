@@ -11,27 +11,27 @@ import { environment } from 'src/environments/environment';
 })
 export class ScanComponent {
 
-  private camera: any;
+  private cameraIndex = 0;
   allCameras: MediaDeviceInfo[] = [];
 
   allowedFormats: BarcodeFormat[] = [BarcodeFormat.QR_CODE];
-  hasTorch: boolean = false;
-  hasMultipleCameras: boolean = false;
+  hasTorch = false;
+  hasMultipleCameras = false;
 
-  torchEnabled: boolean = false;
+  torchEnabled = false;
 
-  notacert: boolean = false;
+  notacert = false;
   displayMesg: 'permission-pending' | 'permission-denied' | 'camera-loading' | '' = 'permission-pending';
 
-  displayTest: boolean = !environment.production;
+  displayTest = !environment.production;
   testCerts: {"label": string, "data": string}[] = environment.testCerts;
 
   public get selectedCamera(): MediaDeviceInfo{
-    return this.camera;
+    return this.allCameras[this.cameraIndex];
   }
   public set selectedCamera(newCamera: MediaDeviceInfo){
     console.log("new camera selected", newCamera);
-    this.camera = newCamera;
+    this.cameraIndex = this.allCameras.findIndex(v => v.deviceId === newCamera.deviceId);
   }
 
   constructor(
@@ -39,7 +39,7 @@ export class ScanComponent {
     private certSvc: CertificateService
   ) { }
 
-  OnCamerasFound(cameras: MediaDeviceInfo[]){
+  onCamerasFound(cameras: MediaDeviceInfo[]) : void{
     console.log("cams", cameras);
     if(cameras.length > 0) {
       this.displayMesg = '';
@@ -48,48 +48,45 @@ export class ScanComponent {
     this.hasMultipleCameras = cameras.length > 1;
   }
 
-  OnTorchCompatible(yes: boolean){
+  onTorchCompatible(yes: boolean) : void{
     this.hasTorch = yes;
   }
 
 
-  OnPermissionResponse(isAllowed : boolean){
+  onPermissionResponse(isAllowed : boolean) : void{
     this.displayMesg = isAllowed ? 'camera-loading' : 'permission-denied';
   }
 
-  OnCertificateFound(content: string){
+  onCertificateFound(content: string): void{
     // Here we do a very quick check on the header to see if it's supposedly a DCC.
     // A more thorough check is done on the check component
-    if(this.certSvc.IsValidQRCode(content)){
-      this.router.navigate(['new', 'validate', btoa(content)]);
+    if(this.certSvc.isValidQRCode(content)){
+      void this.router.navigate(['new', 'validate', btoa(content)]);
     }
     else{
       this.notacert = true;
     }
   }
 
-  ToggleTorch(){
+  toggleTorch(): void{
     this.torchEnabled = !this.torchEnabled;
   }
 
-  SwitchCamera(){
-    this.selectedCamera = this.allCameras[(this.allCameras.findIndex(v => v.deviceId === this.camera.deviceId) +1) % this.allCameras.length];
+  switchCamera() : void{
+    this.cameraIndex = (this.cameraIndex + 1 ) % this.allCameras.length;
+    this.selectedCamera = this.allCameras[this.cameraIndex];
   }
 
-  RetryPermissions(){
-    document.location.reload();
-  }
-
-  Test(key: string){
+  test(key: string): void{
     if(this.testCerts.length === 0){
       return;
     }
 
-    let i = this.testCerts.findIndex((e) => e.label === key);
+    const i = this.testCerts.findIndex((e) => e.label === key);
     if(i === -1){
       return;
     }
 
-    this.OnCertificateFound(this.testCerts[i].data);
+    this.onCertificateFound(this.testCerts[i].data);
   }
 }

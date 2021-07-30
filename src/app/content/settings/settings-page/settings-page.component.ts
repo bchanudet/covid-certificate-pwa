@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
@@ -20,11 +20,11 @@ export class SettingsPageComponent {
     this.currentLanguage$ = this.settingsSvc.currentLanguage$;
   }
 
-  selectNewScheme(scheme: 'default' | 'light' | 'dark' ){
+  selectNewScheme(scheme: 'default' | 'light' | 'dark' ): void{
     this.settingsSvc.currentScheme = scheme;
   }
 
-  selectNewLanguage(value: string){
+  selectNewLanguage(value: string) : void{
     this.settingsSvc.currentLanguage = value;
   }
 }

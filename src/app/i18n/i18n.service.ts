@@ -15,7 +15,7 @@ export class I18nService {
     this.useLanguage('');
   }
 
-  private detectBestLanguage(): string{
+  private _detectBestLanguage(): string{
     const found = navigator.languages
       .map(lang => AVAILABLE_LANGUAGES.find(avail => avail.id === lang) !== undefined ? lang : undefined)
       .filter((l) => l !== undefined);
@@ -27,9 +27,9 @@ export class I18nService {
     return DEFAULT_LANGUAGE_ID;
   }
 
-  public useLanguage(id: string){
+  public useLanguage(id: string): void{
     if(id === '' || id === 'default'){
-      id = this.detectBestLanguage();
+      id = this._detectBestLanguage();
     }
 
     const found = AVAILABLE_LANGUAGES.find((l) => l.id === id);
@@ -42,7 +42,9 @@ export class I18nService {
 
   public get currentLanguage$(): Observable<{id: string, name: string}>{
     return this.currentLanguageSub.pipe(
-      map(locale => { return {id: locale.id, name: locale.name}})
+      map(locale => {
+        return {id: locale.id, name: locale.name}
+      })
     )
   }
 
@@ -69,7 +71,9 @@ export class I18nService {
   }
 
   public getLanguages(): {id: string, name: string}[]{
-    return AVAILABLE_LANGUAGES.map((l) => { return {id: l.id, name: l.name}; });
+    return AVAILABLE_LANGUAGES.map((l) => {
+      return {id: l.id, name: l.name};
+    });
   }
 
 }

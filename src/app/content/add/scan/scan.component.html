@@ -22,19 +22,19 @@
       [(device)]="selectedCamera"
       [ngClass]="{'hidden': displayMesg !== ''}"
       [torch]="torchEnabled"
-      (torchCompatible)="OnTorchCompatible($event)"
-      (camerasFound)="OnCamerasFound($event)"
-      (permissionResponse)="OnPermissionResponse($event)"
-      (scanSuccess)="OnCertificateFound($event)"
+      (torchCompatible)="onTorchCompatible($event)"
+      (camerasFound)="onCamerasFound($event)"
+      (permissionResponse)="onPermissionResponse($event)"
+      (scanSuccess)="onCertificateFound($event)"
       [formats]="allowedFormats"
     ></zxing-scanner>
   </div>
   <div class="actions">
-    <button *ngIf="hasMultipleCameras" (click)="SwitchCamera()">
+    <button *ngIf="hasMultipleCameras" (click)="switchCamera()">
       <span class="ti ti-refresh"></span>&nbsp;
       <span appIntl="scan-action-switch">Switch camera</span>
     </button>
-    <button *ngIf="hasTorch" (click)="ToggleTorch()">
+    <button *ngIf="hasTorch" (click)="toggleTorch()">
       <span class="ti ti-bulb"></span>&nbsp;
       <span appIntl="scan-action-torch">Toggle torch</span>
     </button>
@@ -51,7 +51,7 @@
   <div *ngIf="displayTest">
     <h2>Test buttons</h2>
     <p>
-      <a class="btn" (click)="Test(test.label)" *ngFor="let test of testCerts" style="margin-bottom: 0.2rem;">{{test.label}}</a>
+      <a class="btn" (click)="test(testCert.label)" *ngFor="let testCert of testCerts" style="margin-bottom: 0.2rem;">{{testCert.label}}</a>
     </p>
   </div>
 </div>

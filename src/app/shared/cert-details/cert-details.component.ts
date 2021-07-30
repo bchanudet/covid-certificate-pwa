@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DCCertificate } from 'src/app/models/certificate';
 
 @Component({
@@ -12,9 +12,7 @@ export class CertDetailsComponent{
   @Input() showToggleButton?: boolean = true;
   @Input() showDetails?: boolean = false;
 
-  constructor() { }
-
-  ToggleDetails(): void{
+  toggleDetails(): void{
     this.showDetails = !this.showDetails;
   }
 

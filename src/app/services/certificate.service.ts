@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Injectable } from '@angular/core';
 import { DCCertificate, DualValue, RecoveryEntry, TestEntry, VaccinationEntry } from '../models/certificate';
 import { Observable, of, throwError } from 'rxjs';
@@ -20,41 +24,41 @@ import * as VaccProph from '../references/vaccine-prophylaxis';
 })
 export class CertificateService {
 
-  constructor() { }
-
-  private DecodeCBOR(buf: Uint8Array): any{
-    return cbor.decode(buf.buffer.slice(buf.byteOffset, buf.byteLength + buf.byteOffset));
+  private _decodeCBOR(buf: Uint8Array): any{
+    return cbor.decode<any>(buf.buffer.slice(buf.byteOffset, buf.byteLength + buf.byteOffset));
   }
 
-  IsValidQRCode(qrcode: string): boolean{
+  public isValidQRCode(qrcode: string): boolean{
     return qrcode.startsWith('HC1');
   }
 
-  CreateFromQRCode(qrcode : string): Observable<DCCertificate>{
+  public createFromQRCode(qrcode : string): Observable<DCCertificate>{
     let data: string = qrcode;
 
     if (data.startsWith('HC1')) {
       data = data.substring(3);
       if (data.startsWith(':')) {
-         data = data.substring(1)
-      } else {
+        data = data.substring(1)
+      }
+      else {
         return throwError("Bad header");
-      };
-    } else {
-        return throwError("Not a cert");
-    };
+      }
+    }
+    else {
+      return throwError("Not a cert");
+    }
 
-    let decoded: Uint8Array = b45.decode(data);
+    const decoded: Uint8Array = b45.decode(data);
     let test: Uint8Array =  new Uint8Array();
     if(decoded[0] == 0x78){
       test = pako.inflate(decoded);
     }
-    let components: any[] = cbor.decode<any>(test.buffer);
+    const components: any[] = cbor.decode<any>(test.buffer);
     if(components.length !== 4){
       return throwError("Bad number of components");
     }
 
-    let payload = this.DecodeCBOR(components[2]);
+    const payload = this._decodeCBOR(components[2]);
     if(typeof payload !== 'object'){
       return throwError("Not an object");
     }
@@ -62,10 +66,10 @@ export class CertificateService {
       return throwError("Not a correct payload");
     }
 
-    let parsed = payload["-260"]["1"];
+    const parsed = payload["-260"]["1"];
     console.log(parsed);
 
-    let dccert: DCCertificate = {
+    const dccert: DCCertificate = {
       id: "" + Date.now(),
       qr_content: qrcode,
       date_birth: parsed.dob,
@@ -83,13 +87,19 @@ export class CertificateService {
     };
 
     if(parsed['v'] !== undefined && Array.isArray(parsed.v)){
-      dccert.vaccines = parsed.v.map((e: any) => { return this.ParseVaccinePart(e)})
+      dccert.vaccines = parsed.v.map((e: any) => {
+        return this._parseVaccinePart(e)
+      });
     }
     else if(parsed['t'] !== undefined && Array.isArray(parsed.t)){
-      dccert.tests = parsed.t.map((e: any) => { return this.ParseTestPart(e)});
+      dccert.tests = parsed.t.map((e: any) => {
+        return this._parseTestPart(e);
+      });
     }
     else if(parsed['r'] !== undefined && Array.isArray(parsed.r)){
-      dccert.recoveries = parsed.r.map((e: any) => { return this.ParseRecoveryPart(e);});
+      dccert.recoveries = parsed.r.map((e: any) => {
+        return this._parseRecoveryPart(e);
+      });
     }
     else{
       return throwError('No type of certificate');
@@ -97,14 +107,14 @@ export class CertificateService {
 
     return of(dccert);
   }
-  private ParseVaccinePart(data: any): VaccinationEntry{
+  private _parseVaccinePart(data: any): VaccinationEntry{
 
-    let entry : VaccinationEntry = {
-      disease : this.FindDisease(data.tg),
-      country : this.FindCountry(data.co),
-      prophylaxis : this.FindVaccProph(data.vp),
-      manufacturer : this.FindVaccManf(data.ma),
-      medicinal_product : this.FindVaccProd(data.mp),
+    const entry : VaccinationEntry = {
+      disease : this._findDisease(data.tg),
+      country : this._findCountry(data.co),
+      prophylaxis : this._findVaccProph(data.vp),
+      manufacturer : this._findVaccManf(data.ma),
+      medicinal_product : this._findVaccProd(data.mp),
       number_total : data.dn +" / "+ data.sd,
       vaccinated_on : data.dt,
       issuer : data.is,
@@ -112,10 +122,10 @@ export class CertificateService {
     }
     return entry;
   }
-  private ParseRecoveryPart(data: any): RecoveryEntry{
-    let entry : RecoveryEntry = {
-      disease : this.FindDisease(data.tg),
-      country : this.FindCountry(data.co),
+  private _parseRecoveryPart(data: any): RecoveryEntry{
+    const entry : RecoveryEntry = {
+      disease : this._findDisease(data.tg),
+      country : this._findCountry(data.co),
       first_positive_on: data.fr,
       valid_from: data.df,
       valid_until: data.du,
@@ -125,17 +135,17 @@ export class CertificateService {
 
     return entry;
   }
-  private ParseTestPart(data: any): TestEntry{
+  private _parseTestPart(data: any): TestEntry{
 
-    let entry : TestEntry = {
-      disease : this.FindDisease(data.tg),
-      type: this.FindTestType(data.tt),
+    const entry : TestEntry = {
+      disease : this._findDisease(data.tg),
+      type: this._findTestType(data.tt),
       name: data.nm,
-      manufacturer: this.FindTestManf(data.ma),
+      manufacturer: this._findTestManf(data.ma),
       collected_on: data.sc,
-      result: this.FindTestResult(data.tr),
+      result: this._findTestResult(data.tr),
       testing_center: data.tc,
-      country: this.FindCountry(data.co),
+      country: this._findCountry(data.co),
       issuer : data.is,
       id: data.ci
     }
@@ -143,15 +153,15 @@ export class CertificateService {
   }
 
 
-  private FindCountry(id: string): DualValue {
-    let v = Countries.values.find((v) => v.id === id);
+  private _findCountry(id: string): DualValue {
+    const v = Countries.values.find((v) => v.id === id);
     return {
       raw: id,
       formatted: v !== undefined ? v.display :''
     };
   }
-  private FindDisease(id: string): DualValue{
-    let v = Diseases.values.find(v => v.id === id);
+  private _findDisease(id: string): DualValue{
+    const v = Diseases.values.find(v => v.id === id);
     return {
       raw: id,
       formatted: v !== undefined ? v.display : ''
@@ -159,43 +169,44 @@ export class CertificateService {
   }
 
 
-  private FindTestManf(id: string): DualValue{
-    let f = TestManfs.values.find(v => v.id === id);
+  private _findTestManf(id: string): DualValue{
+    const f = TestManfs.values.find(v => v.id === id);
     return {
       raw: id,
       formatted: f !== undefined ? f.display : ''
     }
   }
-  private FindTestResult(id: string): DualValue{
-    let f = TestResults.values.find(v => v.id === id);
+  private _findTestResult(id: string): DualValue{
+    const f = TestResults.values.find(v => v.id === id);
     return {
       raw: id,
       formatted: f !== undefined ? f.display : ''
     }
   }
-  private FindTestType(id: string): DualValue{
-    let f = TestTypes.values.find(v => v.id === id);
+  private _findTestType(id: string): DualValue{
+    const f = TestTypes.values.find(v => v.id === id);
     return {
       raw: id,
       formatted: f !== undefined ? f.display : ''
     }
   }
 
-  private FindVaccManf(id: string): DualValue{
-    let f = VaccManfs.values.find(v => v.id === id);
+  private _findVaccManf(id: string): DualValue{
+    const f = VaccManfs.values.find(v => v.id === id);
     return {
       raw: id,
       formatted: f !== undefined ? f.display : ''
     }
   }
-  private FindVaccProd(id: string): DualValue{
-    let f = VaccProds.values.find(v => v.id === id);return {
+  private _findVaccProd(id: string): DualValue{
+    const f = VaccProds.values.find(v => v.id === id);
+    return {
       raw: id,
       formatted: f !== undefined ? f.display : ''
     }
   }
-  private FindVaccProph(id: string): DualValue{
-    let f = VaccProph.values.find(v => v.id === id);
+  private _findVaccProph(id: string): DualValue{
+    const f = VaccProph.values.find(v => v.id === id);
     return {
       raw: id,
       formatted: f !== undefined ? f.display : ''

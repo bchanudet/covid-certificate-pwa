@@ -1,4 +1,6 @@
-import { localizedString } from '@angular/compiler/src/output/output_ast';
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { DCCertificate } from '../models/certificate';
@@ -12,21 +14,21 @@ const KEY_PREF = 'pref_';
 })
 export class StorageService {
 
-  private storageEnabled: boolean = false;
+  private storageEnabled = false;
 
   public get isStorageEnabled(): boolean{
     return this.storageEnabled;
   }
 
   constructor() {
-    this.DetectStorage();
+    this._detectStorage();
   }
 
-  private DetectStorage(): void{
+  private _detectStorage(): void{
     let storage: any;
     try {
       storage = window["localStorage"];
-      var x = '__storage_test__';
+      const x = '__storage_test__';
       storage.setItem(x, x);
       storage.removeItem(x);
       this.storageEnabled = true;
@@ -47,8 +49,8 @@ export class StorageService {
     }
   }
 
-  private AddToIDs(id: string) : boolean{
-    let list = JSON.parse(localStorage.getItem(KEY_LIST) || '[]') as string[];
+  private _addToIDs(id: string) : boolean{
+    const list = JSON.parse(localStorage.getItem(KEY_LIST) || '[]') as string[];
     if(list.find((e) => e === id) !== undefined){
       return false;
     }
@@ -57,35 +59,35 @@ export class StorageService {
     localStorage.setItem(KEY_LIST, JSON.stringify(list));
     return true;
   }
-  private GetIDs(): string[]{
+  private _getIDs(): string[]{
     return JSON.parse(localStorage.getItem(KEY_LIST) || '[]') as string[];
   }
-  private RemoveID(id:string): boolean{
-    let ids: string[] = this.GetIDs();
+  private _removeID(id:string): boolean{
+    const ids: string[] = this._getIDs();
     if(ids.indexOf(id) > -1){
-      ids.splice(ids.indexOf(id),1);
+      ids.splice(ids.indexOf(id), 1);
       localStorage.setItem(KEY_LIST, JSON.stringify(ids));
     }
     return true;
   }
 
-  HasAnyCertificate(): boolean{
-    return this.GetIDs().length > 0;
+  hasAnyCertificate(): boolean{
+    return this._getIDs().length > 0;
   }
 
-  AddCertificate(cert: DCCertificate){
+  addCertificate(cert: DCCertificate): boolean{
     localStorage.setItem(KEY_CERT + cert.id, JSON.stringify(cert));
-    return this.AddToIDs(cert.id);
+    return this._addToIDs(cert.id);
   }
 
-  ListCertificates() : Observable<DCCertificate[]> {
+  listCertificates() : Observable<DCCertificate[]> {
 
-    let certs : DCCertificate[] = [];
-    let ids : string[] = this.GetIDs();
+    const certs : DCCertificate[] = [];
+    const ids : string[] = this._getIDs();
 
     for(let i = 0, l = ids.length; i < l; i+= 1){
 
-      let cert : DCCertificate | undefined = this.GetCertificate(ids[i]);
+      const cert : DCCertificate | undefined = this.getCertificate(ids[i]);
       if(cert === undefined){
         continue;
       }
@@ -95,8 +97,8 @@ export class StorageService {
     return of(certs);
   }
 
-  GetCertificate(id: string) : DCCertificate | undefined {
-    let cached = localStorage.getItem(KEY_CERT + id);
+  getCertificate(id: string) : DCCertificate | undefined {
+    const cached = localStorage.getItem(KEY_CERT + id);
     if(cached === null){
       return undefined;
     }
@@ -104,12 +106,12 @@ export class StorageService {
     return JSON.parse(cached) as DCCertificate;
   }
 
-  HasCertificate(id: string) : boolean{
-    return this.GetIDs().indexOf(id) > -1;
+  hasCertificate(id: string) : boolean{
+    return this._getIDs().indexOf(id) > -1;
   }
 
-  RemoveCertificate(id: string): boolean{
-    this.RemoveID(id);
+  removeCertificate(id: string): boolean{
+    this._removeID(id);
     if(localStorage.getItem(KEY_CERT + id) !== null){
       localStorage.removeItem(KEY_CERT + id);
     }
@@ -117,7 +119,7 @@ export class StorageService {
     return true;
   }
 
-  GetPreferenceValue(key: string): string{
+  getPreferenceValue(key: string): string{
     if(typeof localStorage.getItem(KEY_PREF + key) === "string"){
       return localStorage.getItem(KEY_PREF + key) as string;
     }
@@ -125,7 +127,7 @@ export class StorageService {
     return '';
   }
 
-  SetPreferenceValue(key: string, value: string): void{
+  setPreferenceValue(key: string, value: string): void{
     localStorage.setItem(KEY_PREF + key, value);
   }
 }

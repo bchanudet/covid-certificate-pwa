@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { DCCertificate } from 'src/app/models/certificate';
@@ -18,7 +18,7 @@ export class ListPageComponent {
   ) { }
 
   public get certificates$() : Observable<DCCertificate[]>{
-    return this.storeSvc.ListCertificates().pipe(
+    return this.storeSvc.listCertificates().pipe(
       filter(v => v.length > 0)
     );
   }
@@ -27,8 +27,8 @@ export class ListPageComponent {
     return this.updateSvc.canInstallApp$;
   }
 
-  public Install(): void {
-    this.updateSvc.Install();
+  public install(): void {
+    this.updateSvc.install();
   }
 
 }

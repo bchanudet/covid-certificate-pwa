@@ -13,7 +13,7 @@ export class HomePageComponent{
   constructor(
     storeSvc: StorageService
   ) {
-    this.hasAnyCert = storeSvc.HasAnyCertificate();
+    this.hasAnyCert = storeSvc.hasAnyCertificate();
   }
 
 }

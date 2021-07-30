@@ -1,6 +1,6 @@
 <header>
   <div class="back">
-    <a *ngIf="displayBack$ | async" (click)="GoBack()">
+    <a *ngIf="displayBack$ | async" (click)="goBack()">
       <span class="ti ti-chevron-left"></span>
     </a>
   </div>
@@ -21,5 +21,5 @@
     <span class="ti ti-refresh"></span>
     <span appIntl="app-update-available">An update is available. Click on the button to activate it.</span>
   </p>
-  <a (click)="UpdateApp()" class="btn" appIntl="app-update-reload">Reload</a>
+  <a (click)="updateApp()" class="btn" appIntl="app-update-reload">Reload</a>
 </div>

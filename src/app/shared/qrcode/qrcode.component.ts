@@ -1,5 +1,4 @@
-import { Component, HostListener, Input, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-qrcode',
@@ -8,10 +7,9 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class QrcodeComponent implements OnInit {
 
-  @Input() data: string = "";
+  @Input() data = "";
   public size = 450;
 
-  constructor() { }
 
   ngOnInit(): void {
     this.size = Math.min(450, window.innerWidth);

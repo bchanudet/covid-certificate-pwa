@@ -12,7 +12,7 @@ export const locale: Locale = {
     // home page
     {id: 'home-title', html: `Certificat Numérique COVID UE`},
     {id: 'home-tagline', html: `Importez et stockez facilement vos certificats COVID sur votre smartphone.`},
-      // actions
+    // actions
     {id: 'home-action-list', html: `Voir vos certificats`},
     {id: 'home-action-import', html: `Importez votre premier certificat`},
     // text
@@ -81,7 +81,7 @@ export const locale: Locale = {
     {id: 'check-action-import', html: `Importer`},
     {id: 'check-action-retry', html: `Essayer à nouveau`},
     {id: 'check-data-corrupted', html: `Le QR Code que vous avez scanné semble corrompu. Impossible d'en extraire les données.`},
-      // about signatures
+    // about signatures
     {id: 'check-signatures-title', html: `À propos des signatures numériques`},
     {id: 'check-signatures-explain', html: `Les certificats numériques COVID sont signés numériquement. Le QR Code contient des données qui permettent de prouver qu'il a été délivré par une autorité compétente et autorisée.`},
     {id: 'check-signatures-no-verify', html: `Cette application ne vérifie pas la signature numérique. `},

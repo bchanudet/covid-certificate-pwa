@@ -15,6 +15,8 @@
         "createDefaultProgram": true
       },
       "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
@@ -34,7 +36,32 @@
             "prefix": "app",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@typescript-eslint/naming-convention":  [
+          "error",
+          {
+            "selector": ["variable", "function", "accessor", "classMethod"],
+            "format": ["camelCase", "UPPER_CASE"]
+          },
+          {
+            "selector": ["variable", "function", "accessor", "classMethod"],
+            "modifiers" : ["private"],
+            "format": ["camelCase"],
+            "leadingUnderscore": "require"
+          }
+        ],
+        "indent": ["error", 2],
+        "comma-spacing": ["error", { "before": false, "after": true }],
+        "semi-spacing": ["error", {"before": false, "after": true}],
+        "no-unneeded-ternary": "error",
+        "no-alert": "error",
+        "no-empty-function": ["warn", {"allow": ["constructors"]}],
+        "no-eval": "error",
+        "brace-style": ["error", "stroustrup"],
+        "no-mixed-operators": "error",
+        "no-nested-ternary":"error",
+        "no-duplicate-imports": "error",
+        "no-duplicate-case": "error"
       }
     },
     {

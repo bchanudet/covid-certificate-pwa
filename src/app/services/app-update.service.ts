@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { ApplicationRef, Injectable } from '@angular/core';
 import { SwUpdate, UpdateAvailableEvent } from '@angular/service-worker';
-import { BehaviorSubject, concat, from, fromEvent, interval, Observable } from 'rxjs';
+import { BehaviorSubject, concat, fromEvent, interval, Observable } from 'rxjs';
 import { filter, first } from 'rxjs/operators';
 
 @Injectable({
@@ -32,15 +35,17 @@ export class AppUpdateService {
     const isStable$ = appRef.isStable.pipe(first(isStable => isStable === true));
     const every6h$ = interval(6 * 3600000);
     concat(isStable$, every6h$).pipe(
-      filter((v) => this.updates.isEnabled)
+      filter(() => this.updates.isEnabled)
     ).subscribe(
       () => {
-        this.updates.checkForUpdate();
+        void this.updates.checkForUpdate();
       }
     );
 
     // Display warning when update is detected
-    this.updates.available.subscribe((evt) => { this.OnUpdateDetected(evt); });
+    this.updates.available.subscribe((evt) => {
+      this._onUpdateDetected(evt);
+    });
 
     // Detect if we can add the app to homepage
     fromEvent(window, 'beforeinstallprompt').subscribe(
@@ -57,29 +62,29 @@ export class AppUpdateService {
     );
   }
 
-  private OnUpdateDetected(evt: UpdateAvailableEvent){
+  private _onUpdateDetected(evt: UpdateAvailableEvent){
     console.log('current version is', evt.current);
     console.log('available version is', evt.available);
 
     this.hasNewVersionSub.next(true);
   }
 
-  public GetUpdate() {
+  public getUpdate() : void {
     if(!this.hasNewVersionSub.value) {
       return;
     }
 
     // Activate update then reload the page
-    this.updates.activateUpdate().then(() => document.location.reload());
+    void this.updates.activateUpdate().then(() => document.location.reload());
   }
 
-  public Install() {
+  public install() : void{
     if(this.deferredPrompt === null){
       return;
     }
 
     this.deferredPrompt.prompt();
-    this.deferredPrompt.userChoice.then((choice : any) => {
+    this.deferredPrompt.userChoice.then((choice : {"outcome": string}) => {
       if(choice.outcome === 'accepted'){
         this.canInstallSub.next(false);
       }

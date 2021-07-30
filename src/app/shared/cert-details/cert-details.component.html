@@ -25,7 +25,7 @@
     </dd>
   </dl>
   <div *ngIf="showToggleButton">
-    <button (click)="ToggleDetails()">
+    <button (click)="toggleDetails()">
       <span class="ti ti-eye"></span>
       <span *ngIf="showDetails" appIntl="cert-action-hide">Hide Certificate details</span>
       <span *ngIf="!showDetails" appIntl="cert-action-show">Show Certificate details</span>

@@ -1,7 +1,7 @@
 import { formatDate } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { I18nService } from './i18n.service';
 
 @Pipe({
