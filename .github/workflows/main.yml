@@ -37,7 +37,7 @@ jobs:
           # Build configuration for the angular app
           #build_configuration: # optional, default is production
           # base href for the app
-          #base_href: 
+          #base_href:
           # branch on which the angular build will be deployed
           #deploy_branch: # optional, default is gh-pages
           # The folder in which `ng build` provides its output. This is the folder which will be deployed to the `deploy_branch`.
@@ -46,3 +46,18 @@ jobs:
           run_lint: false # optional
           # Will not fail the step if anything fails
           #skip_failure: # optional
+
+      - name: Zip folder
+        run: |
+          tar -cz -f dist/covid-certifacate.tar.gz dist/covid-certificate-pwa/browser
+
+      - name: Publish release
+        uses: "marvinpinto/action-automatic-releases@latest"
+        with:
+          repo_token: "${{ secrets.GH_KEY }}"
+          automatic_release_tag: "latest"
+          prerelease: false
+          title: "Release"
+          files: |
+            dist/covid-certifacate.tar.gz
+
