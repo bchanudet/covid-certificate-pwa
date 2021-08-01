@@ -1,8 +1,8 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivationEnd, Event, Router } from '@angular/router';
+import { ActivationEnd, Event, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { I18nService } from './i18n/i18n.service';
+import { filter, map, tap } from 'rxjs/operators';
 import { AppUpdateService } from './services/app-update.service';
 import { SettingsService } from './services/settings.service';
 
@@ -21,8 +21,8 @@ export class AppComponent {
   constructor(
     private appUpdateSvc: AppUpdateService,
     private router: Router,
-    private i18nSvc: I18nService,
-    private SettingsSvc: SettingsService
+    private SettingsSvc: SettingsService,
+    private location: Location
   ){
 
     this.hasNewUpdate$ = this.appUpdateSvc.newVersionFound$.pipe(
@@ -30,8 +30,9 @@ export class AppComponent {
     );
 
     this.displayBack$ = this.router.events.pipe(
-      filter((evt: Event) : evt is ActivationEnd => evt instanceof ActivationEnd),
-      map((evt: ActivationEnd) => evt.snapshot.url.join('/') !== 'home')
+      filter((evt: Event) : evt is NavigationEnd => evt instanceof NavigationEnd),
+      tap((evt: NavigationEnd) => console.log(evt, this.router.getCurrentNavigation())),
+      map(() => !!this.router.getCurrentNavigation()?.previousNavigation)
     )
 
     this.displaySettings$ = this.router.events.pipe(
@@ -57,6 +58,6 @@ export class AppComponent {
   }
 
   goBack(): void{
-    window.history.back();
+    this.location.back();
   }
 }
