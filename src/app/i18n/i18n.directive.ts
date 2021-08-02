@@ -13,7 +13,7 @@ export class I18nDirective implements OnInit, OnDestroy{
   private localeSub?: Subscription;
 
   constructor(
-    private el: ElementRef,
+    private el: ElementRef<HTMLElement>,
     private i18nSvc: I18nService
   ) {
   }
@@ -23,7 +23,7 @@ export class I18nDirective implements OnInit, OnDestroy{
 
     this.localeSub = this.i18nSvc.getTranslation(this.key).subscribe(
       (html) => {
-        this.applyTranslation(html);
+        this._applyTranslation(html);
       }
     )
   }
@@ -35,7 +35,7 @@ export class I18nDirective implements OnInit, OnDestroy{
     }
   }
 
-  private applyTranslation(html: string){
+  private _applyTranslation(html: string){
     if(html.length === 0){
       this.el.nativeElement.innerHTML = this.origHTML
     }
