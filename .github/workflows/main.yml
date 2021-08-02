@@ -4,10 +4,7 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ main ]
-  pull_request:
     branches: [ main ]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -51,13 +48,24 @@ jobs:
         run: |
           tar -cz -f dist/covid-certifacate.tar.gz dist/covid-certificate-pwa/browser
 
-      - name: Publish release
-        uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Get version
+        id: get_version
+        run: echo '::set-output name=value::'(node -pe "require('./package.json').version)''
+
+      - name: Generate changelog
+        id: changelog
+        uses: jaywcjlove/changelog-generator@main
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: false
-          title: "Release"
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ steps.get_version.outputs.value }}
           files: |
             dist/covid-certifacate.tar.gz
+          body: |
+            ${{ steps.changelog.outputs.compareurl }}
+            ${{ steps.changelog.outputs.changelog }}
+
 
