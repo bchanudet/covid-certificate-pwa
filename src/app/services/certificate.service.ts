@@ -17,6 +17,7 @@ import * as TestTypes from '../references/test-type';
 import * as VaccManfs from '../references/vaccine-mah-manf';
 import * as VaccProds from '../references/vaccine-medicinal-product';
 import * as VaccProph from '../references/vaccine-prophylaxis';
+import { sha256 } from 'hash.js';
 
 
 @Injectable({
@@ -70,7 +71,7 @@ export class CertificateService {
     console.log(parsed);
 
     const dccert: DCCertificate = {
-      id: "" + Date.now(),
+      id: sha256().update(qrcode).digest('hex'),
       qr_content: qrcode,
       date_birth: parsed.dob,
       forenames : {
@@ -115,7 +116,7 @@ export class CertificateService {
       prophylaxis : this._findVaccProph(data.vp),
       manufacturer : this._findVaccManf(data.ma),
       medicinal_product : this._findVaccProd(data.mp),
-      number_total : data.dn +" / "+ data.sd,
+      number_total : (data.dn as string) +" / "+ (data.sd as string),
       vaccinated_on : data.dt,
       issuer : data.is,
       id: data.ci
