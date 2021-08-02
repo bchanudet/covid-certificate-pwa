@@ -50,7 +50,7 @@ jobs:
 
       - name: Get version
         id: get_version
-        run: echo '::set-output name=value::'(node -pe "require('./package.json').version)''
+        run: echo '::set-output name=value::'$(node -pe "require('./package.json').version")''
 
       - name: Generate changelog
         id: changelog
