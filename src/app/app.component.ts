@@ -1,8 +1,8 @@
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
-import { ActivationEnd, Event, NavigationEnd, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { filter, map, tap } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, ActivationEnd, Event, Navigation, NavigationEnd, Router } from '@angular/router';
+import { BehaviorSubject, concat, Observable, of } from 'rxjs';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 import { AppUpdateService } from './services/app-update.service';
 import { SettingsService } from './services/settings.service';
 
@@ -11,27 +11,33 @@ import { SettingsService } from './services/settings.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'covid-certificate-pwa';
 
   public hasNewUpdate$ : Observable<boolean>;
   public displayBack$ : Observable<boolean>;
   public displaySettings$ : Observable<boolean>;
+  public homeUrl$ : Observable<string>;
 
   constructor(
     private appUpdateSvc: AppUpdateService,
     private router: Router,
     private SettingsSvc: SettingsService,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ){
+
 
     this.hasNewUpdate$ = this.appUpdateSvc.newVersionFound$.pipe(
       filter((v: boolean) => v === true)
     );
 
+    this.homeUrl$ = this.appUpdateSvc.isInApp$.pipe(
+      map((inApp: boolean) => inApp ? "/list" : "/home")
+    );
+
     this.displayBack$ = this.router.events.pipe(
       filter((evt: Event) : evt is NavigationEnd => evt instanceof NavigationEnd),
-      tap((evt: NavigationEnd) => console.log(evt, this.router.getCurrentNavigation())),
       map(() => !!this.router.getCurrentNavigation()?.previousNavigation)
     )
 
@@ -39,7 +45,6 @@ export class AppComponent {
       filter((evt: Event) : evt is ActivationEnd => evt instanceof ActivationEnd),
       map((evt: ActivationEnd) => evt.snapshot.url.join('/') !== 'settings')
     )
-
 
     this.SettingsSvc.currentScheme$.subscribe(
       (newScheme) => {
@@ -51,6 +56,12 @@ export class AppComponent {
         }
       }
     )
+  }
+
+  ngOnInit(): void{
+
+    //this.homeUrl = route.snapshot.params
+    console.warn(this.router.getCurrentNavigation(), this.route);
   }
 
   updateApp(): void{

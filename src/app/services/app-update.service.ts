@@ -14,6 +14,7 @@ export class AppUpdateService {
   private hasNewVersionSub : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private canInstallSub: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   private deferredPrompt: any = null;
+  private inApp: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   public get newVersionFound$(): Observable<boolean> {
     return this.hasNewVersionSub.asObservable();
@@ -25,6 +26,10 @@ export class AppUpdateService {
 
   public get updaterEnabled(): boolean{
     return this.updates.isEnabled;
+  }
+
+  public get isInApp$(): Observable<boolean>{
+    return this.inApp.asObservable();
   }
 
   constructor(
@@ -91,6 +96,11 @@ export class AppUpdateService {
       // Don't really care about the result, we will put the
       this.deferredPrompt = null;
     })
+  }
+
+  public setInApp(value: boolean): void{
+    console.log("inapp", value);
+    this.inApp.next(value);
   }
 
 }

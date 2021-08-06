@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { DCCertificate } from 'src/app/models/certificate';
@@ -14,8 +15,15 @@ export class ListPageComponent {
 
   constructor(
     private storeSvc: StorageService,
-    private updateSvc: AppUpdateService
-  ) { }
+    private updateSvc: AppUpdateService,
+    private route: ActivatedRoute
+  ) {
+
+    const flag : string | null = route.snapshot.queryParamMap.get("app");
+    if(flag === "true"){
+      this.updateSvc.setInApp(true);
+    }
+  }
 
   public get certificates$() : Observable<DCCertificate[]>{
     return this.storeSvc.listCertificates().pipe(
