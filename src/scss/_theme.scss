@@ -43,7 +43,7 @@
 
   button, .btn{
     color: map-get($theme, 'btn-primary');
-    background-color: hsl(207, 53%, 47%);
+    background-color: hsl(207, 53%, 37%);
   }
   button:hover, .btn:hover{
     color: map-get($theme, 'btn-primary');
@@ -51,7 +51,7 @@
   }
   button.pressed, .btn.pressed{
     color: map-get($theme, 'btn-primary');
-    background-color: darken(hsl(207, 53%, 47%), 15%);
+    background-color: darken(hsl(207, 53%, 47%), 20%);
     outline: 3px solid hsla(207, 53%, 47%, 0.25);
   }
 
