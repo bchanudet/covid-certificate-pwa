@@ -29,6 +29,10 @@ This web app enables you to store on your device your certificates, without inst
 
 The application is officially accessible on https://covid-certificate.app. This version is automatically updated with the last commit on master, following the [Github Actions workflow](https://github.com/bchanudet/covid-certificate-pwa/blob/main/.github/workflows/main.yml) set up in this repository.
 
+## Download the latest release
+
+Head over to the [Releases page](https://github.com/bchanudet/covid-certificate-pwa/releases) to download the latest version of the application. It can then be deployed on any static host. Please note you have to serve it under HTTPS to use the offline feature and install it on your device.
+
 ## From the sources
 
 You can also compile the sources and host the build yourself, you'll need Node.js 14+ and npm: 
@@ -40,7 +44,7 @@ $ npm install
 $ npx ng build
 ```
 
-Then copy all the files from `./dist/covid-certificate-pwa/browser` on any static host you want. You might need to configure the web server to match the router configuration of the application. Please see the [Angular docs](https://angular.io/guide/deployment#server-configuration) if you need more information.
+Then copy all the files from `./dist/covid-certificate-pwa/browser` on any static host you want. You might need to configure the web server to match the router configuration of the application. Please see the [Angular docs](https://angular.io/guide/deployment#server-configuration) if you need more information. You also need to serve the application using HTTPS to get the offline and "add to homescreen" features to work.
 
 # Developing
 
@@ -74,6 +78,16 @@ I will be very grateful for anyone willing to contribute translations to the app
 Any PR meant to fix a bug will be looked at and merged as soon as possible. Other PRs introducing new requests will be evaluated on several criteria like interest for the public, complexity of the code modifications, how much more maintenance it may bring to the project, etc. If you have any doubt you're welcome to file an issue to discuss it beforehand.
 
 No unit tests have been implemented, and I won't enforce you to provide some with your PR. However some linting rules have been set up, please follow them by running `ng lint`.
+
+# Authors & Credits
+
+## Developer
+- @bchanudet - Main developer
+
+## Graphics
+- Icons are from the [Tabler Icons Project](https://tabler-icons.io/) (MIT-licensed).
+- The application logo is from @bchanudet and licensed under [**CC-BY-NC-SA**](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)
+
 
 # Contact
 
