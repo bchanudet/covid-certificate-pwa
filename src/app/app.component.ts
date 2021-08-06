@@ -1,8 +1,8 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ActivationEnd, Event, Navigation, NavigationEnd, Router } from '@angular/router';
-import { BehaviorSubject, concat, Observable, of } from 'rxjs';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { Component} from '@angular/core';
+import { ActivatedRoute, ActivationEnd, Event, NavigationEnd, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { AppUpdateService } from './services/app-update.service';
 import { SettingsService } from './services/settings.service';
 
@@ -11,7 +11,7 @@ import { SettingsService } from './services/settings.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent{
   title = 'covid-certificate-pwa';
 
   public hasNewUpdate$ : Observable<boolean>;
@@ -56,12 +56,6 @@ export class AppComponent implements OnInit{
         }
       }
     )
-  }
-
-  ngOnInit(): void{
-
-    //this.homeUrl = route.snapshot.params
-    console.warn(this.router.getCurrentNavigation(), this.route);
   }
 
   updateApp(): void{
