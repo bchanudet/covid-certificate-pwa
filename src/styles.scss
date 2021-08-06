@@ -11,7 +11,7 @@ $light: (
   "primary"    : hsl(0, 0%, 13%),
   "secondary"  : hsl(0, 0%, 47%),
   "accent"     : hsl(170, 100%, 24%),
-  "faded"      : hsl(0, 0%, 50%),
+  "faded"      : hsl(0, 0%, 35%),
   "warning"    : hsl(0,50%, 50%),
 
   "success"    : hsl(170, 100%, 23%),
@@ -26,7 +26,7 @@ $dark: (
   // text colors
   "primary"    : hsl(0, 0%, 80%),
   "secondary"  : hsl(0, 0%, 47%),
-  "accent"     : hsl(170, 100%, 24%),
+  "accent"     : hsl(170, 100%, 35%),
   "faded"      : hsl(0, 0%, 60%),
   "warning"    : hsl(0,50%, 50%),
 
@@ -134,6 +134,12 @@ select {
   cursor: pointer;
   border: 1px solid;
   border-radius: .4rem;
+}
+
+// Apply a theme by default for browsers not providing a
+// prefers-color-scheme-value (looking at you, Samsung)
+body{
+  @include theme.apply($light);
 }
 
 // Create a theme for both color scheem
