@@ -92,7 +92,7 @@ code{
 // Specific presentation
 header{
   position: sticky;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  box-shadow: 0 0 1rem rgba(0,0,0,0.3);
   text-align: center;
   padding: .2rem;
 }
@@ -101,8 +101,8 @@ header{
   margin: 1rem auto;
   padding: 1rem;
   max-width: 40rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  border-radius: .8rem;
+  box-shadow: 0 0 1rem rgba(0,0,0,0.3);
 }
 @media screen and (max-width: 40rem) {
   .panel{
