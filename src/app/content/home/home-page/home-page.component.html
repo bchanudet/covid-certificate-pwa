@@ -17,10 +17,6 @@
   </p>
 </div>
 <div class="panel">
-  <h2>
-    <span class="ti ti-apps"></span>
-    <span appIntl="home-what-title">What is this website?</span>
-  </h2>
   <p appIntl="home-what-application">
     This website is a web application that allows you to <strong>manage and show</strong>
     your Digital EU COVID certificates (<em>DCC</em>), using your device's camera to import
@@ -35,10 +31,6 @@
     any online service is made during use.</p>
 </div>
 <div class="panel">
-  <h2>
-    <span class="ti ti-report-medical"></span>
-    <span appIntl="home-dcc-title">What is a DCC?</span>
-  </h2>
   <p appIntl="home-dcc-list-types">
     An EU Digital COVID Certificate is a digital proof that a person has either:
   </p>
@@ -93,54 +85,64 @@
   </p>
 </div>
 <div class="panel">
-  <h2>
-    <span class="ti ti-apps"></span>
-    <span appIntl="home-why-title">Why use this app?</span>
-  </h2>
-  <p appIntl="home-why-bloated-apps">In some countries, the official application to use for storing the certificate is
-     bloated with other features, and sometimes even incompatible with some phones.</p>
-  <p appIntl="home-why-increased-usage">Meanwhile, spikes in COVID-19 new cases enforces governments to rely more and more
-    on these certificates to allow people to still live a regular life (well, kinda).
+  <p appIntl="home-why-bloated-apps">
+    This application was developed because in some countries, the official application
+    are either bloated with other features, asking far too many permissions to run, or even
+    not available outside Android and iOS.
+  </p>
+  <p appIntl="home-why-increased-usage">
+    As COVID-19 is still looming around, and its variants are getting stronger and stronger,
+    it seems inevitable that governments will rely more and more on these certificates
+    to avoid setting up lockdowns again.
+  </p>
+  <p appIntl="home-why-for-everyone">
+    This application is meant to be usable on any browser and device, and offer to anyone
+    a simple and quick way to manage their certificates. Nothing more.
   </p>
 </div>
 <div class="panel">
   <h2>
-    <span class="ti ti-help"></span>
-    <span appIntl="home-help-title">Can I help?</span>
+    <span class="ti ti-brand-open-source"></span>
+    <span appIntl="home-authors-title">Open source</span>
   </h2>
   <p appIntl="home-help-opensource">
-    Sure! This application is <strong>Open Source</strong> and MIT-licensed.
-    You can download the source code, and contribute to it.
+    Because health information is sacred and private, this application has its <strong>source code available</strong>
+    for anyone to see and audit. As a simple web application without any server component, it can
+    be self-hosted for maximum privacy.
   </p>
   <p appIntl="home-help-github">
-    The source code is accessible on this
-    <a href="https://github.com/bchanudet/covid-certificate-pwa">Github repository</a>.
+    The source code is licensed under the <strong>MIT license</strong>, is accessible on this
+    <a href="https://github.com/bchanudet/covid-certificate-pwa">Github repository</a>. The Readme file
+    will guide you if you want to download or compile the application yourself.
   </p>
   <p appIntl="home-help-appreciated">
-    Even if you don't know how to code any contribution will be helpful. I will especially
-    appreciate translations of the application to other languages.</p>
+    If you encounter a bug, feel free to file <a href="https://github.com/bchanudet/covid-certificate-pwa/issues/new/choose">a new issue.</a>
+    All contributions are welcome, and most especially translations to other languages.
+  </p>
 </div>
 <div class="panel">
   <h2>
     <span class="ti ti-user"></span>
-    <span appIntl="home-authors-title">Who are the authors?</span>
+    <span appIntl="home-authors-title">Authors & Credits</span>
   </h2>
-  <p appIntl="home-authors-me">
-    There is only me for now, <a href="https://benjaminchanudet.com">Benjamin Chanudet</a>.
-    I'm a French developer not totally psyched about using TousAntiCovid,
-    the application that needs Geolocation & Bluetooth permissions, and an exclusion
-    to the phone's battery management system only to store a QR Code.</p>
-  <p appIntl="home-authors-icons">
-    Icons are from the <a href="https://tabler-icons.io/">Tabler icons</a> project.
-    The application logo is under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en">CC-BY-NC-SA</a>.
-  </p>
-  <p appIntl="home-authors-translations">Translations are provided by:</p>
-  <ul class="translations">
-    <li >
-      <span class="ti ti-vocabulary"></span>
-      <span appIntl="home-authors-french">French: Benjamin Chanudet</span>
-    </li>
-  </ul>
+  <dl>
+    <dt>Benjamin Chanudet</dt>
+    <dd appIntl="home-authors-main">
+      Main developer, Logo designer, French translation. <a href="https://benjaminchanudet.com">Website</a>
+    </dd>
+  </dl>
+  <dl>
+    <dt appIntl="home-authors-tabler-title">Tabler icons project</dt>
+    <dd appIntl="home-authors-tabler-desc">
+      Other icons used throughout the application. <a href="https://tabler-icons.io/">Website</a>
+    </dd>
+  </dl>
+  <dl>
+    <dt appIntl="home-authors-translations-title">Other translations</dt>
+    <dd>
+      None yet. <a href="https://github.com/bchanudet/covid-certificate-pwa/wiki/Localization-Guide">Help translating in your language</a>.
+    </dd>
+  </dl>
 </div>
 <div class="panel">
   <h2>
@@ -151,8 +153,8 @@
     <strong appIntl="home-disclaimers-not-endorsed">This application is not endorsed by any government or official entity.</strong>
   </p>
   <p appIntl="home-disclaimers-be-wary">
-    Even if the QR Code should be sufficient to prove that you have a valid certificate,
-    it may happen that you'd receive a strange look from law enforcement for the application
-    not being the official application.
+    The QR Code is be sufficient to prove that you have a valid certificate, but as it's not an
+    "authorized" application it may lift some eyebrows. Also please note that depending on the country
+    and the place, you might need to provide also a proof of identity alongside the QR Code.
   </p>
 </div>
