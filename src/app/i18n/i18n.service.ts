@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, ReplaySubject } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE_ID, Language } from './locales/locales';
 
@@ -49,12 +49,16 @@ export class I18nService {
   }
 
   public getTranslation(id: string): Observable<string>{
+    let isDefault = false;
     return this.currentLanguageSub.pipe(
+      tap((language) => {
+        isDefault = language.id === DEFAULT_LANGUAGE_ID
+      }),
       map((language) => language.locale.translations),
       map(ts => ts.find(t => t.id === id)),
       switchMap((t) => {
         if(t === undefined){
-          if(!environment.production){
+          if(!environment.production && !isDefault){
             console.warn(`No translation for '${id}'`);
           }
           return of('');
