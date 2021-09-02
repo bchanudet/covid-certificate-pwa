@@ -18,7 +18,7 @@ import { SettingsModule } from './content/settings/settings.module';
     AppComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     AppRoutingModule,
     RouterModule,
     AddModule,
