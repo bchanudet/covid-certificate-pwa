@@ -8,6 +8,11 @@ import { DCCertificate } from 'src/app/models/certificate';
 })
 export class CertLineComponent{
 
-  @Input() cert?: DCCertificate;
+  @Input()
+  cert?: DCCertificate;
+
+  @Input()
+  default?: boolean = false;
+
 
 }
