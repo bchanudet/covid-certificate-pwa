@@ -60,6 +60,9 @@ export const locale: Locale = {
     {id: 'view-title', html: `Certificat numérique`},
     {id: 'view-action-remove', html: `Supprimer le certificat`},
     {id: 'view-action-remove-confirm', html: `Cliquez à nouveau pour confirmer`},
+    {id: 'view-loading-label', html: `Chargement du certificat...`},
+    {id: 'view-error-label', html: `Erreur de chargement du certificat.`},
+    {id: 'view-error-back', html: `Retour à la liste`},
 
     // Scan page
     {id: 'scan-title', html: `Importer un certificat`},

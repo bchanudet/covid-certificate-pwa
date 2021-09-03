@@ -1,6 +1,6 @@
 <div class="panel">
   <h1 appIntl="view-title">Certificate</h1>
-  <div *ngIf="cert; else loading">
+  <div *ngIf="(certificate$ | async) as cert; else loading">
     <h2>
       <span class="ti ti-qrcode"></span>
       <span>QR Code</span>
@@ -9,7 +9,7 @@
     <br>
     <app-cert-details [cert]="cert" class="details"></app-cert-details>
     <div class="actions">
-      <button class="cancel" (click)="remove()">
+      <button class="cancel" (click)="remove(cert.id)">
         <span class="ti ti-trash"></span>
         <span appIntl="view-action-remove" *ngIf="removeStep === 0">Remove certificate</span>
         <span appIntl="view-action-remove-confirm" *ngIf="removeStep === 1">Tap again to confirm</span>
@@ -17,6 +17,17 @@
     </div>
   </div>
   <ng-template #loading>
-    <p>Loading...</p>
+    <ng-container *ngIf="!inError">
+      <p appIntl="view-loading-label">Loading certificate...</p>
+    </ng-container>
+    <ng-container *ngIf="inError">
+      <p class="warning" appIntl="view-error-label">
+        Error while loading your certificate
+      </p>
+      <button routerLink="/list">
+        <span class="ti ti-chevron-left"></span>
+        <span appIntl="view-error-back">Back to list</span>
+      </button>
+    </ng-container>
   </ng-template>
 </div>

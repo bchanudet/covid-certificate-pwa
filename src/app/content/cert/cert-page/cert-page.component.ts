@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 import { DCCertificate } from 'src/app/models/certificate';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -8,38 +10,35 @@ import { StorageService } from 'src/app/services/storage.service';
   templateUrl: './cert-page.component.html',
   styleUrls: ['./cert-page.component.scss']
 })
-export class CertPageComponent implements OnInit {
+export class CertPageComponent {
 
-  public cert: DCCertificate | undefined = undefined;
+  public certificate$: Observable<DCCertificate>;
   public removeStep = 0;
+  public inError = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private storeSvc: StorageService,
-  ) { }
-
-  ngOnInit(): void {
-    this.route.params.subscribe(
-      (newParams) => {
-        const cert : DCCertificate | undefined = this.storeSvc.getCertificate(newParams.id);
-        if(cert === undefined){
-          return;
+    private storeSvc: StorageService
+  ) {
+    this.certificate$ = this.route.params.pipe(
+      filter(newParams => {
+        if(!this.storeSvc.hasCertificate(newParams.id)){
+          this.inError = true;
+          return false;
         }
-        this.cert = cert;
-      }
+        return true;
+      }),
+      map(newParams => this.storeSvc.getCertificate(newParams.id) as DCCertificate),
     )
   }
 
-  remove(): void{
-    if(this.cert === undefined){
-      return;
-    }
+  remove(certId: string): void{
     if(this.removeStep == 0){
       this.removeStep += 1;
       return;
     }
-    if(this.storeSvc.removeCertificate(this.cert.id)){
+    if(this.storeSvc.removeCertificate(certId)){
       void this.router.navigate(['/list']);
     }
   }
