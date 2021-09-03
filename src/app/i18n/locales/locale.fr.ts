@@ -98,6 +98,9 @@ export const locale: Locale = {
     {id: 'settings-language-title', html: `Langue`},
     {id: 'settings-language-auto', html: `Détection automatique`},
     {id: 'settings-language-instructions', html: `Par défaut l'application va inspecter la langue du navigateur et, si une traduction pour celle-ci existe, va l'appliquer. Sinon la langue sera l'anglais. Vous pouvez choisir de désactiver ce comportement en sélectionnant une langue spécifique dans le champ ci-dessus.`},
+    {id: 'settings-default-title', html: `Afficher un Certificat au démarrage`},
+    {id: 'settings-default-none', html: `Aucun : afficher la liste au démarrage`},
+    {id: 'settings-default-instructions', html: `L'application étant installée sur votre appareil, vous pouvez choisir d'afficher un certificat particulier dès l'ouverture de l'application. Le cas échéant, la liste de tous vos certificats reste accessible en cliquant sur le logo de l'application en haut de la fenêtre.`},
 
 
     // Certificate details

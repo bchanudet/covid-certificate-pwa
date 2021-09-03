@@ -30,4 +30,20 @@
     </select>
   </ng-container>
   <p class="instructions" appIntl="settings-language-instructions">By default the application will look at the browser language, and try to match it if a translation is available. If not it will fallback to English. You can choose to override this behaviour by selecting here a specific language.</p>
+  <ng-container *ngIf="isInApp$ | async">
+    <h2>
+      <span class="ti ti-certificate"></span>
+      <span appIntl="settings-default-title">Display Certificate at startup</span>
+    </h2>
+    <select #defaultCertificate (input)="selectDefaultCert(defaultCertificate.value)">
+      <option value="" appIntl="settings-default-none">None: Display list at startup</option>
+      <option
+        *ngFor="let cert of certificates$ | async"
+        value="{{cert.id}}"
+        [selected]="cert.id === defaultCert">
+        {{cert.forenames.formatted}}&nbsp;{{cert.lastnames.formatted}}
+      </option>
+    </select>
+    <p class="instructions" appIntl="settings-default-instructions">As you installed the application on the homescreen of your device, you can choose a default certificate to display as soon as you open it. The list of your other certificates can be accessed by clicking on the application logo in the header</p>
+  </ng-container>
 </div>
